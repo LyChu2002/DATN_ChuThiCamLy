@@ -178,6 +178,10 @@
     padding: 0 -5px;
 }
 
+.product-group-content .banner-group{
+    padding-right: 30px;
+}
+
 .group-product .group-product-main{
     margin-left: -15px;
     margin-right: -15px;
@@ -221,6 +225,12 @@
     border-radius: 30px;
 }
 
+.proLoop .proWrap .product-img .product-tag-new,
+.proLoop .proWrap .product-img .product-tag-hot{
+    position: absolute;
+    z-index: 10;
+}
+
 .proLoop .proWrap .product-img .productAction{
     position: absolute;
     top: 40%;
@@ -235,26 +245,31 @@
 }
 
 .proLoop:hover .proWrap .product-img .productAction{
- 
     opacity: 1;
 }
 
 .proLoop .proWrap .product-img .productAction a{
     background-color: #43c1c5;
-    width: 30px;
-    height: 30px;
+    width: 25px;
+    height: 25px;
     border-radius: 4px;
     color: #ffffff;
     display: block;
     text-align: center;
-    margin: 10px 0;
-    font-size: 15px;
+    margin: 12px 0;
+    font-size: 12px;
     cursor: pointer;
+    transition: all 0.4s ease-in-out;
+}
+
+.proLoop:hover .proWrap .product-img .productAction a{
+    transform: scale(1.2);
+    opacity: 1;
 }
 
 .proLoop .proWrap .product-img .productAction a i{
-    font-size: 18px;
-    line-height: 30px;
+    font-size: 16px;
+    line-height: 25px;
 }
 
 .proLoop .proWrap .product-info{

@@ -1,0 +1,30 @@
+#product-page .productWrap{
+    width: 100%;
+    position: relative;
+    border-radius: 10px;
+    background-color: #fff;
+    padding: 20px;
+    border: 1px solid #ffe5e6;
+}
+
+#product-page .productWrap .productWrapAll{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+#product-page .productWrap .productWrapAll .productWrapLeft{
+    width: 50%;
+    display: flex;
+    position: relative;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+#product-page .productWrap .productWrapAll .productWrapLeft .thumbImage{
+    width: 20%;
+}
+
+#product-page .productWrap .productWrapAll .productWrapLeft .featureImage{
+    width: 80%;
+}
