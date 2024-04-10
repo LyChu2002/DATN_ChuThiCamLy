@@ -228,7 +228,33 @@
 .proLoop .proWrap .product-img .product-tag-new,
 .proLoop .proWrap .product-img .product-tag-hot{
     position: absolute;
-    z-index: 10;
+    z-index: 2;
+}
+
+.proLoop .proWrap .product-img .productSale{
+    width: auto;
+    height: auto;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #43c1c5;
+    padding: 0 10px;
+    z-index: 2;
+    color: #fff;
+    border-radius: 4px;
+    text-align: center;
+    line-height: 26px;
+    font-size: 13px;
+}
+
+.proLoop .proWrap .product-img .productSale::after{
+    position: absolute;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid #43c1c5;
+    content: "";
+    top: 100%;
+    left: 20%;
 }
 
 .proLoop .proWrap .product-img .productAction{

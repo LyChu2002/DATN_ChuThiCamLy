@@ -55,10 +55,17 @@ $(document).ready(function(){
         asNavFor: '.featureImage',
         focusOnSelect: true,
         arrows: false,
-        // prevArrow: '<button type="button" class="slick-prev custom-prev"><i class="fa-solid fa-chevron-left"></i></button>',
-        // nextArrow: '<button type="button" class="slick-next custom-next"><i class="fa-solid fa-chevron-right"></i></button>'
       });
+})
 
+$(document).ready(function () {
+    $('.product-relate-main').slick({
+        autoplay: true,
+        slidesToShow: 5,
+        slidesToScroll: 1,
+        prevArrow: '<button type="button" class="slick-prev custom-prev"><i class="fa-solid fa-chevron-left"></i></button>',
+        nextArrow: '<button type="button" class="slick-next custom-next"><i class="fa-solid fa-chevron-right"></i></button>'
+    })
 })
 
 
