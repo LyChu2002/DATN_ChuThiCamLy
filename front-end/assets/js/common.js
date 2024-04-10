@@ -40,27 +40,26 @@ $(document).ready(function(){
         autoplay: true,
         slidesToShow: 1,
         slidesToScroll: 1,
-        arrows: false,
+        //arrows: false,
         fade: true,
         asNavFor: '.thumbImage',
-        prevArrow: '<button type="button" class="slick-prev custom-prev"><i class="fa-solid fa-chevron-left"></i></button>',
-        nextArrow: '<button type="button" class="slick-next custom-next"><i class="fa-solid fa-chevron-right"></i></button>'
+        prevArrow: '<button type="button" class="slick-prev slick-arrow custom-prev"><i class="fa-solid fa-chevron-left"></i></button>',
+        nextArrow: '<button type="button" class="slick-next slick-arrow custom-next"><i class="fa-solid fa-chevron-right"></i></button>'
       });
-    
-})
 
-$(document).ready(function (){
-
-    $('.thumbImage').slick({
-        autoplay: true,
+      $('.thumbImage').slick({
+         autoplay: true,
         vertical: true,
         slidesToShow: 3,
         slidesToScroll: 1,
         asNavFor: '.featureImage',
-        // centerMode: true,
         focusOnSelect: true,
-        prevArrow: '<button type="button" class="slick-prev custom-prev"><i class="fa-solid fa-chevron-left"></i></button>',
-        nextArrow: '<button type="button" class="slick-next custom-next"><i class="fa-solid fa-chevron-right"></i></button>'
+        arrows: false,
+        // prevArrow: '<button type="button" class="slick-prev custom-prev"><i class="fa-solid fa-chevron-left"></i></button>',
+        // nextArrow: '<button type="button" class="slick-next custom-next"><i class="fa-solid fa-chevron-right"></i></button>'
       });
+
 })
+
+
 

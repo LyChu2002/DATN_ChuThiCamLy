@@ -4,6 +4,10 @@
     font-size: 15px;
 }
 
+body{
+    background-color: #fffeeb;
+}
+
 a{
     color: #37a1a5;
     background-color: transparent;
@@ -31,4 +35,8 @@ img{
 .img-fluid {
     max-width: 100%;
     height: auto;
+}
+
+.slick-arrow{
+    border: none;
 }
