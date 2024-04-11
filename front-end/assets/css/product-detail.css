@@ -36,7 +36,6 @@
 #product-page .productWrap .productWrapAll .productWrapLeft .featureImage .custom-next{
     position: absolute;
     top: 45%;
-    padding: 8px 8px;
     z-index: 1;
     border: none;
     background-color: rgb(0, 0, 0, 0);
@@ -211,7 +210,15 @@
   
 }
 
-#product-page .productWrap .productTabsContent ul#myTab li a.nav-link{
+#product-page .productWrap .productTabsContent ul#myTab li a{
+    color: #333;
+    font-size: 18px;
+    font-weight: 500;
+    border: none;
+    padding: 10px;
+}
+
+#product-page .productWrap .productTabsContent ul#myTab li a.active{
     color: #fff;
     border-bottom: 2px solid #43c1c5;
     background: #43c1c5;

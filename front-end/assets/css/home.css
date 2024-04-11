@@ -121,6 +121,11 @@
     cursor: pointer;
 }
 
+#group-product-slider .productLoop .proLoop{
+    padding-left: 14px;
+    padding-right: 14px;
+}
+
 .section-title{
     text-align: center;
     width: 50%;
