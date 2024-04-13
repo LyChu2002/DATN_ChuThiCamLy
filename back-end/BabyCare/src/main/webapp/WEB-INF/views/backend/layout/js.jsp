@@ -1,0 +1,12 @@
+<script src="${classpath }/backend/plugins/jquery/jquery.min.js"></script>
+<script src="${classpath }/backend/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="${classpath }/backend/plugins/simplebar/simplebar.min.js"></script>
+<script src="https://unpkg.com/hotkeys-js/dist/hotkeys.min.js"></script>
+<script src="${classpath }/backend/plugins/prism/prism.js"></script>
+<script src="${classpath }/backend/plugins/DataTables/DataTables-1.10.18/js/jquery.dataTables.min.js"></script>
+<script src="${classpath }/backend/plugins/apexcharts/apexcharts.js"></script>
+<script src="${classpath }/backend/js/mono.js"></script>
+<script src="${classpath }/backend/js/chart.js"></script>
+<script src="${classpath }/backend/js/map.js"></script>
+<script src="${classpath }/backend/js/custom.js"></script>
+<script src="${classpath }/backend/plugins/nprogress/nprogress.js"></script>

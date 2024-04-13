@@ -1,0 +1,92 @@
+#footer{
+    position: relative;
+    background-color: #ffffff;
+    margin-top: 50px;
+}
+
+#footer .footer-wrap{
+    display: flex;
+    flex-wrap: wrap;
+    padding: 50px 0;
+}
+
+#footer .footer-wrap .footer-wrap-item{
+    width: 25%;
+    padding: 0 10px;
+}
+
+#footer .footer-wrap .footer-wrap-item:nth-child(1) h4:after {
+    background-color: #f27c7e;
+}
+
+#footer .footer-wrap .footer-wrap-item:nth-child(2) h4:after {
+    background-color: #acc158
+}
+
+#footer .footer-wrap .footer-wrap-item:nth-child(3) h4:after {
+    background-color: #fce485;
+}
+
+#footer .footer-wrap .footer-wrap-item:nth-child(4) h4:after {
+    background-color: #4c7296;
+}
+
+#footer .footer-wrap .footer-wrap-item > h4{
+    position: relative;
+    padding-bottom: 25px;
+}
+
+#footer .footer-wrap .footer-wrap-item > h4:after {
+    content: "";
+    padding: 0;
+    max-width: 275px;
+    width: 100%;
+    display: inline-block;
+    background-image: url(../images/footer/footer_title_bg.png);
+    background-position: left bottom;
+    background-repeat: no-repeat;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 14px;
+}
+
+#footer .footer-wrap .footer-wrap-item .footer-wrap-item-content-logo{
+    margin-bottom: 15px;
+}
+
+#footer .footer-wrap .footer-wrap-item .footer-wrap-item-content-logo img{
+    max-width: 270px;
+}
+
+#footer .footer-wrap .footer-wrap-item .footer-wrap-item-content li{
+    padding: 5px 0;
+}
+
+#footer .footer-wrap .footer-wrap-item .footer-wrap-item-content li a{
+    color: #333333;
+}
+
+#footer .footer-wrap .footer-wrap-item .footer-wrap-item-content li a:hover{
+    color: #37a1a5;
+}
+
+#footer .footer-wrap .footer-wrap-item .footer-wrap-item-content i{
+    color: #ee4141;
+}
+
+#footer .footer-wrap .footer-wrap-item .footer-wrap-item-content form{
+    position: relative;
+}
+
+#footer .footer-wrap .footer-wrap-item .footer-wrap-item-content button{
+    color: #ffffff;
+    background-color: #43c1c5;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    border: 1px solid #43c1c5;
+    padding: 0 10px;
+}
+

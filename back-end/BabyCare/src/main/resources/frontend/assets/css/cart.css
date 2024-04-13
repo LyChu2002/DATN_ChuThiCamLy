@@ -1,0 +1,204 @@
+#cart-page{
+    margin-bottom: 25px;
+    padding-bottom: 50px;
+}
+
+.breadcrum-shop ol{
+    display: flex;
+    flex-wrap: wrap;
+    background: none;
+    padding-left: 0;
+    padding-right: 0;
+    margin: 0;
+}
+
+.breadcrum{
+    list-style: none;
+    padding: 12px 0;
+}
+
+.breadcrum .breadcrum-item{
+    position: relative;
+    padding: 0 5px;
+    margin: 0 5px;
+}
+
+.breadcrum .breadcrum-item:first-child::after{
+    content: "/";
+    display: inline-block;
+    padding-left: .5rem;
+    color: #6c757d;
+    position: absolute;
+}
+
+.breadcrum-item.active a{
+    color: #6c757d;
+}
+
+#cart-page .cart-page-wrap{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#cart-page .cart-page-wrap .cart-page-left{
+    padding-right: 15px;
+    width: 70%;
+}
+
+#cart-page .cart-page-wrap .cart-page-left .cart-page-list{
+    background-color: #fff;
+    padding: 0 15px;
+    border: 1px solid #e1e1e1;
+}
+
+.cart-page-list-item{
+    display: flex;
+    flex-wrap: wrap;
+    padding: 20px;
+    border-bottom: 1px dashed #cdcdcd;
+}
+
+.cart-page-list-item .cart-page-list-item-image{
+    width: 80px;
+}
+
+.cart-page-list-item .cart-page-list-item-detail{
+    width: calc(100% - 500px);
+    padding: 0 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.cart-page-list-item .cart-page-list-item-detail span{
+    text-transform: uppercase;
+    font-size: 13px;
+}
+
+.cart-page-list-item .cart-page-list-item-detail h3{
+    font-size: 16px;
+    margin-bottom: 0;
+}
+
+.cart-page-list-item .cart-page-list-item-detail h3 a{
+    text-decoration: none;
+    color: #333;
+}
+
+.cart-page-list-item .cart-page-list-item-detail .item-desc{
+    font-size: 12px;
+    color: #999;
+}
+
+.cart-page-list-item .cart-page-list-item-price{
+    width: 190px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.cart-page-list-item .cart-page-list-item-price .item-price{
+    color: #ff1616;
+    font-weight: 500;
+    font-size: 18px;
+    margin: 2px 0;
+}
+
+.cart-page-list-item .cart-page-list-item-price del{
+    font-size: 12px;
+    color: #9E9E9E;
+}
+
+.cart-page-list-item .cart-page-list-item-actions{
+    width: 130px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cart-product-quantity-wrap{
+    display: flex;
+}
+
+.cart-product-quantity-wrap button{
+    background: none;
+    border: 1px solid #ccc;
+    height: 25px;
+    width: 25px;
+}
+
+.cart-product-quantity-wrap input{
+    height: 25px;
+    width: 50px;
+    border: 1px solid #ccc;
+    border-left: none;
+    border-right: none;
+    text-align: center;
+}
+
+.cart-page-list-item .cart-page-list-item-remove{
+    width: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cart-page-list-item .cart-page-list-item-remove i{
+    font-size: 20px;
+}
+
+.cart-page-list-item .cart-page-list-item-remove i:hover{
+    color: #ff1616;
+}
+#cart-page .cart-page-wrap .cart-page-right{
+    width: 30%;
+    padding: 0 20px 20px 20px;
+    background-color: #fff;
+    border: 1px solid #e1e1e1;
+}
+
+#cart-page .cart-page-info{
+    padding: 25px 0 15px 0;
+}
+
+#cart-page .cart-page-info h1{
+    font-size: 18px;
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+#cart-page .cart-page-info .cart-page-subtotal{
+    margin-bottom: 5px;
+    padding-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #cdcdcd;
+}
+
+#cart-page .cart-page-info .cart-page-total{
+    padding: 15px 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+#cart-page .cart-page-info .cart-page-total .cart-page-total-price{
+    text-align: right;
+}
+
+#cart-page .cart-page-info .cart-page-total .cart-page-total-price span{
+    color: #ff1616;
+    /* display: block; */
+    font-size: 18px;
+    font-weight: 500;
+}
+
+#cart-page .cart-page-info .cart-page-checkout a{
+    background-color: #43c1c5;
+    color: #fff;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 15px;
+    display: block;
+    text-decoration: none;
+}

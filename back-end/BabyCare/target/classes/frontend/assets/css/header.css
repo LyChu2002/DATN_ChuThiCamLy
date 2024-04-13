@@ -1,0 +1,255 @@
+#header .headerMenuTop{
+    background-color: #fffeeb;
+}
+
+#header .headerMain{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+#header .headerMain .headerLeft{
+    width: 20%;
+}
+
+#header .headerMain .headerLeft .headerLogo img{
+    min-width: 100px;
+    max-width: 200px;
+    max-height: 50px;
+}
+
+#header .headerMain .headerCenter{
+    width: 50%;
+}
+
+#header .headerSearch{
+    position: relative;
+    width: 100%;
+}
+
+#header .headerSearch .headerSearchInput{
+    width: 100%;
+    padding: 0 50px 0 20px;
+    height: 35px;
+    line-height: 50px;
+    border: 1px solid #d6d4d4;
+    border-radius: 5px;
+    outline: none;
+}
+
+input[type=text]:focus {  
+    background-color: rgb(247, 250, 251);
+    
+     border: 1px solid #43c1c5;
+}
+
+#header .headerSearch .headerSearchButton{
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 35px;
+    background-color: #43c1c5;
+    color: #fff;
+    text-align: center;
+    font-size: 20px;
+    line-height: 20px;
+    border-radius: 0 5px 5px 0;
+}
+
+#header .headerMain .headerRight{
+    width: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 20px;
+}
+
+#header .headerMain .headerRight .headerTool{
+    position: relative;
+}
+
+#header .headerMain .headerRight .headerTool i{
+    font-size: 20px;
+}
+
+#header .headerMain .headerRight .span-count{
+    position: absolute;
+    background-color: #43c1c5;
+    color: #fff;
+    top: -9px;
+    right: -10px;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    text-align: center;
+    border-radius: 999px;
+    font-size: 11px;
+}
+#header .headerMenu{
+    width: 100%;
+    background-color: #43c1c5;
+    position: relative;
+    z-index: 9;
+}
+
+
+#header.activeMenu .headerMenu{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 9;
+    animation: fadeMenu .5s ease-out forwards;
+}
+
+@keyframes fadeMenu{
+    0% {
+        opacity: 0;
+        transform: translateY(-100%);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+#header .headerMenu > .container {
+    display: flex;
+    align-items: center;
+}
+.headerMenu .headerMenuLeft{
+    width: 20%;
+    display: flex;
+    align-items: center;
+    padding: 12.5px 15px;
+    color: #ffffff;
+    line-height: 20px;
+    text-transform: none;
+    position: relative;
+}
+
+.headerMenu .headerMenuLeft > i{
+    margin-right: 10px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.headerMenu .headerMenuLeft .mainNav{
+    position: absolute;
+    background-color: #ffffff;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    /* visibility: hidden; */
+    z-index: 9;
+    height: 400px;
+}
+
+.headerMenu .headerMenuLeft .unActiveNav{
+    visibility: hidden;
+}
+
+.headerMenu .headerMenuLeft .activeNav{
+    visibility: visible;
+}
+
+.headerMenu .headerMenuLeft:hover .mainNav{
+    visibility: visible;
+    z-index: 9;
+    /* color: rebeccapurple; */
+}
+
+.headerMenuLeft .mainNav > ul{
+    padding: 0;
+    list-style-type: none;
+}
+
+.headerMenuLeft .mainNav > ul li{
+    position: initial;
+} 
+
+.headerMenuLeft .mainNav > ul > li > a{
+    text-transform: capitalize;
+    padding: 3.2px 20px 3.2px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.headerMenuLeft .mainNav > ul li .subMenuTwo{
+    display: block;
+    position: absolute;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(6px);
+    border: 1px solid #e1e1e1;
+    top: 0;
+    left: 100%;
+    width: 1000px;
+    visibility: hidden;
+}
+
+.headerMenuLeft .mainNav > ul li:hover > .subMenuTwo{
+    visibility: visible;
+}
+
+.headerMenuLeft .mainNav > ul li .subMenuTwo > a{
+    display: block;
+    font-weight: 700;
+    padding: 10px 0 5px 10px;
+}
+
+.headerMenuLeft .mainNav > ul li .subMenuTwo ul{
+    padding-top: 3px;
+    padding-left: 10px;
+}
+.headerMenuLeft .mainNav > ul li .subMenuTwo ul li{
+    padding: 5px 0;
+}
+.headerMenuLeft .mainNav > ul li .subMenuTwo ul li a{
+    color: #525252;
+}
+.headerMenuLeft .mainNav > ul li .subMenuTwo ul li a:hover{
+    color: #37a1a5;
+}
+
+.headerMenuLeft .mainNav > ul li a span img{
+    max-width: 30px;
+    margin-right: 7px;
+}
+
+.headerMenuLeft .mainNav > ul li a i{
+    font-size: 10px;
+}
+
+.headerMenu .headerMenuRight{
+    width: 80%;
+}
+
+.headerMenu .headerMenuRight .headerMenuRightNav{
+    display: flex;
+    align-items: center;
+}
+
+.headerMenu .headerMenuRight .headerMenuRightNav a{
+    color: #ffffff;
+    font-weight: 700px;
+    margin-left: 40px;
+    display: flex;
+}
+
+.headerMenu .headerMenuRight .headerMenuRightNav span{
+    width: 25px;
+    height: 25px;
+    background-color: #ffffff;
+    display: block;
+    border-radius: 50%;
+    text-align: center;
+    margin-right: 10px;
+}
+
+.headerMenu .headerMenuRight .headerMenuRightNav span i{
+    color: #e68da6;
+    line-height: 25px;
+    text-transform: -50%;
+}
