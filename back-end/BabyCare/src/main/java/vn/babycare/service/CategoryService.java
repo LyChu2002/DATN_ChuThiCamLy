@@ -24,4 +24,9 @@ public class CategoryService extends BaseService<Category>{
 		String sql = "SELECT * FROM category ORDER BY id desc";
 		return super.executeNativeSql(sql);
 	}
+	
+	public List<Category> findAllActive(){
+		String sql = "SELECT * FROM category WHERE status = 1";
+		return super.executeNativeSql(sql);
+	}
 }

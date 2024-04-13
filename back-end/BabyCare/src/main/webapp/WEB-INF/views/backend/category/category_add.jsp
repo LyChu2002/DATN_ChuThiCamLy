@@ -50,14 +50,14 @@
                                             <div class="form-group mb-4">
                                                 <label for="code">Code</label>
                                                 <sf:input id="code" path="code" type="text" class="form-control" placeholder="Mã danh mục"></sf:input>
-                                                <sf:errors path="code"></sf:errors>
+                                                
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group mb-4">
                                                 <label for="name">Tên danh mục</label>
                                                 <sf:input id="name" path="name" type="text" class="form-control" placeholder="Tên danh mục"></sf:input>
-                                                <sf:errors path="name"></sf:errors>
+                                              
                                             </div>
                                         </div>
                                     </div>

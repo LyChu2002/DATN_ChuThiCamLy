@@ -35,7 +35,7 @@
                 <div class="content">
                     <div class="card card-default">
                         <div class="card-header">
-                            <h2>Thêm danh mục</h2>
+                            <h2>Thêm loại sản phẩm</h2>
                         </div>
                         <div class="card-body">
                         <c:if test="${not empty messageResponse }">
@@ -43,21 +43,30 @@
                         		${messageResponse }
                         	</div>
                         </c:if>
-                            <sf:form class="form" action="${classpath }/admin/category-update-save" method="post" modelAttribute="category">
+                            <sf:form class="form" action="${classpath }/admin/type-product-add-save" method="post" modelAttribute="typeProduct">
                                 <div class="form-body">
-                                	<sf:hidden path="id"/>
+                                	<div class="row">
+                                		<div class="col-md-6">
+                                			<div class="form-group mb-4">
+                                				<label for="category">Danh mục</label>
+                                				<sf:select path="category.id" class="form-control" id="category">
+                                					<sf:options itemValue="id" items="${categories }" itemLabel="name" class="form-control"></sf:options>
+                                				</sf:select>
+                                			</div>
+                                		</div>
+                                	</div>
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group mb-4">
                                                 <label for="code">Code</label>
-                                                <sf:input id="code" path="code" type="text" class="form-control" placeholder="Mã danh mục"></sf:input>
-                                               
+                                                <sf:input id="code" path="code" type="text" class="form-control" placeholder="Mã loại sản phẩm"></sf:input>
+                                                
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group mb-4">
-                                                <label for="name">Tên danh mục</label>
-                                                <sf:input id="name" path="name" type="text" class="form-control" placeholder="Tên danh mục"></sf:input>
+                                                <label for="name">Tên loại sản phẩm</label>
+                                                <sf:input id="name" path="name" type="text" class="form-control" placeholder="Tên loại sản phẩm"></sf:input>
                                               
                                             </div>
                                         </div>
@@ -94,7 +103,7 @@
                                         <div class="col-md-12">
                                             <div class="form-group mb-4">
                                                <a href="${classpath }/admin/category-list" class="btn btn-light active" role="button">Về danh sách</a>
-                                               <button type="submit" class="btn btn-primary">Lưu danh mục</button>
+                                               <button type="submit" class="btn btn-primary">Lưu loại sản phẩm</button>
                                             </div>
                                         </div>
                                         

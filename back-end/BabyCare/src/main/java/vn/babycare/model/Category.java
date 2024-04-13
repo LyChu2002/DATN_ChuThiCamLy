@@ -1,7 +1,13 @@
 package vn.babycare.model;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -12,6 +18,18 @@ public class Category extends BaseModel{
 	
 	@Column(name = "name", length = 200, nullable = false)
 	private String name;
+	
+//--------Mapping one-to-many: category to type_product---------------
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "category")
+	private Set<TypeProduct> typeProducts = new HashSet<TypeProduct>();
+
+	public Set<TypeProduct> getTypeProducts() {
+		return typeProducts;
+	}
+
+	public void setTypeProducts(Set<TypeProduct> typeProducts) {
+		this.typeProducts = typeProducts;
+	}
 
 	public Category() {
 		super();

@@ -51,11 +51,11 @@
 				</a>
 					<ul class="collapse" id="type" data-parent="#sidebar-menu">
 						<div class="sub-menu">
-							<li><a class="sidenav-item-link" href=""> <span
+							<li><a class="sidenav-item-link" href="${classpath }/admin/type-product-list"> <span
 									class="nav-text">Xem loại sản phẩm</span>
 
 							</a></li>
-							<li><a class="sidenav-item-link" href="email-details.html">
+							<li><a class="sidenav-item-link" href="${classpath }/admin/type-product-add">
 									<span class="nav-text">Thêm loại sản phẩm</span>
 
 							</a></li>
