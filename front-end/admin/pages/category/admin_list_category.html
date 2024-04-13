@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Admin Baby Care</title>
+    <link href="../../plugins/material/css/materialdesignicons.min.css" rel="stylesheet" />
+    <link href="../../plugins/simplebar/simplebar.css" rel="stylesheet" />
+    <link href="../../plugins/nprogress/nprogress.css" rel="stylesheet" />
+    <link href="../../plugins/prism/prism.css" rel="stylesheet" />
+    <link href="../../plugins/DataTables/DataTables-1.10.18/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <link id="main-css-href" rel="stylesheet" href="../../css/style.css" />
+    <link rel="stylesheet" href="../../css/common.css" />
+    <link href="../../images/favicon.png" rel="shortcut icon" />
+    <script src="../../plugins/nprogress/nprogress.js"></script>
+</head>
+
+<body class="navbar-fixed sidebar-fixed" id="body">
+
+    <script>
+        NProgress.configure({ showSpinner: false });
+        NProgress.start();
+    </script>
+
+    <div class="wrapper">
+        <aside class="left-sidebar sidebar-dark" id="left-sidebar">
+            <div id="sidebar" class="sidebar sidebar-with-footer">
+                <div class="app-brand">
+                    <a href="/index.html">
+                        <img src="../../images/logo-1.png" alt="Mono">
+                    </a>
+                </div>
+                <div class="sidebar-left" data-simplebar style="height: 100%;">
+                    <ul class="nav sidebar-inner" id="sidebar-menu">
+                        <li>
+                            <a class="sidenav-item-link" href="index.html">
+                                <i class="mdi mdi-briefcase-account-outline"></i>
+                                <span class="nav-text">Business Dashboard</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a class="sidenav-item-link" href="analytics.html">
+                                <i class="mdi mdi-chart-line"></i>
+                                <span class="nav-text">Analytics Dashboard</span>
+                            </a>
+                        </li>
+
+                        <li class="section-title">
+                            Quản lý
+                        </li>
+
+                        <li class="has-sub">
+                            <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse"
+                                data-target="#category" aria-expanded="false" aria-controls="category">
+                                <i class="mdi mdi-format-list-bulleted-type"></i>
+                                <span class="nav-text">Danh mục</span> <b class="caret"></b>
+                            </a>
+                            <ul class="collapse" id="category" data-parent="#sidebar-menu">
+                                <div class="sub-menu">
+                                    <li>
+                                        <a class="sidenav-item-link" href="admin_list_category.html">
+                                            <span class="nav-text">Xem danh mục</span>
+
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="sidenav-item-link" href="admin_add_category.html">
+                                            <span class="nav-text">Thêm danh mục</span>
+
+                                        </a>
+                                    </li>
+                                </div>
+                            </ul>
+                        </li>
+
+                        <li class="has-sub">
+                            <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse"
+                                data-target="#type" aria-expanded="false" aria-controls="type">
+                                <i class="mdi mdi-format-list-bulleted-type"></i>
+                                <span class="nav-text">Loại sản phẩm</span> <b class="caret"></b>
+                            </a>
+                            <ul class="collapse" id="type" data-parent="#sidebar-menu">
+                                <div class="sub-menu">
+                                    <li>
+                                        <a class="sidenav-item-link" href="">
+                                            <span class="nav-text">Xem loại sản phẩm</span>
+
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="sidenav-item-link" href="email-details.html">
+                                            <span class="nav-text">Thêm loại sản phẩm</span>
+
+                                        </a>
+                                    </li>
+                                </div>
+                            </ul>
+                        </li>
+
+                        <li class="has-sub">
+                            <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse"
+                                data-target="#vendor" aria-expanded="false" aria-controls="vendor">
+                                <i class="mdi mdi-format-list-bulleted-type"></i>
+                                <span class="nav-text">Nhà cung cấp</span> <b class="caret"></b>
+                            </a>
+                            <ul class="collapse" id="vendor" data-parent="#sidebar-menu">
+                                <div class="sub-menu">
+                                    <li>
+                                        <a class="sidenav-item-link" href="email-inbox.html">
+                                            <span class="nav-text">Xem nhà cung cấp</span>
+
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="sidenav-item-link" href="email-details.html">
+                                            <span class="nav-text">Thêm nhà cung cấp</span>
+
+                                        </a>
+                                    </li>
+                                </div>
+                            </ul>
+                        </li>
+
+                        <li class="has-sub">
+                            <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse"
+                                data-target="#product" aria-expanded="false" aria-controls="product">
+                                <i class="mdi mdi-format-list-bulleted-type"></i>
+                                <span class="nav-text">Sản phẩm</span> <b class="caret"></b>
+                            </a>
+                            <ul class="collapse" id="product" data-parent="#sidebar-menu">
+                                <div class="sub-menu">
+                                    <li>
+                                        <a class="sidenav-item-link" href="email-inbox.html">
+                                            <span class="nav-text">Xem sản phẩm</span>
+
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="sidenav-item-link" href="email-details.html">
+                                            <span class="nav-text">Thêm sản phẩm</span>
+
+                                        </a>
+                                    </li>
+                                </div>
+                            </ul>
+                        </li>
+
+                </div>
+        </aside>
+
+        <div class="page-wrapper">
+            <!-- Header -->
+            <header class="main-header" id="header">
+                <nav class="navbar navbar-expand-lg navbar-light" id="navbar">
+                    <!-- Sidebar toggle button -->
+                    <button id="sidebar-toggler" class="sidebar-toggle">
+                        <span class="sr-only">Toggle navigation</span>
+                    </button>
+
+                    <div class="navbar-right ">
+
+                        <ul class="nav navbar-nav">
+                            <!-- User Account -->
+                            <li class="dropdown user-menu">
+                                <button class="dropdown-toggle nav-link" data-toggle="dropdown">
+                                
+                                    <span class="d-none d-lg-inline-block">John Doe</span>
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-right">
+                                    <li>
+                                        <a class="dropdown-link-item" href="user-profile.html">
+                                            <i class="mdi mdi-account-outline"></i>
+                                            <span class="nav-text">My Profile</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-link-item" href="user-activities.html">
+                                            <i class="mdi mdi-diamond-stone"></i>
+                                            <span class="nav-text">Activitise</span></a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-link-item" href="user-account-settings.html">
+                                            <i class="mdi mdi-settings"></i>
+                                            <span class="nav-text">Account Setting</span>
+                                        </a>
+                                    </li>
+
+                                    <li class="dropdown-footer">
+                                        <a class="dropdown-link-item" href="sign-in.html"> <i
+                                                class="mdi mdi-logout"></i> Log Out </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+
+            </header>
+
+            <div class="content-wrapper">
+                <div class="content">
+
+                    <div class="card card-default">
+                        <div class="card-header">
+                            <h2>Danh sách danh mục</h2>
+                            <a href="${classpath }/admin/product-edit/${product.id }" role="button" class="btn btn-primary">
+                                <i class="mdi mdi-database-plus"></i>
+                                Thêm danh mục
+                            </a> 
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table id="productsTable" class="table table-hover table-striped table-bordered no-wrap ">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">No.</th>
+                                            <th scope="col">Code</th>
+                                            <th scope="col">Tên danh mục</th>
+                                        
+                                            <th scope="col">Ngày tạo</th>
+                                            <th scope="col">Ngày cập nhật</th>
+                                            <th scope="col">Trạng thái</th>
+                                            
+                                            <th scope="col">Tác vụ</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>#M76956</td>
+                                            <td>Sữa và bình sữa</td>
+                                            
+                                            <td>13/03/2024</td>
+                                            <td>12/04/2024</td>
+                                            <td>Hoạt động</td>
+                                            <td>
+                                            
+                                                <a href="${classpath }/admin/product-edit/${product.id }" role="button" class="btn btn-info">Chi tiết</a> 
+                                                <a href="${classpath }/admin/product-edit/${product.id }" role="button" class="btn btn-success">Sửa</a> 
+                                                <a href="${classpath }/admin/product-delete/${product.id }" role="button" class="btn btn-danger">Xóa</a>
+                                            
+                                            </td>
+    
+                                        </tr>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>#M76956</td>
+                                            <td>Sữa và bình sữa</td>
+                                            <td>13/03/2024</td>
+                                            <td>12/04/2024</td>
+                                            <td>Hoạt động</td>
+                                            <td>
+                                              Thêm - Sửa - Xóa
+                                            </td>
+    
+                                        </tr>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>#M76956</td>
+                                            <td>Sữa và bình sữa</td>
+                                            <td>13/03/2024</td>
+                                            <td>12/04/2024</td>
+                                            <td>Hoạt động</td>
+                                            <td>
+                                              Thêm - Sửa - Xóa
+                                            </td>
+    
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Footer -->
+            <footer class="footer mt-auto">
+                <div class="copyright bg-white">
+                    <p>
+                        &copy; <span id="copy-year"></span> Copyright Mono Dashboard Bootstrap Template by <a
+                            class="text-primary" href="http://www.iamabdus.com/" target="_blank">Abdus</a>.
+                    </p>
+                </div>
+                <script>
+                    var d = new Date();
+                    var year = d.getFullYear();
+                    document.getElementById("copy-year").innerHTML = year;
+                </script>
+            </footer>
+
+        </div>
+    </div>
+
+    <!-- Card Offcanvas -->
+    <div class="card card-offcanvas" id="contact-off">
+        <div class="card-header">
+            <h2>Contacts</h2>
+            <a href="#" class="btn btn-primary btn-pill px-4">Add New</a>
+        </div>
+        <div class="card-body">
+
+            <div class="mb-4">
+                <input type="text" class="form-control form-control-lg form-control-secondary rounded-0"
+                    placeholder="Search contacts...">
+            </div>
+
+            <div class="media media-sm">
+                <div class="media-sm-wrapper">
+                    <a href="user-profile.html">
+                        <img src="images/user/user-sm-01.jpg" alt="User Image">
+                        <span class="active bg-primary"></span>
+                    </a>
+                </div>
+                <div class="media-body">
+                    <a href="user-profile.html">
+                        <span class="title">Selena Wagner</span>
+                        <span class="discribe">Designer</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="media media-sm">
+                <div class="media-sm-wrapper">
+                    <a href="user-profile.html">
+                        <img src="images/user/user-sm-02.jpg" alt="User Image">
+                        <span class="active bg-primary"></span>
+                    </a>
+                </div>
+                <div class="media-body">
+                    <a href="user-profile.html">
+                        <span class="title">Walter Reuter</span>
+                        <span>Developer</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="media media-sm">
+                <div class="media-sm-wrapper">
+                    <a href="user-profile.html">
+                        <img src="images/user/user-sm-03.jpg" alt="User Image">
+                    </a>
+                </div>
+                <div class="media-body">
+                    <a href="user-profile.html">
+                        <span class="title">Larissa Gebhardt</span>
+                        <span>Cyber Punk</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="media media-sm">
+                <div class="media-sm-wrapper">
+                    <a href="user-profile.html">
+                        <img src="images/user/user-sm-04.jpg" alt="User Image">
+                    </a>
+
+                </div>
+                <div class="media-body">
+                    <a href="user-profile.html">
+                        <span class="title">Albrecht Straub</span>
+                        <span>Photographer</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="media media-sm">
+                <div class="media-sm-wrapper">
+                    <a href="user-profile.html">
+                        <img src="images/user/user-sm-05.jpg" alt="User Image">
+                        <span class="active bg-danger"></span>
+                    </a>
+                </div>
+                <div class="media-body">
+                    <a href="user-profile.html">
+                        <span class="title">Leopold Ebert</span>
+                        <span>Fashion Designer</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="media media-sm">
+                <div class="media-sm-wrapper">
+                    <a href="user-profile.html">
+                        <img src="images/user/user-sm-06.jpg" alt="User Image">
+                        <span class="active bg-primary"></span>
+                    </a>
+                </div>
+                <div class="media-body">
+                    <a href="user-profile.html">
+                        <span class="title">Selena Wagner</span>
+                        <span>Photographer</span>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <script src="../../plugins/jquery/jquery.min.js"></script>
+    <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../../plugins/simplebar/simplebar.min.js"></script>
+    <script src="https://unpkg.com/hotkeys-js/dist/hotkeys.min.js"></script>
+    <script src="../../plugins/prism/prism.js"></script>
+    <script src="../../plugins/DataTables/DataTables-1.10.18/js/jquery.dataTables.min.js"></script>
+    <script src="../../plugins/apexcharts/apexcharts.js"></script>
+    <script src="../../js/mono.js"></script>
+    <script src="../../js/chart.js"></script>
+    <script src="../../js/map.js"></script>
+    <script src="../../js/custom.js"></script>
+    <script src="../../js/common.js"></script>
+
+</body>
+
+</html>
