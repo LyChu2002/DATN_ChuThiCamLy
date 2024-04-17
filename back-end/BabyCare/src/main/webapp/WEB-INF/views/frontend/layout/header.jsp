@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <header id="header">
         <div class="headerMenuTop">
             <div class="container">
@@ -53,358 +56,31 @@
                     Danh mục sản phẩm
                     <nav class="mainNav">
                         <ul class="menuCategory">
-                            <li>
+                        	<c:forEach var="category" items="${categories }" varStatus="loop">
+                        		<li>
                                 <a href="">
                                     <span>
                                         <img src="${classpath }/frontend/assets/images/logo/logo_category/baby (1).png">
-                                        <span>Combo Đồ Sơ Sinh</span>
+                                        <span>${category.name }</span>
                                     </span>
                                     <i class="fa-solid fa-chevron-right"></i>
                                 </a>
                                 <div class="subMenuTwo">
-                                    <a href="">Combo đồ sơ sinh</a>
+                                    <a href="">${category.name }</a>
                                     <ul>
-                                        <li>
-                                            <a href="">
-                                                Bình sữa sơ sinh
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="">
-                                                Sữa bột
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="">
-                                                Sữa bột
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="">
-                                                Sữa bột
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="">
-                                                Sữa bột
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="">
-                                                Sữa bột
-                                            </a>
-                                        </li>
+                                    	<c:forEach var="typeProduct" items="${category.typeProducts }" varStatus="loop">
+                                    		<c:if test="${typeProduct.status }">
+                                    			<li>
+		                                            <a href="">
+		                                                ${typeProduct.name }
+		                                            </a>
+	                                       		 </li>
+                                    		</c:if> 		 
+                                    	</c:forEach>
                                     </ul>
                                 </div>
                             </li>
-                            <li>
-                                <a href="">
-                                    <span>
-                                        <img src="../assets/images/logo/logo_category/machine-learning.png">
-                                        <span>Máy móc thiết yếu</span>
-                                    </span>
-                                    <i class="fa-solid fa-chevron-right"></i>
-                                </a>
-                                <div class="subMenuTwo">
-                                    <a href="">Máy móc thiết yếu</a>
-                                    <ul>
-                                        <li>
-                                            <a href="">
-                                                Máy hút sữa
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="">
-                                                Máy hâm sữa
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="">
-                                                Máy làm ấm khăn
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="">
-                                                Máy pha sữa
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="">
-                                                Sữa bột
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="">
-                                                Sữa bột
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <li>
-                                <a href="">
-                                    <span>
-                                        <img src="../assets/images/logo/logo_category/milk-bottle.png">
-                                        <span>Sữa & bình sữa</span>
-                                    </span>
-                                    <i class="fa-solid fa-chevron-right"></i>
-                                </a>
-                                <div class="subMenuTwo">
-                                    <a href="">Combo đồ sơ sinh</a>
-                                    <ul>
-                                        <li>
-                                            <a href="">
-                                                Bình sữa sơ sinh
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="">
-                                                Sữa bột
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="">
-                                                Sữa bột
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="">
-                                                Sữa bột
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="">
-                                                Sữa bột
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="">
-                                                Sữa bột
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <li>
-                                <a href="">
-                                    <span>
-                                        <img src="../assets/images/logo/logo_category/baby-feeding.png">
-                                        <span>Ăn dặm</span>
-                                    </span>
-                                    <i class="fa-solid fa-chevron-right"></i>
-                                </a>
-                                <div class="subMenuTwo">
-                                    <a href="">Combo đồ sơ sinh</a>
-                                    <ul>
-                                        <li>
-                                            <a href="">
-                                                Bình sữa sơ sinh
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="">
-                                                Sữa bột
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="">
-                                                Sữa bột
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="">
-                                                Sữa bột
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="">
-                                                Sữa bột
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="">
-                                                Sữa bột
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <li>
-                                <a href="">
-                                    <span>
-                                        <img src="../assets/images/logo/logo_category/diaper.png">
-                                        <span>Bỉm tã - Vệ sinh</span>
-                                    </span>
-                                    <i class="fa-solid fa-chevron-right"></i>
-                                </a>
-                                <div class="subMenuTwo">
-                                    <a href="">Combo đồ sơ sinh</a>
-                                    <ul>
-                                        <li>
-                                            <a href="">
-                                                Bình sữa sơ sinh
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="">
-                                                Sữa bột
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="">
-                                                Sữa bột
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="">
-                                                Sữa bột
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="">
-                                                Sữa bột
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="">
-                                                Sữa bột
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <li>
-                                <a href="">
-                                    <span>
-                                        <img src="../assets/images/logo/logo_category/products.png">
-                                        <span>Hóa mỹ phẩm</span>
-                                    </span>
-                                    <i class="fa-solid fa-chevron-right"></i>
-                                </a>
-                                <div class="subMenuTwo">
-                                    <a href="">Combo đồ sơ sinh</a>
-                                    <ul>
-                                        <li>
-                                            <a href="">
-                                                Bình sữa sơ sinh
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="">
-                                                Sữa bột
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="">
-                                                Sữa bột
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="">
-                                                Sữa bột
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="">
-                                                Sữa bột
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="">
-                                                Sữa bột
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <li>
-                                <a href="">
-                                    <span>
-                                        <img src="../assets/images/logo/logo_category/toys.png">
-                                        <span>Đồ chơi học tập</span>
-                                    </span>
-                                    <i class="fa-solid fa-chevron-right"></i>
-                                </a>
-                                <div class="subMenuTwo">
-                                    <a href="">Combo đồ sơ sinh</a>
-                                    <ul>
-                                        <li>
-                                            <a href="">
-                                                Bình sữa sơ sinh
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="">
-                                                Sữa bột
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="">
-                                                Sữa bột
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="">
-                                                Sữa bột
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="">
-                                                Sữa bột
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="">
-                                                Sữa bột
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <li>
-                                <a href="">
-                                    <span>
-                                        <img src="../assets/images/logo/logo_category/cleaning.png">
-                                        <span>Đồ dùng gia đình</span>
-                                    </span>
-                                    <i class="fa-solid fa-chevron-right"></i>
-                                </a>
-                                <div class="subMenuTwo">
-                                    <a href="">Combo đồ sơ sinh</a>
-                                    <ul>
-                                        <li>
-                                            <a href="">
-                                                Bình sữa sơ sinh
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="">
-                                                Sữa bột
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="">
-                                                Sữa bột
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="">
-                                                Sữa bột
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="">
-                                                Sữa bột
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="">
-                                                Sữa bột
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>
+                        	</c:forEach>
                         </ul>
                     </nav>
                 </div>

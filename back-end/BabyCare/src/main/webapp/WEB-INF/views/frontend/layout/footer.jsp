@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <footer id="footer">
         <div class="container">
             <div class="footer-wrap">
@@ -21,30 +24,11 @@
                     <h4>Sản phẩm</h4>
                     <div class="footer-wrap-item-content">
                         <ul>
-                            <li>
-                                <a href="">Combo đồ sơ sinh</a>
-                            </li>
-                            <li>
-                                <a href="">Máy móc thiết yếu</a>
-                            </li>
-                            <li>
-                                <a href="">Sữa & bình sữa</a>
-                            </li>
-                            <li>
-                                <a href="">Bỉm tã - vệ sinh</a>
-                            </li>
-                            <li>
-                                <a href="">Ăn dặm</a>
-                            </li>
-                            <li>
-                                <a href="">Hóa mỹ phẩm</a>
-                            </li>
-                            <li>
-                                <a href="">Đồ chơi học tập</a>
-                            </li>
-                            <li>
-                                <a href="">Đồ dùng gia đình</a>
-                            </li>
+                        	<c:forEach var="category" items="${categories }">
+                        		<li>
+	                                <a href="">${category.name }</a>
+	                            </li>
+                        	</c:forEach>
                         </ul>
                     </div>
                 </div>

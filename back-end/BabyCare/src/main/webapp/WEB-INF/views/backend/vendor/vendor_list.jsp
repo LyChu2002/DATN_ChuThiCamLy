@@ -34,10 +34,10 @@
 
 					<div class="card card-default">
 						<div class="card-header">
-							<h2>Danh sách loại sản phẩm</h2>
-							<a href="${classpath }/admin/type-product-add" role="button"
+							<h2>Danh sách nhà cung cấp</h2>
+							<a href="${classpath }/admin/vendor-add" role="button"
 								class="btn btn-primary"> <i class="mdi mdi-database-plus"></i>
-								Thêm loại sản phẩm
+								Thêm nhà cung cấp
 							</a>
 						</div>
 						<div class="card-body">
@@ -47,8 +47,8 @@
 										<tr>
 											<th scope="col">No.</th>
 											<th scope="col">Code</th>
-											<th scope="col">Danh mục</th>
-											<th scope="col">Tên loại sản phẩm</th>
+											<th scope="col">Hình ảnh</th>
+											<th scope="col">Tên</th>
 											<th scope="col">Ngày tạo</th>
 											<th scope="col">Ngày cập nhật</th>
 											<th scope="col">Trạng thái</th>
@@ -56,22 +56,23 @@
 										</tr>
 									</thead>
 									<tbody>
-										<c:forEach var="typeProduct" items="${typeProducts }"
+										<c:forEach var="vendor" items="${vendors }"
 											varStatus="loop">
 											<tr>
 												<td>${loop.index + 1 }</td>
-												<td>${typeProduct.code }</td>
-												<td>${typeProduct.category.name }</td>
-												<td>${typeProduct.name }</td>
+												<td>${vendor.code }</td>
 												<td>
-													<fmt:formatDate value="${typeProduct.createDate }" pattern="dd-MM-yyyy"/>
+													<img width="60px" height="60px" class="light-logo" src="${classpath }/FileUpload/${vendor.image }">
+												<td>${vendor.name }</td>
+												<td>
+													<fmt:formatDate value="${vendor.createDate }" pattern="dd-MM-yyyy"/>
 												</td>
 												<td>
-													<fmt:formatDate value="${typeProduct.updateDate }" pattern="dd-MM-yyyy"/>
+													<fmt:formatDate value="${vendor.updateDate }" pattern="dd-MM-yyyy"/>
 												</td>
 												<td>
 													<c:choose>
-														<c:when test="${typeProduct.status }">
+														<c:when test="${vendor.status }">
 															<span>Hoạt động</span>
 														</c:when>
 														<c:otherwise>
@@ -80,9 +81,9 @@
 													</c:choose>
 												</td>
 												<td>
-													 <a href="${classpath }/admin/type-product-update/${typeProduct.id }"
+													 <a href="${classpath }/admin/vendor-update/${vendor.id }"
 													role="button" class="btn btn-success">Sửa</a>
-													 <a href="${classpath }/admin/type-product-delete/${typeProduct.id }"
+													 <a href="${classpath }/admin/vendor-delete/${vendor.id }"
 													role="button" class="btn btn-danger">Xóa</a>
 													</td>
 										

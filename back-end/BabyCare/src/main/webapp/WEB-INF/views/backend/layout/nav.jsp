@@ -70,11 +70,11 @@
 				</a>
 					<ul class="collapse" id="vendor" data-parent="#sidebar-menu">
 						<div class="sub-menu">
-							<li><a class="sidenav-item-link" href="email-inbox.html">
+							<li><a class="sidenav-item-link" href="${classpath }/admin/vendor-list">
 									<span class="nav-text">Xem nhà cung cấp</span>
 
 							</a></li>
-							<li><a class="sidenav-item-link" href="email-details.html">
+							<li><a class="sidenav-item-link" href="${classpath }/admin/vendor-add">
 									<span class="nav-text">Thêm nhà cung cấp</span>
 
 							</a></li>

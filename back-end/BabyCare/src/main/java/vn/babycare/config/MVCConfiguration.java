@@ -8,6 +8,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
+import vn.babycare.constant.FilePath;
+
 @Configuration
 public class MVCConfiguration implements WebMvcConfigurer{
 	@Bean
@@ -23,5 +25,6 @@ public class MVCConfiguration implements WebMvcConfigurer{
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		registry.addResourceHandler("/frontend/**").addResourceLocations("classpath:/frontend/");
 		registry.addResourceHandler("/backend/**").addResourceLocations("classpath:/backend/");
+		registry.addResourceHandler("/FileUpload/**").addResourceLocations("file:" + FilePath.Url.FOLDER_UPLOAD);
 	}
 }

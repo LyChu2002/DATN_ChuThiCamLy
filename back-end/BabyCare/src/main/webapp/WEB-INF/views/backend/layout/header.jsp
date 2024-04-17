@@ -14,7 +14,7 @@
 							<li class="dropdown user-menu">
 								<button class="dropdown-toggle nav-link" data-toggle="dropdown">
 
-									<span class="d-none d-lg-inline-block">John Doe</span>
+									<span class="d-none d-lg-inline-block">Cẩm Ly</span>
 								</button>
 								<ul class="dropdown-menu dropdown-menu-right">
 									<li><a class="dropdown-link-item" href="user-profile.html">

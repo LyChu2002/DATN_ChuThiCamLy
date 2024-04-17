@@ -35,7 +35,7 @@
                 <div class="content">
                     <div class="card card-default">
                         <div class="card-header">
-                            <h2>Thêm loại sản phẩm</h2>
+                            <h2>Thêm nhà cung cấp</h2>
                         </div>
                         <div class="card-body">
                         <c:if test="${not empty messageResponse }">
@@ -43,36 +43,45 @@
                         		${messageResponse }
                         	</div>
                         </c:if>
-                            <sf:form class="form" action="${classpath }/admin/type-product-add-save" method="post" modelAttribute="typeProduct">
+                            <sf:form class="form" action="${classpath }/admin/vendor-add-save" method="post" modelAttribute="vendor" enctype="multipart/form-data">
                                 <div class="form-body">
                                 	<div class="row">
-                                		<div class="col-md-6">
-                                			<div class="form-group mb-4">
-                                				<label for="category">Danh mục</label>
-                                				<sf:select path="category.id" class="form-control" id="category">
-                                					<sf:option value="">-------Chọn danh mục-------</sf:option>
-                                					<sf:options itemValue="id" items="${categories }" itemLabel="name" class="form-control"></sf:options>
-                                				</sf:select>
-                                			</div>
-                                		</div>
-                                	</div>
-                                    <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group mb-4">
                                                 <label for="code">Code</label>
-                                                <sf:input id="code" path="code" type="text" class="form-control" placeholder="Mã loại sản phẩm"></sf:input>
-                                                
+                                                <sf:input id="code" path="code" type="text" class="form-control" placeholder="Mã danh mục"></sf:input>  
                                             </div>
                                         </div>
+                                    </div>
+                                    <div class="row">         
                                         <div class="col-md-6">
                                             <div class="form-group mb-4">
-                                                <label for="name">Tên loại sản phẩm</label>
-                                                <sf:input id="name" path="name" type="text" class="form-control" placeholder="Tên loại sản phẩm"></sf:input>
+                                                <label for="name">Tên nhà cung cấp</label>
+                                                <sf:input id="name" path="name" type="text" class="form-control" placeholder="Tên danh mục"></sf:input>
                                               
                                             </div>
                                         </div>
                                     </div>
-
+                                     <div class="row">         
+                                        <div class="col-md-6">
+                                            <div class="form-group mb-4">
+                                                <label for="origin">Xuất xứ</label>
+                                                <sf:input id="origin" path="origin" type="text" class="form-control" placeholder="Xuất xứ"></sf:input>
+                                              
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="row">         
+                                        <div class="col-md-12">
+                                            <div class="form-group mb-4">
+                                                <label for="description">Mô tả</label>
+                                                <sf:textarea id="description" path="description" rows="4" class="form-control" placeholder="Mô tả thương hiệu..."></sf:textarea>
+                                              
+                                            </div>
+                                        </div>
+                                    </div>
+	
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group mb-4">
@@ -84,6 +93,16 @@
                                             <div class="form-group mb-4">
                                                 <label for="updateDate">Ngày cập nhật</label>
                                                 <sf:input id="updateDate" path="updateDate" type="date" class="form-control" placeholder="Tên danh mục"></sf:input>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                     <div class="row">         
+                                        <div class="col-md-12">
+                                            <div class="form-group mb-4">
+                                                <label for="imageFile">Chọn ảnh</label>
+                                                <input id="imageFile" name="imageFile" class="form-control-file" type="file" multiple="multiple"/>
+                                              
                                             </div>
                                         </div>
                                     </div>
@@ -103,8 +122,8 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group mb-4">
-                                               <a href="${classpath }/admin/type-product-list" class="btn btn-light active" role="button">Về danh sách</a>
-                                               <button type="submit" class="btn btn-primary">Lưu loại sản phẩm</button>
+                                               <a href="${classpath }/admin/vendor-list" class="btn btn-light active" role="button">Về danh sách</a>
+                                               <button type="submit" class="btn btn-primary">Lưu nhà cung cấp</button>
                                             </div>
                                         </div>
                                         
