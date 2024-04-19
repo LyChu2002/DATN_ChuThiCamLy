@@ -17,6 +17,7 @@
 	<jsp:include page="/WEB-INF/views/common/variable.jsp"></jsp:include>
 	<!-- CSS -->
 	<jsp:include page="/WEB-INF/views/backend/layout/css.jsp"></jsp:include>
+	<script src="${classpath }/libraries/ckeditor/ckeditor.js"></script>
    
 </head>
 
@@ -49,7 +50,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group mb-4">
                                                 <label for="code">Code</label>
-                                                <sf:input id="code" path="code" type="text" class="form-control" placeholder="Mã danh mục"></sf:input>  
+                                                <sf:input id="code" path="code" type="text" class="form-control" placeholder="Mã nhà cung cấp"></sf:input>  
                                             </div>
                                         </div>
                                     </div>
@@ -57,7 +58,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group mb-4">
                                                 <label for="name">Tên nhà cung cấp</label>
-                                                <sf:input id="name" path="name" type="text" class="form-control" placeholder="Tên danh mục"></sf:input>
+                                                <sf:input id="name" path="name" type="text" class="form-control" placeholder="Tên nhà cung cấp"></sf:input>
                                               
                                             </div>
                                         </div>
@@ -86,13 +87,13 @@
                                         <div class="col-md-6">
                                             <div class="form-group mb-4">
                                                 <label for="createDate">Ngày tạo</label>
-                                                <sf:input id="createDate" path="createDate" type="date" class="form-control" placeholder="Mã danh mục"></sf:input>
+                                                <sf:input id="createDate" path="createDate" type="date" class="form-control"></sf:input>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group mb-4">
                                                 <label for="updateDate">Ngày cập nhật</label>
-                                                <sf:input id="updateDate" path="updateDate" type="date" class="form-control" placeholder="Tên danh mục"></sf:input>
+                                                <sf:input id="updateDate" path="updateDate" type="date" class="form-control"></sf:input>
                                             </div>
                                         </div>
                                     </div>
@@ -152,5 +153,11 @@
    	<jsp:include page="/WEB-INF/views/backend/layout/js.jsp"></jsp:include>
 
 </body>
+<script type="text/javascript">
+	var editor = "";
+	$(document).ready(function(){
+		editor = CKEDITOR.replace('description');
+	})
+</script>
 
 </html>

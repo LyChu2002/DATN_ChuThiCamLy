@@ -25,6 +25,7 @@ public class MVCConfiguration implements WebMvcConfigurer{
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		registry.addResourceHandler("/frontend/**").addResourceLocations("classpath:/frontend/");
 		registry.addResourceHandler("/backend/**").addResourceLocations("classpath:/backend/");
+		registry.addResourceHandler("/libraries/**").addResourceLocations("classpath:/libraries/");
 		registry.addResourceHandler("/FileUpload/**").addResourceLocations("file:" + FilePath.Url.FOLDER_UPLOAD);
 	}
 }

@@ -18,6 +18,7 @@
 <!-- CSS -->
 <jsp:include page="/WEB-INF/views/backend/layout/css.jsp"></jsp:include>
 
+<script src="${classpath }/libraries/ckeditor/ckeditor.js"></script>
 </head>
 
 <body class="navbar-fixed sidebar-fixed" id="body">
@@ -181,5 +182,10 @@
 	<jsp:include page="/WEB-INF/views/backend/layout/js.jsp"></jsp:include>
 
 </body>
-
+<script type="text/javascript">
+	var editor = "";
+	$(document).ready(function(){
+		editor = CKEDITOR.replace('description');
+	})
+</script>
 </html>

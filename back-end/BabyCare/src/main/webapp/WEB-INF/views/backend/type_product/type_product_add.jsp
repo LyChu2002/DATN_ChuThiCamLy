@@ -77,13 +77,13 @@
                                         <div class="col-md-6">
                                             <div class="form-group mb-4">
                                                 <label for="createDate">Ngày tạo</label>
-                                                <sf:input id="createDate" path="createDate" type="date" class="form-control" placeholder="Mã danh mục"></sf:input>
+                                                <sf:input id="createDate" path="createDate" type="date" class="form-control"></sf:input>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group mb-4">
                                                 <label for="updateDate">Ngày cập nhật</label>
-                                                <sf:input id="updateDate" path="updateDate" type="date" class="form-control" placeholder="Tên danh mục"></sf:input>
+                                                <sf:input id="updateDate" path="updateDate" type="date" class="form-control"></sf:input>
                                             </div>
                                         </div>
                                     </div>

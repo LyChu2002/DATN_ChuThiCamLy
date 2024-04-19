@@ -1,9 +1,11 @@
 package vn.babycare.controller.backend;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.criteria.CriteriaBuilder.In;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServletRequest;
 
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import vn.babycare.model.Vendor;
@@ -112,10 +115,36 @@ public class AdminVendorController {
 	}
 	
 	@RequestMapping(value = "/admin/vendor-delete/{vendorId}", method = RequestMethod.GET)
-	public String vendorDelete(@PathVariable("vendorId") int vendorId) throws IOException{
+	public String vendorSoftDeleteById(@PathVariable("vendorId") int vendorId) throws IOException{
 		Vendor vendor = vendorService.getById(vendorId);
 		vendor.setStatus(false);
 		vendorService.saveOrUpdate(vendor);
 		return "redirect:/admin/vendor-list";
 	}
+	
+	@RequestMapping(value = "/admin/vendor-delete", method = RequestMethod.POST)
+	public String vendorSoftDelete(final Model model,
+			final HttpServletRequest request) throws IOException{
+		if(request.getParameterValues("vendorId") != null) {
+			for(String vendorId : request.getParameterValues("vendorId")) {
+				int id = Integer.parseInt(vendorId);
+				Vendor vendor = vendorService.getById(id);
+				vendor.setStatus(false);
+				vendorService.saveOrUpdate(vendor);
+			}
+		}
+		return "redirect:/admin/vendor-list";
+	}
+	
+	@RequestMapping(value = "/jsonexample")
+	@ResponseBody
+	public List<String> plantAutoComplete(){
+		List<String> suggestions = new ArrayList<String>();
+		suggestions.add("Red Cedar");
+		suggestions.add("RedBull");
+		suggestions.add("Red Maple");
+		suggestions.add("Red Oak");
+		return suggestions;
+	}
+	
 }
