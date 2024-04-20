@@ -35,7 +35,7 @@
                 <div class="content">
                     <div class="card card-default">
                         <div class="card-header">
-                            <h2>Thêm danh mục</h2>
+                            <h2>Cập nhật danh mục</h2>
                         </div>
                         <div class="card-body">
                         <c:if test="${not empty messageResponse }">
@@ -50,14 +50,14 @@
                                         <div class="col-md-6">
                                             <div class="form-group mb-4">
                                                 <label for="code">Code</label>
-                                                <sf:input id="code" path="code" type="text" class="form-control" placeholder="Mã danh mục"></sf:input>
+                                                <sf:input id="code" path="code" type="text" class="form-control" placeholder="Mã danh mục" required="required" oninvalid="this.setCustomValidity('Nhập mã danh mục')" oninput="setCustomValidity('')"></sf:input>
                                                
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group mb-4">
                                                 <label for="name">Tên danh mục</label>
-                                                <sf:input id="name" path="name" type="text" class="form-control" placeholder="Tên danh mục"></sf:input>
+                                                <sf:input id="name" path="name" type="text" class="form-control" placeholder="Tên danh mục" required="required" oninvalid="this.setCustomValidity('Nhập tên danh mục')" oninput="setCustomValidity('')"></sf:input>
                                               
                                             </div>
                                         </div>

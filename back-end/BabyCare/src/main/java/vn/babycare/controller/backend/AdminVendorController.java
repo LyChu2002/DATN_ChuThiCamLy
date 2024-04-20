@@ -95,7 +95,7 @@ public class AdminVendorController {
 		if(!StringUtils.isEmpty(code) && !StringUtils.isEmpty(name)) {
 			Vendor vendorByCode = vendorService.findByCode(code);
 			if(vendorByCode == null || vendorByCode.getId() == vendor.getId()) {
-				message = "Sửa thành công";
+				message = "Cập nhật thành công";
 				alert = "success";
 				vendorService.updateVendor(vendor, image);
 			}
@@ -105,7 +105,7 @@ public class AdminVendorController {
 			}
 		}
 		else {
-			message = "Sửa không thành công";
+			message = "Cập nhật không thành công";
 			alert = "danger";
 		}
 		model.addAttribute("messageResponse", message);
@@ -123,12 +123,11 @@ public class AdminVendorController {
 	}
 	
 	@RequestMapping(value = "/admin/vendor-delete", method = RequestMethod.POST)
-	public String vendorSoftDelete(final Model model,
+	public String vendorMultipleSoftDelete(final Model model,
 			final HttpServletRequest request) throws IOException{
 		if(request.getParameterValues("vendorId") != null) {
 			for(String vendorId : request.getParameterValues("vendorId")) {
-				int id = Integer.parseInt(vendorId);
-				Vendor vendor = vendorService.getById(id);
+				Vendor vendor = vendorService.getById(Integer.parseInt(vendorId));
 				vendor.setStatus(false);
 				vendorService.saveOrUpdate(vendor);
 			}

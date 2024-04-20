@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 
@@ -34,46 +35,53 @@
 
 					<div class="card card-default">
 						<div class="card-header">
-							<h2>Danh sách danh mục</h2>
-							<a href="${classpath }/admin/category-add" role="button"
+							<h2>Danh sách tài khoản</h2>
+							<a href="${classpath }/admin/user-add" role="button"
 								class="btn btn-primary"> <i class="mdi mdi-database-plus"></i>
-								Thêm danh mục
+								Thêm tài khoản
 							</a>
 						</div>
 						<div class="card-body">
 							<div class="table-responsive">
-							<form method="post" action="${classpath }/admin/category-delete" >
-								<input type="submit" value="Xóa" class="btn btn-danger" style="margin-bottom: 10px" title="Xóa những mục đã chọn" onclick="return confirm ('Bạn có chắc chắn xóa?')"/> 
+								<form method="post" action="${classpath }/admin/user-delete">
+								<input type="submit" value="Xóa" class="btn btn-danger" style="margin-bottom: 10px" onclick="return confirm ('Bạn có chắc chắn xóa?')"/>
 								<table class="table table-hover table-striped table-bordered no-wrap ">
 									<thead>
 										<tr>
 											<th><input type="checkbox" id="checkBoxAll"></th>
 											<th scope="col">No.</th>
-											<th scope="col">Code</th>
-											<th scope="col">Tên danh mục</th>
+											<th scope="col">Username</th>
+											<th scope="col">Email</th>
+											<th scope="col">Điện thoại</th>
+											<th scope="col">Địa chỉ</th>
+											<th scope="col">Quyền</th>
 											<th scope="col">Ngày tạo</th>
 											<th scope="col">Ngày cập nhật</th>
 											<th scope="col">Trạng thái</th>
 											<th scope="col">Tác vụ</th>
+											
 										</tr>
 									</thead>
 									<tbody>
-										<c:forEach var="category" items="${categories }"
+										<c:forEach var="user" items="${users }"
 											varStatus="loop">
 											<tr>
-												<td><input type="checkbox" class="checkBoxItem" name="categoryId" value="${category.id }"/></td>
+												<td><input type="checkbox" class="checkBoxItem" name="userId" value="${user.id }"/></td>
 												<td>${loop.index + 1 }</td>
-												<td>${category.code }</td>
-												<td>${category.name }</td>
+												<td>${user.username }</td>
+												<td>${user.email }</td>
+												<td>${user.mobile }</td>
+												<td>${user.address}</td>
+												<td>${user.roles.toString()}</td>
 												<td>
-													<fmt:formatDate value="${category.createDate }" pattern="dd-MM-yyyy"/>
+													<fmt:formatDate value="${user.createDate }" pattern="dd-MM-yyyy"/>
 												</td>
 												<td>
-													<fmt:formatDate value="${category.updateDate }" pattern="dd-MM-yyyy"/>
+													<fmt:formatDate value="${user.updateDate }" pattern="dd-MM-yyyy"/>
 												</td>
 												<td>
 													<c:choose>
-														<c:when test="${category.status }">
+														<c:when test="${user.status }">
 															<span>Hoạt động</span>
 														</c:when>
 														<c:otherwise>
@@ -81,11 +89,11 @@
 														</c:otherwise>
 													</c:choose>
 												</td>
-												<td>
-													 <a href="${classpath }/admin/category-update/${category.id }"
-													role="button" class="btn btn-success" title="Sửa danh mục"><i class="fa-solid fa-pen-to-square"></i></a>
-													 <a href="${classpath }/admin/category-delete/${category.id }"
-													role="button" class="btn btn-danger" title="Xóa danh mục"><i class="fa-solid fa-trash"></i></a>
+												<td style="min-width: 100px">
+													 <a href="${classpath }/admin/user-update/${user.id }"
+													role="button" class="btn btn-success" title="Sửa tài khoản"><i class="fa-solid fa-pen-to-square"></i></a>
+													 <a href="${classpath }/admin/user-delete/${user.id }"
+													role="button" class="btn btn-danger" title="Xóa tài khoản"><i class="fa-solid fa-trash"></i></a>
 													</td>
 										
 											</tr>
@@ -107,4 +115,5 @@
 	<jsp:include page="/WEB-INF/views/backend/layout/js.jsp"></jsp:include>
 
 </body>
+
 </html>

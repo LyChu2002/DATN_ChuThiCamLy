@@ -103,7 +103,7 @@ public class AdminTypeProductController {
 		if(!StringUtils.isEmpty(code) && !StringUtils.isEmpty(name) && !StringUtils.isEmpty(request) && !StringUtils.isEmpty(idCategory)) {
 			TypeProduct type = typeProductService.findByCode(code);
 			if(type == null || type.getId() == typeProduct.getId()) {
-				message = "Sửa thành công";
+				message = "Cập nhật thành công";
 				alert = "success";
 				typeProductService.saveOrUpdate(typeProduct);
 			}
@@ -113,7 +113,7 @@ public class AdminTypeProductController {
 			}
 		}
 		else {
-			message = "Sửa không thành công";
+			message = "Cập nhật không thành công";
 			alert = "danger";
 		}
 		model.addAttribute("messageResponse", message);
@@ -126,6 +126,18 @@ public class AdminTypeProductController {
 		TypeProduct typeProduct = typeProductService.getById(typeProductId);
 		typeProduct.setStatus(false);
 		typeProductService.saveOrUpdate(typeProduct);
+		return "redirect:/admin/type-product-list";
+	}
+	
+	@RequestMapping(value = "/admin/type-product-delete", method = RequestMethod.POST)
+	public String typeProductMultipleSoftDelete(final HttpServletRequest request) throws IOException{
+		if(request.getParameterValues("typeProductId") != null) {
+			for(String typeProductId : request.getParameterValues("typeProductId")) {
+				TypeProduct typeProduct = typeProductService.getById(Integer.parseInt(typeProductId));
+				typeProduct.setStatus(false);
+				typeProductService.saveOrUpdate(typeProduct);
+			}
+		}
 		return "redirect:/admin/type-product-list";
 	}
 }

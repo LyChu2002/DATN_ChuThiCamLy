@@ -35,7 +35,7 @@
                 <div class="content">
                     <div class="card card-default">
                         <div class="card-header">
-                            <h2>Cập nhật loại sản phẩm</h2>
+                            <h2>Cập nhật tài khoản</h2>
                         </div>
                         <div class="card-body">
                         <c:if test="${not empty messageResponse }">
@@ -43,48 +43,75 @@
                         		${messageResponse }
                         	</div>
                         </c:if>
-                            <sf:form class="form" action="${classpath }/admin/type-product-update-save" method="post" modelAttribute="typeProduct">
+                            <sf:form class="form" action="${classpath }/admin/user-update-save" method="post" modelAttribute="user" enctype="multipart/form-data">
+                                <sf:hidden path="id"/>
                                 <div class="form-body">
-                                	<sf:hidden path="id"/>
                                 	<div class="row">
-                                		<div class="col-md-6">
-                                			<div class="form-group mb-4">
-                                				<label for="category">Danh mục</label>
-                                				<sf:select path="category.id" class="form-control" id="category">
-                                					<sf:option value="">-------Chọn danh mục-------</sf:option>
-                                					<sf:options itemValue="id" items="${categories }" itemLabel="name" class="form-control"></sf:options>
-                                				</sf:select>
-                                			</div>
-                                		</div>
-                                	</div>
-                                    <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group mb-4">
-                                                <label for="code">Code</label>
-                                                <sf:input id="code" path="code" type="text" class="form-control" placeholder="Mã loại sản phẩm"></sf:input>
-                                                
+                                                <label for="username">Username</label>
+                                                <sf:input id="username" path="username" type="text" class="form-control" placeholder="Tên tài khoản"></sf:input>  
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group mb-4">
-                                                <label for="name">Tên loại sản phẩm</label>
-                                                <sf:input id="name" path="name" type="text" class="form-control" placeholder="Tên loại sản phẩm"></sf:input>
+                                                <label for="password">Password</label>
+                                                <sf:input id="password" path="password" type="text" class="form-control" placeholder="Mật khẩu"></sf:input>
                                               
                                             </div>
                                         </div>
                                     </div>
-
+                                    
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group mb-4">
+                                                <label for="email">Email</label>
+                                                <sf:input id="email" path="email" type="text" class="form-control" placeholder="Email" required="required" oninvalid="this.setCustomValidity('Please Enter valid email')" oninput="setCustomValidity('')"></sf:input>  
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group mb-4">
+                                                <label for="mobile">Điện thoại</label>
+                                                <sf:input id="mobile" path="mobile" type="text" class="form-control" placeholder="Điện thoại"></sf:input>
+                                              
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="row">         
+                                        <div class="col-md-12">
+                                            <div class="form-group mb-4">
+                                                <label for="address">Địa chỉ</label>
+                                                <sf:textarea id="address" path="address" rows="4" class="form-control" placeholder="Địa chỉ..."></sf:textarea>
+                                              
+                                            </div>
+                                        </div>
+                                    </div>
+	
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group mb-4">
                                                 <label for="createDate">Ngày tạo</label>
-                                                <sf:input id="createDate" path="createDate" type="date" class="form-control" placeholder="Mã danh mục"></sf:input>
+                                                <sf:input id="createDate" path="createDate" type="date" class="form-control"></sf:input>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group mb-4">
                                                 <label for="updateDate">Ngày cập nhật</label>
-                                                <sf:input id="updateDate" path="updateDate" type="date" class="form-control" placeholder="Tên danh mục"></sf:input>
+                                                <sf:input id="updateDate" path="updateDate" type="date" class="form-control"></sf:input>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                     <div class="row">         
+                                        <div class="col-md-12">
+                                            <div class="form-group mb-4">
+                                                <label for="">Chọn quyền</label></br>
+                                                <c:forEach var="role" items="${roles }">
+                                                	<input type="checkbox" name="role" value="${role.id }" id="${role.id }">
+                                                	<label for="${role.id }">${role.name }</label>&nbsp;&nbsp;&nbsp;
+                                                </c:forEach>
+                                              
                                             </div>
                                         </div>
                                     </div>
@@ -104,8 +131,8 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group mb-4">
-                                               <a href="${classpath }/admin/type-product-list" class="btn btn-light active" role="button">Về danh sách</a>
-                                               <button type="submit" class="btn btn-primary">Lưu loại sản phẩm</button>
+                                               <a href="${classpath }/admin/user-list" class="btn btn-light active" role="button">Về danh sách</a>
+                                               <button type="submit" class="btn btn-primary">Lưu tài khoản</button>
                                             </div>
                                         </div>
                                         
@@ -134,5 +161,6 @@
    	<jsp:include page="/WEB-INF/views/backend/layout/js.jsp"></jsp:include>
 
 </body>
+
 
 </html>

@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
 <link href="${classpath }/backend/plugins/material/css/materialdesignicons.min.css" rel="stylesheet" />
 <link href="${classpath }/backend/plugins/simplebar/simplebar.css" rel="stylesheet" />
 <link href="${classpath }/backend/plugins/nprogress/nprogress.css" rel="stylesheet" />

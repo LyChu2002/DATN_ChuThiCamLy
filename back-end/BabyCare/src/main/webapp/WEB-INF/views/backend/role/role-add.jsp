@@ -18,7 +18,6 @@
 <!-- CSS -->
 <jsp:include page="/WEB-INF/views/backend/layout/css.jsp"></jsp:include>
 
-<script src="${classpath }/libraries/ckeditor/ckeditor.js"></script>
 </head>
 
 <body class="navbar-fixed sidebar-fixed" id="body">
@@ -36,83 +35,34 @@
 				<div class="content">
 					<div class="card card-default">
 						<div class="card-header">
-							<h2>Cập nhật nhà cung cấp</h2>
+							<h2>Thêm quyền</h2>
 						</div>
 						<div class="card-body">
 							<c:if test="${not empty messageResponse }">
 								<div class="alert alert-${alert }" style="width: 30%">
 									${messageResponse }</div>
 							</c:if>
-							<sf:form class="form"
-								action="${classpath }/admin/vendor-update-save" method="post"
-								modelAttribute="vendor" enctype="multipart/form-data">
-								<sf:hidden path="id" />
+							<sf:form class="form" action="${classpath }/admin/role-add-save"
+								method="post" modelAttribute="role">
 								<div class="form-body">
-									<div class="row">
-										<div class="col-md-6">
-											<div class="form-group mb-4">
-												<div class="row">
-													<div class="col-md-12">
-														<div class="form-group mb-4">
-															<label for="code">Code</label>
-															<sf:input id="code" path="code" type="text"
-																class="form-control" placeholder="Mã danh mục"></sf:input>
-														</div>
-													</div>
-												</div>
-												<div class="row">
-													<div class="col-md-12">
-														<div class="form-group mb-4">
-															<label for="name">Tên nhà cung cấp</label>
-															<sf:input id="name" path="name" type="text"
-																class="form-control" placeholder="Tên danh mục"></sf:input>
-
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-										<div class="col-md-6">
-											<div class="form-group mb-4">
-												<div class="row">
-													<div class="col-md-12">
-														<div class="form-group mb-4">
-															<img style="width: 85px; height: 85px"
-																src="${classspath }/FileUpload/${vendor.image}" />
-
-														</div>
-													</div>
-													<div class="col-md-12">
-														<div class="form-group mb-4">
-															<label for="imageFile">Chọn ảnh</label> <input
-																id="imageFile" name="imageFile"
-																class="form-control-file" type="file"
-																multiple="multiple" />
-															
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
 
 									<div class="row">
-										<div class="col-md-6">
+
+										<div class="col-md-12">
 											<div class="form-group mb-4">
-												<label for="origin">Xuất xứ</label>
-												<sf:input id="origin" path="origin" type="text"
-													class="form-control" placeholder="Xuất xứ"></sf:input>
+												<label for="name">Tên quyền</label>
+												<sf:input id="name" path="name" type="text"
+													class="form-control" placeholder="Tên quyền"></sf:input>
 
 											</div>
 										</div>
 									</div>
-
 									<div class="row">
 										<div class="col-md-12">
 											<div class="form-group mb-4">
 												<label for="description">Mô tả</label>
-												<sf:textarea id="description" path="description" rows="4"
-													class="form-control" placeholder="Mô tả thương hiệu..."></sf:textarea>
+												<sf:textarea path="description" rows="5" id="description" class="form-control"
+													placeholder="Mô tả quyền...." />
 
 											</div>
 										</div>
@@ -123,19 +73,17 @@
 											<div class="form-group mb-4">
 												<label for="createDate">Ngày tạo</label>
 												<sf:input id="createDate" path="createDate" type="date"
-													class="form-control" placeholder="Mã danh mục"></sf:input>
+													class="form-control"></sf:input>
 											</div>
 										</div>
 										<div class="col-md-6">
 											<div class="form-group mb-4">
 												<label for="updateDate">Ngày cập nhật</label>
 												<sf:input id="updateDate" path="updateDate" type="date"
-													class="form-control" placeholder="Tên danh mục"></sf:input>
+													class="form-control"></sf:input>
 											</div>
 										</div>
 									</div>
-
-
 
 									<div class="row">
 										<div class="col-md-12">
@@ -152,10 +100,10 @@
 									<div class="row">
 										<div class="col-md-12">
 											<div class="form-group mb-4">
-												<a href="${classpath }/admin/vendor-list"
+												<a href="${classpath }/admin/role-list"
 													class="btn btn-light active" role="button">Về danh sách</a>
 												<button type="submit" class="btn btn-primary">Lưu
-													nhà cung cấp</button>
+													quyền</button>
 											</div>
 										</div>
 
@@ -182,10 +130,5 @@
 	<jsp:include page="/WEB-INF/views/backend/layout/js.jsp"></jsp:include>
 
 </body>
-<script type="text/javascript">
-	var editor = "";
-	$(document).ready(function(){
-		editor = CKEDITOR.replace('description');
-	})
-</script>
+
 </html>

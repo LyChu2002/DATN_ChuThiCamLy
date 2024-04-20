@@ -42,55 +42,60 @@
 						</div>
 						<div class="card-body">
 							<div class="table-responsive">
-								<table class="table table-hover table-striped table-bordered no-wrap ">
-									<thead>
-										<tr>
-											<th scope="col">No.</th>
-											<th scope="col">Code</th>
-											<th scope="col">Danh mục</th>
-											<th scope="col">Tên loại sản phẩm</th>
-											<th scope="col">Ngày tạo</th>
-											<th scope="col">Ngày cập nhật</th>
-											<th scope="col">Trạng thái</th>
-											<th scope="col">Tác vụ</th>
-										</tr>
-									</thead>
-									<tbody>
-										<c:forEach var="typeProduct" items="${typeProducts }"
-											varStatus="loop">
+								<form method="post" action="${classpath }/admin/type-product-delete" >
+									<input type="submit" value="Xóa" class="btn btn-danger" style="margin-bottom: 10px" title="Xóa những mục đã chọn" onclick="return confirm ('Bạn có chắc chắn xóa?')"/> 
+									<table class="table table-hover table-striped table-bordered no-wrap ">
+										<thead>
 											<tr>
-												<td>${loop.index + 1 }</td>
-												<td>${typeProduct.code }</td>
-												<td>${typeProduct.category.name }</td>
-												<td>${typeProduct.name }</td>
-												<td>
-													<fmt:formatDate value="${typeProduct.createDate }" pattern="dd-MM-yyyy"/>
-												</td>
-												<td>
-													<fmt:formatDate value="${typeProduct.updateDate }" pattern="dd-MM-yyyy"/>
-												</td>
-												<td>
-													<c:choose>
-														<c:when test="${typeProduct.status }">
-															<span>Hoạt động</span>
-														</c:when>
-														<c:otherwise>
-															<span>Không hoạt động</span>
-														</c:otherwise>
-													</c:choose>
-												</td>
-												<td>
-													 <a href="${classpath }/admin/type-product-update/${typeProduct.id }"
-													role="button" class="btn btn-success">Sửa</a>
-													 <a href="${classpath }/admin/type-product-delete/${typeProduct.id }"
-													role="button" class="btn btn-danger">Xóa</a>
-													</td>
-										
+												<th><input type="checkbox" id="checkBoxAll"></th>								
+												<th scope="col">No.</th>
+												<th scope="col">Code</th>
+												<th scope="col">Danh mục</th>
+												<th scope="col">Tên loại sản phẩm</th>
+												<th scope="col">Ngày tạo</th>
+												<th scope="col">Ngày cập nhật</th>
+												<th scope="col">Trạng thái</th>
+												<th scope="col">Tác vụ</th>
 											</tr>
-										</c:forEach>
-
-									</tbody>
-								</table>
+										</thead>
+										<tbody>
+											<c:forEach var="typeProduct" items="${typeProducts }"
+												varStatus="loop">
+												<tr>
+													<td><input type="checkbox" class="checkBoxItem" name="typeProductId" value="${typeProduct.id }"/></td>
+													<td>${loop.index + 1 }</td>
+													<td>${typeProduct.code }</td>
+													<td>${typeProduct.category.name }</td>
+													<td>${typeProduct.name }</td>
+													<td>
+														<fmt:formatDate value="${typeProduct.createDate }" pattern="dd-MM-yyyy"/>
+													</td>
+													<td>
+														<fmt:formatDate value="${typeProduct.updateDate }" pattern="dd-MM-yyyy"/>
+													</td>
+													<td>
+														<c:choose>
+															<c:when test="${typeProduct.status }">
+																<span>Hoạt động</span>
+															</c:when>
+															<c:otherwise>
+																<span>Không hoạt động</span>
+															</c:otherwise>
+														</c:choose>
+													</td>
+													<td>
+														 <a href="${classpath }/admin/type-product-update/${typeProduct.id }"
+														role="button" class="btn btn-success" title="Sửa loại sản phẩm"><i class="fa-solid fa-pen-to-square"></i></a>
+														 <a href="${classpath }/admin/type-product-delete/${typeProduct.id }"
+														role="button" class="btn btn-danger" title="Xóa loại sản phẩm"><i class="fa-solid fa-trash"></i></a>
+														</td>
+											
+												</tr>
+											</c:forEach>
+	
+										</tbody>
+									</table>
+								</form>
 							</div>
 						</div>
 					</div>

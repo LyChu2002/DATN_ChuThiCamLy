@@ -10,3 +10,4 @@
 <script src="${classpath }/backend/js/map.js"></script>
 <script src="${classpath }/backend/js/custom.js"></script>
 <script src="${classpath }/backend/plugins/nprogress/nprogress.js"></script>
+<script src="${classpath }/backend/js/common.js"></script>

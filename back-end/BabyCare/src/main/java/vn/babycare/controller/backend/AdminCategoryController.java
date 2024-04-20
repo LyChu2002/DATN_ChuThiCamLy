@@ -35,6 +35,7 @@ public class AdminCategoryController {
 	@RequestMapping(value = "/admin/category-add", method = RequestMethod.GET)
 	public String categoryAdd(final Model model) throws IOException{
 		Category category = new Category();
+		category.setCreateDate(new Date());
 		model.addAttribute("category", category);
 		return "backend/category/category_add";
 	}
@@ -44,26 +45,17 @@ public class AdminCategoryController {
 			@Valid @ModelAttribute("category") Category category, 
 			final HttpServletRequest request) throws IOException{
 		String codeRequest = request.getParameter("code");
-		String nameRequest = request.getParameter("name");
-		String message = "";
-		String alert = "";
+		String message = "", alert = "";
 		category.setCreateDate(new Date());
-		if(!StringUtils.isEmpty(codeRequest) && !StringUtils.isEmpty(nameRequest)) {
-			Category cate = categoryService.findByCode(codeRequest);
-			if(cate == null) {
-				message = "Thêm thành công";
-				alert = "success";
-				categoryService.saveOrUpdate(category);		
-			}
-			else {
-				message = "Mã danh mục đã tồn tại";
-				alert = "danger";
-			}
+		Category cate = categoryService.findByCode(codeRequest);
+		if(cate == null) {
+			message = "Thêm thành công";
+			alert = "success";
+			categoryService.saveOrUpdate(category);		
 		}
 		else {
-			message = "Thêm không thành công";
+			message = "Mã danh mục đã tồn tại";
 			alert = "danger";
-			
 		}
 		model.addAttribute("messageResponse", message);
 		model.addAttribute("alert", alert);
@@ -82,26 +74,17 @@ public class AdminCategoryController {
 	@RequestMapping(value = "/admin/category-update-save", method = RequestMethod.POST)
 	public String categoryUpdateSave(final Model model,
 			final HttpServletRequest request,
-			@ModelAttribute("category") Category category) {
-		String code = request.getParameter("code");
-		String name = request.getParameter("name");
-		int idCate = Integer.parseInt(request.getParameter("id"));
-		String message = "";
-		String alert = "";
-		if(!StringUtils.isEmpty(code) && !StringUtils.isEmpty(name)) {
-			Category cate = categoryService.findByCode(code);
-			if(cate == null || cate.getId() == idCate) {
-				message = "Sửa thành công";
-				alert = "success";
-				categoryService.saveOrUpdate(category);
-			}
-			else {
-				message = "Mã danh mục đã tồn tại";
-				alert = "danger";
-			}
+			@Valid @ModelAttribute("category") Category category) {
+		String codeRequest = request.getParameter("code");
+		String message = "", alert = "";
+		Category cateByCode = categoryService.findByCode(codeRequest);
+		if(cateByCode == null || cateByCode.getId() == category.getId()) {
+			message = "Cập nhật thành công";
+			alert = "success";
+			categoryService.saveOrUpdate(category);
 		}
 		else {
-			message = "Sửa không thành công";
+			message = "Mã danh mục đã tồn tại";
 			alert = "danger";
 		}
 		model.addAttribute("messageResponse", message);
@@ -114,6 +97,18 @@ public class AdminCategoryController {
 		Category category = categoryService.getById(categoryId);
 		category.setStatus(false);
 		categoryService.saveOrUpdate(category);
+		return "redirect:/admin/category-list";
+	}
+	
+	@RequestMapping(value = "/admin/category-delete", method = RequestMethod.POST)
+	public String categoryMultipleSoftDelete(final HttpServletRequest request) throws IOException{
+		if(request.getParameterValues("categoryId") != null) {
+			for(String categoryId : request.getParameterValues("categoryId")) {
+				Category category = categoryService.getById(Integer.parseInt(categoryId));
+				category.setStatus(false);
+				categoryService.saveOrUpdate(category);
+			}
+		}
 		return "redirect:/admin/category-list";
 	}
 }

@@ -2460,7 +2460,7 @@ textarea.form-control {
           user-select: none;
   background-color: transparent;
   border: 1px solid transparent;
-  padding: 8px 12px !important;
+  padding: 5px 9px !important;
   font-size: 14px;
   line-height: 1.5;
   border-radius: 0.25rem;
@@ -13961,7 +13961,7 @@ label {
 }
 .sidebar-fixed-offcanvas .left-sidebar .sidebar-with-footer,
 .sidebar-fixed .left-sidebar .sidebar-with-footer {
-  padding-bottom: 142px;
+  padding-bottom: 100px;
 }
 .sidebar-fixed-offcanvas .left-sidebar .sidebar-with-footer .sidebar-footer,
 .sidebar-fixed .left-sidebar .sidebar-with-footer .sidebar-footer {
