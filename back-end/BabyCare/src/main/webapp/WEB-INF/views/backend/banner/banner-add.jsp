@@ -52,7 +52,7 @@
                                         		<div class="col-md-12">
                                         			<div class="form-group mb-4">
                                                			<label for="code">Code</label>
-                                                		<sf:input id="code" path="code" type="text" class="form-control" placeholder="Mã banner"></sf:input>
+                                                		<sf:input id="code" path="code" type="text" class="form-control" placeholder="Mã banner" required="required" oninvalid="this.setCustomValidity('Nhập mã banner')" oninput="setCustomValidity('')"></sf:input>
                                                 
                                             		</div>
                                         		</div>

@@ -60,14 +60,14 @@
                                         <div class="col-md-6">
                                             <div class="form-group mb-4">
                                                 <label for="code">Code</label>
-                                                <sf:input id="code" path="code" type="text" class="form-control" placeholder="Mã loại sản phẩm"></sf:input>
+                                                <sf:input id="code" path="code" type="text" class="form-control" placeholder="Mã loại sản phẩm" required="required" oninvalid="this.setCustomValidity('Nhập mã loại sản phẩm')" oninput="setCustomValidity('')"></sf:input>
                                                 
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group mb-4">
                                                 <label for="name">Tên loại sản phẩm</label>
-                                                <sf:input id="name" path="name" type="text" class="form-control" placeholder="Tên loại sản phẩm"></sf:input>
+                                                <sf:input id="name" path="name" type="text" class="form-control" placeholder="Tên loại sản phẩm" required="required" oninvalid="this.setCustomValidity('Nhập tên loại sản phẩm')" oninput="setCustomValidity('')"></sf:input>
                                               
                                             </div>
                                         </div>

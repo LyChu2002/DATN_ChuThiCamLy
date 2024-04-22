@@ -56,7 +56,7 @@
 														<div class="form-group mb-4">
 															<label for="code">Code</label>
 															<sf:input id="code" path="code" type="text"
-																class="form-control" placeholder="Mã danh mục"></sf:input>
+																class="form-control" placeholder="Mã nhà cung cấp" required="required" oninvalid="this.setCustomValidity('Nhập mã nhà cung cấp')" oninput="setCustomValidity('')"></sf:input>
 														</div>
 													</div>
 												</div>
@@ -65,7 +65,7 @@
 														<div class="form-group mb-4">
 															<label for="name">Tên nhà cung cấp</label>
 															<sf:input id="name" path="name" type="text"
-																class="form-control" placeholder="Tên danh mục"></sf:input>
+																class="form-control" placeholder="Tên nhà cung cấp" required="required" oninvalid="this.setCustomValidity('Nhập tên nhà cung cấp')" oninput="setCustomValidity('')"></sf:input>
 
 														</div>
 													</div>

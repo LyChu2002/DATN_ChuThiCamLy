@@ -2,6 +2,7 @@ package vn.babycare.controller.backend;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -38,6 +39,7 @@ public class AdminUserController {
 	@RequestMapping(value = "/admin/user-add", method = RequestMethod.GET)
 	public String userAdd(final Model model) throws IOException{
 		User user = new User();
+		user.setCreateDate(new Date());
 		model.addAttribute("user", user);
 		List<Role> roles = roleService.findAllActive();
 		model.addAttribute("roles", roles);
@@ -48,15 +50,30 @@ public class AdminUserController {
 	public String userAddSave(final Model model,
 			final HttpServletRequest request,
 			@ModelAttribute("user") User user) throws IOException{
-		if(request.getParameterValues("role") != null) {
-			for(String roleById : request.getParameterValues("role")) {
-				int roleId = Integer.parseInt(roleById);
-				Role role = roleService.getById(roleId);
-				user.getRoles().add(role);
-				role.getUsers().add(user);
+		String message = "", alert = "";
+		List<Role> roles = roleService.findAllActive();
+		model.addAttribute("roles", roles);
+		user.setCreateDate(new Date());
+		User userByEmail = userService.findByEmailActive(request.getParameter("email"));
+		if(userByEmail == null) {
+			if(request.getParameterValues("role") != null) {
+				for(String roleById : request.getParameterValues("role")) {
+					int roleId = Integer.parseInt(roleById);
+					Role role = roleService.getById(roleId);
+					user.getRoles().add(role);
+					role.getUsers().add(user);
+				}
 			}
+			message = "Thêm thành công";
+			alert = "success";
+			userService.saveOrUpdate(user);
 		}
-		userService.saveOrUpdate(user);
+		else {
+			message = "Email đã tồn tại";
+			alert = "danger";
+		}
+		model.addAttribute("messageResponse", message);
+		model.addAttribute("alert", alert);
 		return "backend/user/user-add";
 	}
 	
@@ -101,5 +118,15 @@ public class AdminUserController {
 		return "redirect:/admin/user-list";
 	}
 	
-	
+	@RequestMapping(value = "/admin/user-delete", method = RequestMethod.POST)
+	public String userMultipleSoftDelete(final HttpServletRequest request) throws IOException{
+		if(request.getParameterValues("userId") != null) {
+			for(String userId : request.getParameterValues("userId")) {
+				User user = userService.getById(Integer.parseInt(userId));
+				user.setStatus(false);
+				userService.saveOrUpdate(user);
+			}
+		}
+		return "redirect:/admin/user-list";
+	}
 }

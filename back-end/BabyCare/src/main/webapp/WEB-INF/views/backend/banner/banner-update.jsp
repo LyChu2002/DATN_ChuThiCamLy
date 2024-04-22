@@ -35,7 +35,7 @@
                 <div class="content">
                     <div class="card card-default">
                         <div class="card-header">
-                            <h2>Cập nhật loại sản phẩm</h2>
+                            <h2>Cập nhật banner</h2>
                         </div>
                         <div class="card-body">
                         <c:if test="${not empty messageResponse }">
@@ -43,52 +43,54 @@
                         		${messageResponse }
                         	</div>
                         </c:if>
-                            <sf:form class="form" action="${classpath }/admin/type-product-update-save" method="post" modelAttribute="typeProduct">
+                            <sf:form class="form" action="${classpath }/admin/banner-update-save" method="post" modelAttribute="banner" enctype="multipart/form-data">
                                 <div class="form-body">
-                                	<sf:hidden path="id"/>
-                                	<div class="row">
-                                		<div class="col-md-6">
-                                			<div class="form-group mb-4">
-                                				<label for="category">Danh mục</label>
-                                				<sf:select path="category.id" class="form-control" id="category">
-                                					<sf:option value="">-------Chọn danh mục-------</sf:option>
-                                					<sf:options itemValue="id" items="${categories }" itemLabel="name" class="form-control"></sf:options>
-                                				</sf:select>
-                                			</div>
-                                		</div>
-                                	</div>
+                             		<sf:hidden path="id"/>
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <div class="form-group mb-4">
-                                                <label for="code">Code</label>
-                                                <sf:input id="code" path="code" type="text" class="form-control" placeholder="Mã loại sản phẩm"></sf:input>
+                                        	<div class="row">
+                                        		<div class="col-md-12">
+                                        			<div class="form-group mb-4">
+                                               			<label for="code">Code</label>
+                                                		<sf:input id="code" path="code" type="text" class="form-control" placeholder="Mã banner" required="required" oninvalid="this.setCustomValidity('Nhập mã banner')" oninput="setCustomValidity('')"></sf:input>
                                                 
-                                            </div>
+                                            		</div>
+                                        		</div>
+                                        	</div>
+                                        	<div class="row">
+                                        		<div class="col-md-12">
+                                        			 <div class="form-group mb-4">
+                                                		<label for="createDate">Ngày tạo</label>
+                                                		<sf:input id="createDate" path="createDate" type="date" class="form-control"></sf:input>
+                                            		</div>
+                                        		</div>
+                                        	</div>
+                                        	<div class="row">
+                                        		<div class="col-md-12">
+                                        			<div class="form-group mb-4">
+                                                		<label for="updateDate">Ngày cập nhật</label>
+                                                		<sf:input id="updateDate" path="updateDate" type="date" class="form-control"></sf:input>
+                                            		</div>
+                                        		</div>
+                                        	</div>
+                                            
                                         </div>
                                         <div class="col-md-6">
-                                            <div class="form-group mb-4">
-                                                <label for="name">Tên loại sản phẩm</label>
-                                                <sf:input id="name" path="name" type="text" class="form-control" placeholder="Tên loại sản phẩm"></sf:input>
-                                              
-                                            </div>
+                                        	<div class="form-group mb-4">
+                                        		<div class="row">
+                                        			<div class="col-md-12">
+                                        				<img height="190px" width="500px" src="${classpath }/FileUpload/${banner.image }"/>
+                                        			</div>
+                                        		</div>
+                                        		<div class="row">
+                                        			<div class="col-md-12">
+                                        				<label for="imageFile">Chọn ảnh</label>
+                                        				<input type="file" name="imageFile" id="imageFile" multiple="multiple" class="form-control-file"/>
+                                        			</div>
+                                        		</div>
+                                        	</div>
                                         </div>
                                     </div>
-
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group mb-4">
-                                                <label for="createDate">Ngày tạo</label>
-                                                <sf:input id="createDate" path="createDate" type="date" class="form-control" placeholder="Mã danh mục"></sf:input>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group mb-4">
-                                                <label for="updateDate">Ngày cập nhật</label>
-                                                <sf:input id="updateDate" path="updateDate" type="date" class="form-control" placeholder="Tên danh mục"></sf:input>
-                                            </div>
-                                        </div>
-                                    </div>
-
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group mb-4">
@@ -104,24 +106,18 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group mb-4">
-                                               <a href="${classpath }/admin/type-product-list" class="btn btn-light active" role="button">Về danh sách</a>
-                                               <button type="submit" class="btn btn-primary">Lưu loại sản phẩm</button>
+                                               <a href="${classpath }/admin/banner-list" class="btn btn-light active" role="button">Về danh sách</a>
+                                               <button type="submit" class="btn btn-primary">Lưu banner</button>
                                             </div>
                                         </div>
-                                        
                                     </div>
-
-                                    
                                 </div>
                             </sf:form>
-                           
-                        </div>
-                        
+                        </div>            
                     </div>
                 </div>
-
             </div>
-
+            
             <!-- Footer -->
             <footer class="footer mt-auto">
                

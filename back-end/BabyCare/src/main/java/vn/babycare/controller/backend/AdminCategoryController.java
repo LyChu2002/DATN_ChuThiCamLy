@@ -10,7 +10,6 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,7 +28,7 @@ public class AdminCategoryController {
 	public String categoryList(final Model model) throws IOException{
 		List<Category> categoryList = categoryService.findAll();
 		model.addAttribute("categories", categoryList);
-		return "backend/category/category_list";
+		return "backend/category/category-list";
 	}
 	
 	@RequestMapping(value = "/admin/category-add", method = RequestMethod.GET)
@@ -37,17 +36,16 @@ public class AdminCategoryController {
 		Category category = new Category();
 		category.setCreateDate(new Date());
 		model.addAttribute("category", category);
-		return "backend/category/category_add";
+		return "backend/category/category-add";
 	}
 	
 	@RequestMapping(value = "/admin/category-add-save", method = RequestMethod.POST)
 	public String categoryAddSave(final Model model,
 			@Valid @ModelAttribute("category") Category category, 
 			final HttpServletRequest request) throws IOException{
-		String codeRequest = request.getParameter("code");
 		String message = "", alert = "";
 		category.setCreateDate(new Date());
-		Category cate = categoryService.findByCode(codeRequest);
+		Category cate = categoryService.findByCode(request.getParameter("code"));
 		if(cate == null) {
 			message = "Thêm thành công";
 			alert = "success";
@@ -60,7 +58,7 @@ public class AdminCategoryController {
 		model.addAttribute("messageResponse", message);
 		model.addAttribute("alert", alert);
 		
-		return "backend/category/category_add";
+		return "backend/category/category-add";
 	}
 	
 	@RequestMapping(value = "/admin/category-update/{categoryId}", method = RequestMethod.GET)
@@ -68,16 +66,15 @@ public class AdminCategoryController {
 			@PathVariable("categoryId") int categoryId) throws IOException{
 		Category category = categoryService.getById(categoryId);
 		model.addAttribute("category", category);
-		return "backend/category/category_update";
+		return "backend/category/category-update";
 	}
 	
 	@RequestMapping(value = "/admin/category-update-save", method = RequestMethod.POST)
 	public String categoryUpdateSave(final Model model,
 			final HttpServletRequest request,
 			@Valid @ModelAttribute("category") Category category) {
-		String codeRequest = request.getParameter("code");
 		String message = "", alert = "";
-		Category cateByCode = categoryService.findByCode(codeRequest);
+		Category cateByCode = categoryService.findByCode(request.getParameter("code"));
 		if(cateByCode == null || cateByCode.getId() == category.getId()) {
 			message = "Cập nhật thành công";
 			alert = "success";
@@ -89,7 +86,7 @@ public class AdminCategoryController {
 		}
 		model.addAttribute("messageResponse", message);
 		model.addAttribute("alert", alert);
-		return "backend/category/category_update";
+		return "backend/category/category-update";
 	}
 	
 	@RequestMapping(value = "/admin/category-delete/{categoryId}", method = RequestMethod.GET)

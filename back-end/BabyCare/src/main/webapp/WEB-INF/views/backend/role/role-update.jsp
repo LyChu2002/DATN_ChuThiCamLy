@@ -53,7 +53,7 @@
 											<div class="form-group mb-4">
 												<label for="name">Tên quyền</label>
 												<sf:input id="name" path="name" type="text"
-													class="form-control" placeholder="Tên quyền"></sf:input>
+													class="form-control" placeholder="Tên quyền" required="required" oninvalid="this.setCustomValidity('Nhập tên quyền')" oninput="setCustomValidity('')"></sf:input>
 
 											</div>
 										</div>

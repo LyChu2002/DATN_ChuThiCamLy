@@ -48,4 +48,23 @@ public class BannerService extends BaseService<Banner>{
 		}
 		else return null;
 	}
+	
+	@Transactional
+	public Banner updateBanner(Banner banner, MultipartFile imageFile) throws IOException{
+		Banner dbBanner = super.getById(banner.getId());
+		if(fileUtils.isUploadFile(imageFile)) {
+			String path = FilePath.Url.FOLDER_UPLOAD + "Banner/Image/" + imageFile.getOriginalFilename();
+			File file = new File(path);
+			file.delete();
+			
+			path = FilePath.Url.FOLDER_UPLOAD + "Banner/Image/" + imageFile.getOriginalFilename();
+			file = new File(path);
+			imageFile.transferTo(file);
+			banner.setImage("Banner/Image/" + imageFile.getOriginalFilename());
+		}
+		else {
+			banner.setImage(dbBanner.getImage());
+		}
+		return super.saveOrUpdate(banner);
+	}
 }

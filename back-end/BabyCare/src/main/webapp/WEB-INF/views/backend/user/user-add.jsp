@@ -49,13 +49,13 @@
                                         <div class="col-md-6">
                                             <div class="form-group mb-4">
                                                 <label for="username">Username</label>
-                                                <sf:input id="username" path="username" type="text" class="form-control" placeholder="Tên tài khoản"></sf:input>  
+                                                <sf:input id="username" path="username" type="text" class="form-control" placeholder="Tên tài khoản" required="required" oninvalid="this.setCustomValidity('Nhập tên tài khoản')" oninput="setCustomValidity('')"></sf:input>  
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group mb-4">
                                                 <label for="password">Password</label>
-                                                <sf:input id="password" path="password" type="text" class="form-control" placeholder="Mật khẩu"></sf:input>
+                                                <sf:input id="password" path="password" type="text" class="form-control" placeholder="Mật khẩu" required="required" oninvalid="this.setCustomValidity('Nhập mật khẩu')" oninput="setCustomValidity('')"></sf:input>
                                               
                                             </div>
                                         </div>
@@ -65,7 +65,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group mb-4">
                                                 <label for="email">Email</label>
-                                                <sf:input id="email" path="email" type="text" class="form-control" placeholder="Email"></sf:input>  
+                                                <sf:input id="email" path="email" type="text" class="form-control" placeholder="Email" required="required" oninvalid="this.setCustomValidity('Nhập email')" oninput="setCustomValidity('')"></sf:input>  
                                             </div>
                                         </div>
                                         <div class="col-md-6">
@@ -108,7 +108,7 @@
                                                 <label for="">Chọn quyền</label></br>
                                                 <c:forEach var="role" items="${roles }">
                                                 	<input type="checkbox" name="role" value="${role.id }" id="${role.id }">
-                                                	<label for="${role.id }">${role.name }</label>
+                                                	<label style="margin-top: 12px; margin-right: 20px" for="${role.id }">${role.name }</label>
                                                 </c:forEach>
                                               
                                             </div>

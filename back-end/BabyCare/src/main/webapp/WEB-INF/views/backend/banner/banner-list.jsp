@@ -3,7 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 
@@ -35,50 +34,48 @@
 
 					<div class="card card-default">
 						<div class="card-header">
-							<h2>Danh sách nhà cung cấp</h2>
-							<a href="${classpath }/admin/vendor-add" role="button"
+							<h2>Danh sách banner</h2>
+							<a href="${classpath }/staff/banner-add" role="button"
 								class="btn btn-primary"> <i class="mdi mdi-database-plus"></i>
-								Thêm nhà cung cấp
+								Thêm banner
 							</a>
 						</div>
 						<div class="card-body">
 							<div class="table-responsive">
-								<form method="post" action="${classpath }/admin/vendor-delete">
-									<input type="submit" value="Xóa" class="btn btn-danger" style="margin-bottom: 10px" onclick="return confirm ('Bạn có chắc chắn xóa?')"/>
+								<form method="post" action="${classpath }/staff/banner-delete" >
+									<input type="submit" value="Xóa" class="btn btn-danger" style="margin-bottom: 10px" title="Xóa những mục đã chọn" onclick="return confirm ('Bạn có chắc chắn xóa?')"/> 
 									<table class="table table-hover table-striped table-bordered no-wrap ">
 										<thead>
 											<tr>
-												<th><input type="checkbox" id="checkBoxAll"></th>
+												<th><input type="checkbox" id="checkBoxAll"></th>		
 												<th scope="col">No.</th>
 												<th scope="col">Code</th>
 												<th scope="col">Hình ảnh</th>
-												<th scope="col">Tên</th>
 												<th scope="col">Ngày tạo</th>
 												<th scope="col">Ngày cập nhật</th>
 												<th scope="col">Trạng thái</th>
 												<th scope="col">Tác vụ</th>
-												
 											</tr>
 										</thead>
 										<tbody>
-											<c:forEach var="vendor" items="${vendors }"
+											<c:forEach var="banner" items="${banners }"
 												varStatus="loop">
 												<tr>
-													<td><input type="checkbox" class="checkBoxItem" name="vendorId" value="${vendor.id }"/></td>
+													<td><input type="checkbox" class="checkBoxItem" name="bannerId" value="${banner.id }"/></td>
 													<td>${loop.index + 1 }</td>
-													<td>${vendor.code }</td>
+													<td>${banner.code }</td>
 													<td>
-														<img width="60px" height="60px" class="light-logo" src="${classpath }/FileUpload/${vendor.image }">
-													<td>${vendor.name }</td>
+														<img width="280px" height="150px" class="light-logo" src="${classpath }/FileUpload/${banner.image }">
+												
 													<td>
-														<fmt:formatDate value="${vendor.createDate }" pattern="dd-MM-yyyy"/>
+														<fmt:formatDate value="${banner.createDate }" pattern="dd-MM-yyyy"/>
 													</td>
 													<td>
-														<fmt:formatDate value="${vendor.updateDate }" pattern="dd-MM-yyyy"/>
+														<fmt:formatDate value="${banner.updateDate }" pattern="dd-MM-yyyy"/>
 													</td>
 													<td>
 														<c:choose>
-															<c:when test="${vendor.status }">
+															<c:when test="${banner.status }">
 																<span>Hoạt động</span>
 															</c:when>
 															<c:otherwise>
@@ -87,10 +84,10 @@
 														</c:choose>
 													</td>
 													<td>
-														 <a href="${classpath }/admin/vendor-update/${vendor.id }"
-														role="button" class="btn btn-success">Sửa</a>
-														 <a href="${classpath }/admin/vendor-delete/${vendor.id }"
-														role="button" class="btn btn-danger">Xóa</a>
+														 <a href="${classpath }/staff/banner-update/${banner.id }"
+														role="button" class="btn btn-success" title="Cập nhật banner"><i class="fa-solid fa-pen-to-square"></i></a>
+														 <a href="${classpath }/staff/banner-delete/${banner.id }"
+														role="button" class="btn btn-danger" title="Xóa banner"><i class="fa-solid fa-trash"></i></a>
 														</td>
 											
 												</tr>

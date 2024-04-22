@@ -17,6 +17,7 @@
 <jsp:include page="/WEB-INF/views/common/variable.jsp"></jsp:include>
 <!-- CSS -->
 <jsp:include page="/WEB-INF/views/backend/layout/css.jsp"></jsp:include>
+<script src="${classpath }/libraries/ckeditor/ckeditor.js"></script>
 
 </head>
 
@@ -35,34 +36,83 @@
 				<div class="content">
 					<div class="card card-default">
 						<div class="card-header">
-							<h2>Thêm quyền</h2>
+							<h2>Thêm nhà cung cấp</h2>
 						</div>
 						<div class="card-body">
 							<c:if test="${not empty messageResponse }">
 								<div class="alert alert-${alert }" style="width: 30%">
 									${messageResponse }</div>
 							</c:if>
-							<sf:form class="form" action="${classpath }/admin/role-add-save"
-								method="post" modelAttribute="role">
+							<sf:form class="form"
+								action="${classpath }/admin/vendor-add-save" method="post"
+								modelAttribute="vendor" enctype="multipart/form-data">
 								<div class="form-body">
+									<div class="row">
+										<div class="col-md-6">
+											<div class="form-group mb-4">
+												<div class="row">
+													<div class="col-md-12">
+														<div class="form-group mb-4">
+															<label for="code">Code</label>
+															<sf:input id="code" path="code" type="text"
+																class="form-control" placeholder="Mã nhà cung cấp" required="required" oninvalid="this.setCustomValidity('Nhập mã nhà cung cấp')" oninput="setCustomValidity('')"></sf:input>
+														</div>
+													</div>
+												</div>
+												<div class="row">
+													<div class="col-md-12">
+														<div class="form-group mb-4">
+															<label for="name">Tên nhà cung cấp</label>
+															<sf:input id="name" path="name" type="text"
+																class="form-control" placeholder="Tên nhà cung cấp" required="required" oninvalid="this.setCustomValidity('Nhập tên nhà cung cấp')" oninput="setCustomValidity('')"></sf:input>
+
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="col-md-6">
+											<div class="form-group mb-4">
+												<div class="row">
+													<div class="col-md-12">
+														<div class="form-group mb-4">
+															<img style="width: 85px; height: 85px"
+																src="${classspath }/FileUpload/${vendor.image}" />
+
+														</div>
+													</div>
+													<div class="col-md-12">
+														<div class="form-group mb-4">
+															<label for="imageFile">Chọn ảnh</label> <input
+																id="imageFile" name="imageFile"
+																class="form-control-file" type="file"
+																multiple="multiple" />
+															
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+
 
 									<div class="row">
-
-										<div class="col-md-12">
+										<div class="col-md-6">
 											<div class="form-group mb-4">
-												<label for="name">Tên quyền</label>
-												<sf:input id="name" path="name" type="text"
-													class="form-control" placeholder="Tên quyền" required="required" oninvalid="this.setCustomValidity('Nhập tên quyền')" oninput="setCustomValidity('')"></sf:input>
+												<label for="origin">Xuất xứ</label>
+												<sf:input id="origin" path="origin" type="text"
+													class="form-control" placeholder="Xuất xứ"></sf:input>
 
 											</div>
 										</div>
 									</div>
+
 									<div class="row">
 										<div class="col-md-12">
 											<div class="form-group mb-4">
 												<label for="description">Mô tả</label>
-												<sf:textarea path="description" rows="5" id="description" class="form-control"
-													placeholder="Mô tả quyền...." />
+												<sf:textarea id="description" path="description" rows="4"
+													class="form-control" placeholder="Mô tả thương hiệu..."></sf:textarea>
 
 											</div>
 										</div>
@@ -100,10 +150,10 @@
 									<div class="row">
 										<div class="col-md-12">
 											<div class="form-group mb-4">
-												<a href="${classpath }/admin/role-list"
+												<a href="${classpath }/admin/vendor-list"
 													class="btn btn-light active" role="button">Về danh sách</a>
 												<button type="submit" class="btn btn-primary">Lưu
-													quyền</button>
+													nhà cung cấp</button>
 											</div>
 										</div>
 
@@ -130,5 +180,11 @@
 	<jsp:include page="/WEB-INF/views/backend/layout/js.jsp"></jsp:include>
 
 </body>
+<script type="text/javascript">
+	var editor = "";
+	$(document).ready(function() {
+		editor = CKEDITOR.replace('description');
+	})
+</script>
 
 </html>

@@ -29,4 +29,9 @@ public class UserService extends BaseService<User>{
 		String sql = "SELECT * FROM user WHERE email = '" + email + "'";
 		return super.getEntityByNativeSQL(sql);
 	}
+	
+	public User findByEmailActive(String email) {
+		String sql = "SELECT * FROM user WHERE email = '" + email + "' and status = 1";
+		return super.getEntityByNativeSQL(sql);
+	}
 }

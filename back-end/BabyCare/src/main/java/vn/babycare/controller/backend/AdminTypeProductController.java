@@ -33,7 +33,7 @@ public class AdminTypeProductController {
 	public String typeProductList(final Model model) {
 		List<TypeProduct> typeProductList = typeProductService.findAll();
 		model.addAttribute("typeProducts", typeProductList);
-		return "backend/type_product/type_product_list";
+		return "backend/type_product/type_product-list";
 	}
 	
 	@RequestMapping(value = "/admin/type-product-add", method = RequestMethod.GET)
@@ -43,7 +43,7 @@ public class AdminTypeProductController {
 		TypeProduct typeProduct = new TypeProduct();
 		typeProduct.setCreateDate(new Date());
 		model.addAttribute("typeProduct", typeProduct);
-		return "backend/type_product/type_product_add";
+		return "backend/type_product/type_product-add";
 	}
 	
 	@RequestMapping(value = "/admin/type-product-add-save", method = RequestMethod.POST)
@@ -52,13 +52,9 @@ public class AdminTypeProductController {
 			@Valid @ModelAttribute("typeProduct") TypeProduct typeProduct) throws IOException{
 		List<Category> categories = categoryService.findAllActive();
 		model.addAttribute("categories", categories);
-		String code = request.getParameter("code");
-		String name = request.getParameter("name");
-		String idCategory = request.getParameter("category.id");
-		String message = "";
-		String alert = "";
-		if(!StringUtils.isEmpty(code) && !StringUtils.isEmpty(name) && !StringUtils.isEmpty(idCategory)) {
-			TypeProduct type = typeProductService.findByCode(code);
+		String message = "", alert = "";
+		if(!StringUtils.isEmpty(request.getParameter("category.id"))) {
+			TypeProduct type = typeProductService.findByCode(request.getParameter("code"));
 			if(type == null) {
 				message = "Thêm thành công";
 				alert = "success";
@@ -70,12 +66,12 @@ public class AdminTypeProductController {
 			}
 		}
 		else {
-			message = "Thêm không thành công";
+			message = "Chọn danh mục";
 			alert = "danger";
 		}
 		model.addAttribute("messageResponse", message);
 		model.addAttribute("alert", alert);
-		return "backend/type_product/type_product_add";
+		return "backend/type_product/type_product-add";
 	}
 	
 	@RequestMapping(value = "/admin/type-product-update/{typeProductId}", method = RequestMethod.GET)
@@ -86,22 +82,18 @@ public class AdminTypeProductController {
 		TypeProduct typeProduct = typeProductService.getById(typeProductId);
 		model.addAttribute("typeProduct", typeProduct);
 		
-		return "backend/type_product/type_product_update";
+		return "backend/type_product/type_product-update";
 	}
 	
 	@RequestMapping(value = "/admin/type-product-update-save", method = RequestMethod.POST)
 	public String typeProductUpdateSave(final Model model,
 			final HttpServletRequest request,
-			@ModelAttribute("typeProduct") TypeProduct typeProduct) {
+			@Valid @ModelAttribute("typeProduct") TypeProduct typeProduct) {
 		List<Category> categoryList = categoryService.findAllActive();
 		model.addAttribute("categories", categoryList);
-		String code = request.getParameter("code");
-		String name = request.getParameter("name");
-		String idCategory = request.getParameter("category.id");
-		String message = "";
-		String alert = "";
-		if(!StringUtils.isEmpty(code) && !StringUtils.isEmpty(name) && !StringUtils.isEmpty(request) && !StringUtils.isEmpty(idCategory)) {
-			TypeProduct type = typeProductService.findByCode(code);
+		String message = "", alert = "";
+		if(!StringUtils.isEmpty(request.getParameter("category.id"))) {
+			TypeProduct type = typeProductService.findByCode(request.getParameter("code"));
 			if(type == null || type.getId() == typeProduct.getId()) {
 				message = "Cập nhật thành công";
 				alert = "success";
@@ -113,12 +105,12 @@ public class AdminTypeProductController {
 			}
 		}
 		else {
-			message = "Cập nhật không thành công";
+			message = "Chọn danh mục";
 			alert = "danger";
 		}
 		model.addAttribute("messageResponse", message);
 		model.addAttribute("alert", alert);
-		return "backend/type_product/type_product_update";
+		return "backend/type_product/type_product-update";
 	}
 	
 	@RequestMapping(value = "/admin/type-product-delete/{typeProductId}", method = RequestMethod.GET)

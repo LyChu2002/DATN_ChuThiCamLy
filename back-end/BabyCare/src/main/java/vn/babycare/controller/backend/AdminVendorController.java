@@ -5,14 +5,11 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.criteria.CriteriaBuilder.In;
-import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,7 +30,7 @@ public class AdminVendorController {
 	public String vendorList(final Model model) throws IOException{
 		List<Vendor> vendors = vendorService.findAll();
 		model.addAttribute("vendors", vendors);
-		return "backend/vendor/vendor_list";
+		return "backend/vendor/vendor-list";
 	}
 	
 	@RequestMapping(value = "/admin/vendor-add", method = RequestMethod.GET)
@@ -41,7 +38,7 @@ public class AdminVendorController {
 		Vendor vendor = new Vendor();
 		vendor.setCreateDate(new Date());
 		model.addAttribute("vendor", vendor);
-		return "backend/vendor/vendor_add";
+		return "backend/vendor/vendor-add";
 	}
 	
 	@RequestMapping(value = "/admin/vendor-add-save", method = RequestMethod.POST)
@@ -49,30 +46,21 @@ public class AdminVendorController {
 			final HttpServletRequest request,
 			@ModelAttribute("vendor") Vendor vendor,
 			@RequestParam("imageFile") MultipartFile imageFile) throws IOException{
-		String code = request.getParameter("code");
-		String name = request.getParameter("name");
-		String message = "";
-		String alert = "";
-		if(!StringUtils.isEmpty(code) && !StringUtils.isEmpty(name)) {
-			Vendor vendorByCode = vendorService.findByCode(code);
-			System.out.println(vendorByCode);
-			if(vendorByCode == null) {
-				message = "Thêm thành công";
-				alert = "success";
-				vendorService.saveNewVendor(vendor, imageFile);
-			}
-			else {
-				message = "Mã nhà cung cấp đã tồn tại";
-				alert = "danger";
-			}
+		String message = "", alert = "";
+		vendor.setCreateDate(new Date());
+		Vendor vendorByCode = vendorService.findByCode(request.getParameter("code"));
+		if(vendorByCode == null) {
+			message = "Thêm thành công";
+			alert = "success";
+			vendorService.saveNewVendor(vendor, imageFile);
 		}
 		else {
-			message = "Thêm không thành công";
+			message = "Mã nhà cung cấp đã tồn tại";
 			alert = "danger";
 		}
 		model.addAttribute("messageResponse", message);
 		model.addAttribute("alert", alert);
-		return "backend/vendor/vendor_add";
+		return "backend/vendor/vendor-add";
 	}
 	
 	@RequestMapping(value = "/admin/vendor-update/{vendorId}", method = RequestMethod.GET)
@@ -80,7 +68,7 @@ public class AdminVendorController {
 			@PathVariable("vendorId") int vendorId) throws IOException{
 		Vendor vendor = vendorService.getById(vendorId);
 		model.addAttribute("vendor", vendor);
-		return "backend/vendor/vendor_update";
+		return "backend/vendor/vendor-update";
 	}
 	
 	@RequestMapping(value = "/admin/vendor-update-save", method = RequestMethod.POST)
@@ -88,30 +76,20 @@ public class AdminVendorController {
 			final HttpServletRequest request,
 			@ModelAttribute("vendor") Vendor vendor,
 			@RequestParam("imageFile") MultipartFile image) throws IOException{
-		String code = request.getParameter("code");
-		String name = request.getParameter("name");
-		String message = "";
-		String alert = "";
-		if(!StringUtils.isEmpty(code) && !StringUtils.isEmpty(name)) {
-			Vendor vendorByCode = vendorService.findByCode(code);
-			if(vendorByCode == null || vendorByCode.getId() == vendor.getId()) {
-				message = "Cập nhật thành công";
-				alert = "success";
-				vendorService.updateVendor(vendor, image);
-			}
-			else {
-				message = "Mã nhà cung cấp đã tồn tại";
-				alert = "danger";
-			}
+		String message = "", alert = "";	
+		Vendor vendorByCode = vendorService.findByCode(request.getParameter("code"));
+		if(vendorByCode == null || vendorByCode.getId() == vendor.getId()) {
+			message = "Cập nhật thành công";
+			alert = "success";
+			vendorService.updateVendor(vendor, image);
 		}
 		else {
-			message = "Cập nhật không thành công";
+			message = "Mã nhà cung cấp đã tồn tại";
 			alert = "danger";
 		}
 		model.addAttribute("messageResponse", message);
 		model.addAttribute("alert", alert);
-		
-		return "backend/vendor/vendor_update";
+		return "backend/vendor/vendor-update";
 	}
 	
 	@RequestMapping(value = "/admin/vendor-delete/{vendorId}", method = RequestMethod.GET)
