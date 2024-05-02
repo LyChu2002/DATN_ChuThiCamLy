@@ -3,9 +3,11 @@ package vn.babycare.service;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
 
 import vn.babycare.model.User;
 
+@Service
 public class UserDetailsServiceImp extends BaseService<User> implements UserDetailsService{
 	@Override
 	public Class<User> clazz() {

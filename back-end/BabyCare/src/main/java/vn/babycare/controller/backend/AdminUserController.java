@@ -8,13 +8,13 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import vn.babycare.model.Role;
 import vn.babycare.model.User;
@@ -66,6 +66,7 @@ public class AdminUserController {
 			}
 			message = "Thêm thành công";
 			alert = "success";
+			user.setPassword(new BCryptPasswordEncoder(4).encode(user.getPassword()));
 			userService.saveOrUpdate(user);
 		}
 		else {

@@ -1,10 +1,15 @@
 package vn.babycare.model;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -20,13 +25,25 @@ public class TypeProduct extends BaseModel{
 		super();
 	}
 	
-//-----Mapping many-to-one: type-product to category-------------
+//-----Mapping many-to-one: TypeProduct to Category-------------
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "id_category")
 	private Category category;
-
+	
+//-----Mapping one-to-many: TypeProduct to Product
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "typeProduct")
+	private Set<Product> products = new HashSet<Product>();
+	
 	public Category getCategory() {
 		return category;
+	}
+
+	public Set<Product> getProducts() {
+		return products;
+	}
+
+	public void setProducts(Set<Product> products) {
+		this.products = products;
 	}
 
 	public void setCategory(Category category) {

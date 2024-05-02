@@ -12,9 +12,11 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import org.springframework.security.core.GrantedAuthority;
+
 @Entity
 @Table(name = "role")
-public class Role extends BaseModel{
+public class Role extends BaseModel implements GrantedAuthority{
 	@Column(name = "name", length = 50, nullable = false)
 	private String name;
 	
@@ -57,6 +59,12 @@ public class Role extends BaseModel{
 	
 	@Override
 	public String toString() {
+		return this.name;
+	}
+
+	@Override
+	public String getAuthority() {
+		// TODO Auto-generated method stub
 		return this.name;
 	}
 	

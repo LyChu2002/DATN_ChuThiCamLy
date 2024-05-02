@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import vn.babycare.model.Category;
 import vn.babycare.service.CategoryService;
@@ -42,6 +44,7 @@ public class AdminCategoryController {
 	@RequestMapping(value = "/admin/category-add-save", method = RequestMethod.POST)
 	public String categoryAddSave(final Model model,
 			@Valid @ModelAttribute("category") Category category, 
+			@RequestParam("avatarFile") MultipartFile avatarFile,
 			final HttpServletRequest request) throws IOException{
 		String message = "", alert = "";
 		category.setCreateDate(new Date());
@@ -49,7 +52,7 @@ public class AdminCategoryController {
 		if(cate == null) {
 			message = "Thêm thành công";
 			alert = "success";
-			categoryService.saveOrUpdate(category);		
+			categoryService.saveNewCategory(category, avatarFile);		
 		}
 		else {
 			message = "Mã danh mục đã tồn tại";
@@ -72,13 +75,14 @@ public class AdminCategoryController {
 	@RequestMapping(value = "/admin/category-update-save", method = RequestMethod.POST)
 	public String categoryUpdateSave(final Model model,
 			final HttpServletRequest request,
-			@Valid @ModelAttribute("category") Category category) {
+			@Valid @ModelAttribute("category") Category category,
+			@RequestParam("avatarFile") MultipartFile avatarFile) throws IOException {
 		String message = "", alert = "";
 		Category cateByCode = categoryService.findByCode(request.getParameter("code"));
 		if(cateByCode == null || cateByCode.getId() == category.getId()) {
 			message = "Cập nhật thành công";
 			alert = "success";
-			categoryService.saveOrUpdate(category);
+			categoryService.saveUpdateCategory(category, avatarFile);
 		}
 		else {
 			message = "Mã danh mục đã tồn tại";

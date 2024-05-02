@@ -43,7 +43,7 @@
                         		${messageResponse }
                         	</div>
                         </c:if>
-                            <sf:form class="form" action="${classpath }/admin/category-update-save" method="post" modelAttribute="category">
+                            <sf:form class="form" action="${classpath }/admin/category-update-save" method="post" modelAttribute="category" enctype="multipart/form-data">
                                 <div class="form-body">
                                 	<sf:hidden path="id"/>
                                     <div class="row">
@@ -76,6 +76,24 @@
                                                 <sf:input id="updateDate" path="updateDate" type="date" class="form-control" placeholder="Tên danh mục"></sf:input>
                                             </div>
                                         </div>
+                                    </div>
+                                    <div class="row">
+										<div class="col-md-12">
+											<div class="form-group mb-4">
+												<img style="width: 85px; height: 85px"
+													src="${classspath }/FileUpload/${category.avatar}" />
+
+											</div>
+										</div>
+									</div>
+                                    
+                                    <div class = "row">
+                                   		<div class = "col-md-12">
+                                   			<div class = "form-group mb-4">
+                                   				<label for="avatarFile">Chọn avatar danh mục</label>
+                                   				<input id="avatarFile" name="avatarFile" class="form-control-file" type="file" multiple="multiple">
+                                   			</div>
+                                   		</div> 	
                                     </div>
 
                                     <div class="row">

@@ -19,9 +19,13 @@ public class Category extends BaseModel{
 	@Column(name = "name", length = 200, nullable = false)
 	private String name;
 	
-//--------Mapping one-to-many: category to type_product---------------
+	@Column(name = "avatar", length = 500, nullable = true)
+	private String avatar;
+	
+	//--------Mapping one-to-many: category to type_product---------------
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "category")
 	private Set<TypeProduct> typeProducts = new HashSet<TypeProduct>();
+
 
 	public Set<TypeProduct> getTypeProducts() {
 		return typeProducts;
@@ -30,6 +34,15 @@ public class Category extends BaseModel{
 	public void setTypeProducts(Set<TypeProduct> typeProducts) {
 		this.typeProducts = typeProducts;
 	}
+	
+	public String getAvatar() {
+		return avatar;
+	}
+
+	public void setAvatar(String avatar) {
+		this.avatar = avatar;
+	}
+
 
 	public Category() {
 		super();

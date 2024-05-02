@@ -34,15 +34,15 @@
 
 					<div class="card card-default">
 						<div class="card-header">
-							<h2>Danh sách danh mục</h2>
-							<a href="${classpath }/admin/category-add" role="button"
+							<h2>Danh sách sản phẩm</h2>
+							<a href="${classpath }/admin/product-add" role="button"
 								class="btn btn-primary"> <i class="mdi mdi-database-plus"></i>
-								Thêm danh mục
+								Thêm sản phẩm
 							</a>
 						</div>
 						<div class="card-body">
 							<div class="table-responsive">
-								<form method="post" action="${classpath }/admin/category-delete" >
+								<form method="post" action="${classpath }/admin/product-delete" >
 									<input type="submit" value="Xóa" class="btn btn-danger" style="margin-bottom: 10px" title="Xóa những mục đã chọn" onclick="return confirm ('Bạn có chắc chắn xóa?')"/> 
 									<table class="table table-hover table-striped table-bordered no-wrap ">
 										<thead>
@@ -50,8 +50,8 @@
 												<th><input type="checkbox" id="checkBoxAll"></th>
 												<th scope="col">No.</th>
 												<th scope="col">Code</th>
-												<th scope="col">Avatar</th>
-												<th scope="col">Tên danh mục</th>
+												<th scope="col">Ảnh</th>
+												<th scope="col">Tên sản phẩm</th>
 												<th scope="col">Ngày tạo</th>
 												<th scope="col">Ngày cập nhật</th>
 												<th scope="col">Trạng thái</th>
@@ -59,25 +59,25 @@
 											</tr>
 										</thead>
 										<tbody>
-											<c:forEach var="category" items="${categories }"
+											<c:forEach var="product" items="${products }"
 												varStatus="loop">
 												<tr>
-													<td><input type="checkbox" class="checkBoxItem" name="categoryId" value="${category.id }"/></td>
+													<td><input type="checkbox" class="checkBoxItem" name="productId" value="${product.id }"/></td>
 													<td>${loop.index + 1 }</td>
-													<td>${category.code }</td>
+													<td>${product.code }</td>
 													<td>
-														<img width="70px" height="70px" class="light-logo" src="${classpath }/FileUpload/${category.avatar }">												
+														<img width="90px" height="90px" class="light-logo" src="${classpath }/FileUpload/${product.avatar }">												
 													</td>
-													<td>${category.name }</td>
+													<td>${product.name }</td>
 													<td>
-														<fmt:formatDate value="${category.createDate }" pattern="dd-MM-yyyy"/>
+														<fmt:formatDate value="${product.createDate }" pattern="dd-MM-yyyy"/>
 													</td>
 													<td>
-														<fmt:formatDate value="${category.updateDate }" pattern="dd-MM-yyyy"/>
+														<fmt:formatDate value="${product.updateDate }" pattern="dd-MM-yyyy"/>
 													</td>
 													<td>
 														<c:choose>
-															<c:when test="${category.status }">
+															<c:when test="${product.status }">
 																<span>Hoạt động</span>
 															</c:when>
 															<c:otherwise>
@@ -85,11 +85,13 @@
 															</c:otherwise>
 														</c:choose>
 													</td>
-													<td>
-														 <a href="${classpath }/admin/category-update/${category.id }"
-														role="button" class="btn btn-success" title="Cập nhật danh mục"><i class="fa-solid fa-pen-to-square"></i></a>
-														 <a href="${classpath }/admin/category-delete/${category.id }"
-														role="button" class="btn btn-danger" title="Xóa danh mục"><i class="fa-solid fa-trash"></i></a>
+													<td style="min-width: 150px">
+														<a href="${classpath }/admin/product-detail/${product.id }"
+														role="button" class="btn btn-info" title="Chi tiết sản phẩm"><i class="fa-solid fa-circle-info"></i></a>
+														 <a href="${classpath }/admin/product-update/${product.id }"
+														role="button" class="btn btn-success" title="Cập nhật sản phẩm"><i class="fa-solid fa-pen-to-square"></i></a>
+														 <a href="${classpath }/admin/product-delete/${product.id }"
+														role="button" class="btn btn-danger" title="Xóa sản phẩm"><i class="fa-solid fa-trash"></i></a>
 														</td>
 											
 												</tr>

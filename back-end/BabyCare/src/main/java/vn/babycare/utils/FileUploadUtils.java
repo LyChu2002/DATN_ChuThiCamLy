@@ -11,4 +11,11 @@ public class FileUploadUtils {
 		}
 		return true;
 	}
+	
+	public boolean isUploadFiles(MultipartFile[] files) {
+		if(files == null || files.length == 0) {
+			return false;
+		}
+		return true;
+	}
 }

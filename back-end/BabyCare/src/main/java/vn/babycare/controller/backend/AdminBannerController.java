@@ -28,14 +28,14 @@ public class AdminBannerController {
 	@Autowired
 	private BannerService bannerService;
 	
-	@RequestMapping(value = "/staff/banner-list", method = RequestMethod.GET)
+	@RequestMapping(value = "/admin/banner-list", method = RequestMethod.GET)
 	public String bannerList(final Model model) throws IOException{
 		List<Banner> banners = bannerService.findAll();
 		model.addAttribute("banners", banners);
 		return "backend/banner/banner-list";
 	}
 	
-	@RequestMapping(value = "/staff/banner-add", method = RequestMethod.GET)
+	@RequestMapping(value = "/admin/banner-add", method = RequestMethod.GET)
 	public String bannerAdd(final Model model) throws IOException{
 		Banner banner = new Banner();
 		banner.setCreateDate(new Date());
@@ -43,7 +43,7 @@ public class AdminBannerController {
 		return "backend/banner/banner-add";
 	}
 	
-	@RequestMapping(value = "/staff/banner-add-save", method = RequestMethod.POST)
+	@RequestMapping(value = "/admin/banner-add-save", method = RequestMethod.POST)
 	public String bannerAddSave(final Model model,
 			final HttpServletRequest request,
 			@ModelAttribute("banner") Banner banner,
@@ -72,14 +72,14 @@ public class AdminBannerController {
 		return "backend/banner/banner-add";
 	}
 	
-	@RequestMapping(value = "/staff/banner-update/{bannerId}", method = RequestMethod.GET)
+	@RequestMapping(value = "/admin/banner-update/{bannerId}", method = RequestMethod.GET)
 	public String bannerUpdate(final Model model, @PathVariable("bannerId") int id) throws IOException{
 		Banner banner = bannerService.getById(id);
 		model.addAttribute("banner", banner);
 		return "backend/banner/banner-update";
 	}
 	
-	@RequestMapping(value = "/staff/banner-update-save", method = RequestMethod.POST)
+	@RequestMapping(value = "/admin/banner-update-save", method = RequestMethod.POST)
 	public String bannerUpdateSave(final Model model,
 			final HttpServletRequest request,
 			@ModelAttribute("banner") Banner banner,
@@ -100,7 +100,7 @@ public class AdminBannerController {
 		return "backend/banner/banner-update";
 	}
 	
-	@RequestMapping(value = "/staff/banner-delete/{bannerId}", method = RequestMethod.GET)
+	@RequestMapping(value = "/admin/banner-delete/{bannerId}", method = RequestMethod.GET)
 	public String bannerSoftDeleteById(@PathVariable("bannerId") int bannerId) throws IOException{
 		Banner banner = bannerService.getById(bannerId);
 		banner.setStatus(false);
@@ -108,7 +108,7 @@ public class AdminBannerController {
 		return "redirect:/admin/banner-list";
 	}
 	
-	@RequestMapping(value = "/staff/banner-delete", method = RequestMethod.POST)
+	@RequestMapping(value = "/admin/banner-delete", method = RequestMethod.POST)
 	public String bannerMultipleSoftDelete(final HttpServletRequest request) throws IOException{
 		if(request.getParameterValues("bannerId") != null) {
 			for(String bannerId : request.getParameterValues("bannerId")){

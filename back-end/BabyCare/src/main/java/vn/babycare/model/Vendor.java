@@ -1,7 +1,13 @@
 package vn.babycare.model;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -24,6 +30,18 @@ public class Vendor extends BaseModel{
 
 	public Vendor() {
 		super();
+	}
+	
+//----Mapping one-to-many: Vendor to Product
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "vendor")
+	private Set<Product> products = new HashSet<Product>();
+
+	public Set<Product> getProducts() {
+		return products;
+	}
+
+	public void setProducts(Set<Product> products) {
+		this.products = products;
 	}
 
 	public Vendor(String code, String name, String origin, String image, String description) {

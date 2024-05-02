@@ -94,11 +94,11 @@
 				</a>
 					<ul class="collapse" id="product" data-parent="#sidebar-menu">
 						<div class="sub-menu">
-							<li><a class="sidenav-item-link" href="email-inbox.html">
+							<li><a class="sidenav-item-link" href="${classpath }/admin/product-list">
 									<span class="nav-text">Danh sách sản phẩm</span>
 
 							</a></li>
-							<li><a class="sidenav-item-link" href="email-details.html">
+							<li><a class="sidenav-item-link" href="${classpath }/admin/product-add">
 									<span class="nav-text">Thêm sản phẩm</span>
 
 							</a></li>
