@@ -32,66 +32,7 @@
 			<div class="content-wrapper">
 				<div class="content">
 
-					<div class="card card-default">
-						<div class="card-header">
-							<h2>Danh sách danh mục</h2>
-							<a href="${classpath }/admin/category-add" role="button"
-								class="btn btn-primary"> <i class="mdi mdi-database-plus"></i>
-								Thêm danh mục
-							</a>
-						</div>
-						<div class="card-body">
-							<div class="table-responsive">
-								<table class="table table-hover table-striped table-bordered no-wrap ">
-									<thead>
-										<tr>
-											<th scope="col">No.</th>
-											<th scope="col">Code</th>
-											<th scope="col">Tên danh mục</th>
-											<th scope="col">Ngày tạo</th>
-											<th scope="col">Ngày cập nhật</th>
-											<th scope="col">Trạng thái</th>
-											<th scope="col">Tác vụ</th>
-										</tr>
-									</thead>
-									<tbody>
-										<c:forEach var="category" items="${categories }"
-											varStatus="loop">
-											<tr>
-												<td>${loop.index + 1 }</td>
-												<td>${category.code }</td>
-												<td>${category.name }</td>
-												<td>
-													<fmt:formatDate value="${category.createDate }" pattern="dd-MM-yyyy"/>
-												</td>
-												<td>
-													<fmt:formatDate value="${category.updateDate }" pattern="dd-MM-yyyy"/>
-												</td>
-												<td>
-													<c:choose>
-														<c:when test="${category.status }">
-															<span>Hoạt động</span>
-														</c:when>
-														<c:otherwise>
-															<span>Không hoạt động</span>
-														</c:otherwise>
-													</c:choose>
-												</td>
-												<td>
-													 <a href="${classpath }/admin/category-update/${category.id }"
-													role="button" class="btn btn-success">Sửa</a>
-													 <a href="${classpath }/admin/category-delete/${category.id }"
-													role="button" class="btn btn-danger">Xóa</a>
-													</td>
-										
-											</tr>
-										</c:forEach>
-
-									</tbody>
-								</table>
-							</div>
-						</div>
-					</div>
+					Admin Home
 				</div>
 			</div>
 

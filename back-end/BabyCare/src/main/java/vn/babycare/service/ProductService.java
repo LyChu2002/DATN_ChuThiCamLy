@@ -37,9 +37,19 @@ public class ProductService extends BaseService<Product>{
 		return super.executeNativeSql(sql);
 	}
 	
+	public List<Product> findAllHot(){
+		String sql = "SELECT * FROM product WHERE status = 1 and is_hot = 1";
+		return super.executeNativeSql(sql);
+	}
+	
 	public Product findByCode(String code) {
 		String sql = "SELECT * FROM product WHERE code = '" + code + "'";
 		return super.getEntityByNativeSQL(sql);
+	}
+	
+	public List<Product> findAllByType(int idTypeProduct){
+		String sql = "SELECT * FROM product WHERE status = 1 and id_type_product = " + idTypeProduct;
+		return super.executeNativeSql(sql);
 	}
 	
 	@Transactional

@@ -35,7 +35,7 @@
 					<div class="card card-default">
 						<div class="card-header">
 							<h2>Danh sách banner</h2>
-							<a href="${classpath }/staff/banner-add" role="button"
+							<a href="${classpath }/admin/banner-add" role="button"
 								class="btn btn-primary"> <i class="mdi mdi-database-plus"></i>
 								Thêm banner
 							</a>

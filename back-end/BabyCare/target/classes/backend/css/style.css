@@ -13402,13 +13402,13 @@ label {
   position: relative;
 }
 .sidebar .sidebar-inner > li > a {
-  padding: 1rem 1.5rem;
+  padding: 7px 24px;
   line-height: 20px;
   color: #bfc7d9;
   display: block;
   text-decoration: none;
   text-transform: capitalize;
-  font-size: 1rem;
+  font-size: 15px;
   font-weight: 400;
   white-space: nowrap;
 }

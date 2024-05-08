@@ -2,13 +2,16 @@ package vn.babycare.model;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.springframework.security.core.GrantedAuthority;
@@ -32,9 +35,22 @@ public class User extends BaseModel implements UserDetails{
 	@Column(name = "address", length = 200, nullable = true)
 	private String address;
 
+//-------Mapping many to many: user to role
 	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "users")
 	private List<Role> roles = new ArrayList<Role>();
 	
+//--------------Mapping one-to-many: tbl_user-to-tbl_sale_order
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
+	private Set<Order> order = new HashSet<Order>();
+
+	public Set<Order> getOrder() {
+		return order;
+	}
+
+	public void setOrder(Set<Order> order) {
+		this.order = order;
+	}
+
 	public void addRelationalUserRole(Role role) {
 		role.getUsers().add(this);
 		roles.add(role);

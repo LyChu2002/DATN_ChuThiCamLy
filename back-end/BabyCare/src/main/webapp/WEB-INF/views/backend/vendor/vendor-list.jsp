@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 
@@ -32,20 +32,52 @@
 
 			<div class="content-wrapper">
 				<div class="content">
+					<form action="${classpath }/admin/vendor-list" method="get">
+						<div class="card card-default">
+							<div class="card-header">
+								<div class="row1">
+									<h2>Danh sách nhà cung cấp</h2>
+								</div>
+								<div class="row1">
+									<input type="submit" value="Xóa" name="deleteVendor"
+										class="btn btn-danger"
+										onclick="return confirm ('Bạn có chắc chắn xóa?')" /> <a
+										href="${classpath }/admin/vendor-add" role="button"
+										class="btn btn-primary"> <i class="mdi mdi-database-plus"></i>
+										Thêm
+									</a>
+								</div>
+							</div>
+							<div class="card-body">
+								<div class="row">
+									<div class="col-md-4">
+										<input type="hidden" id="page" name="page"
+											class="form-control" value="${vendorSearch.currentPage }" />
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-2">
+										<div class="form-group mb-4">
+											<select class="form-control" id="status" name="status">
+												<option value="2">Tất cả</option>
+												<option value="1">Hoạt động</option>
+												<option value="0">Không hoạt động</option>
+											</select>
+										</div>
+									</div>
+									<div class="col-md-2">
+										<input class="form-control" type="text" id="keyword"
+											name="keyword" placeholder="Tìm kiếm" />
+									</div>
+									<div class="col-md-2">
+										<button type="submit" id="btnSearch" name="btnSearch"
+											class="btn btn-primary">Search</button>
+									</div>
+								</div>
 
-					<div class="card card-default">
-						<div class="card-header">
-							<h2>Danh sách nhà cung cấp</h2>
-							<a href="${classpath }/admin/vendor-add" role="button"
-								class="btn btn-primary"> <i class="mdi mdi-database-plus"></i>
-								Thêm nhà cung cấp
-							</a>
-						</div>
-						<div class="card-body">
-							<div class="table-responsive">
-								<form method="post" action="${classpath }/admin/vendor-delete">
-									<input type="submit" value="Xóa" class="btn btn-danger" style="margin-bottom: 10px" onclick="return confirm ('Bạn có chắc chắn xóa?')"/>
-									<table class="table table-hover table-striped table-bordered no-wrap ">
+								<div class="table-responsive">
+									<table
+										class="table table-hover table-striped table-bordered no-wrap ">
 										<thead>
 											<tr>
 												<th><input type="checkbox" id="checkBoxAll"></th>
@@ -57,60 +89,86 @@
 												<th scope="col">Ngày cập nhật</th>
 												<th scope="col">Trạng thái</th>
 												<th scope="col">Tác vụ</th>
-												
+
 											</tr>
 										</thead>
 										<tbody>
-											<c:forEach var="vendor" items="${vendors }"
-												varStatus="loop">
+											<c:forEach var="vendor" items="${vendors }" varStatus="loop">
 												<tr>
-													<td><input type="checkbox" class="checkBoxItem" name="vendorId" value="${vendor.id }"/></td>
+													<td><input type="checkbox" class="checkBoxItem"
+														name="vendorId" value="${vendor.id }" /></td>
 													<td>${loop.index + 1 }</td>
 													<td>${vendor.code }</td>
-													<td>
-														<img width="60px" height="60px" class="light-logo" src="${classpath }/FileUpload/${vendor.image }">
+													<td><img width="60px" height="60px" class="light-logo"
+														src="${classpath }/FileUpload/${vendor.image }">
 													<td>${vendor.name }</td>
-													<td>
-														<fmt:formatDate value="${vendor.createDate }" pattern="dd-MM-yyyy"/>
-													</td>
-													<td>
-														<fmt:formatDate value="${vendor.updateDate }" pattern="dd-MM-yyyy"/>
-													</td>
-													<td>
-														<c:choose>
+													<td><fmt:formatDate value="${vendor.createDate }"
+															pattern="dd-MM-yyyy" /></td>
+													<td><fmt:formatDate value="${vendor.updateDate }"
+															pattern="dd-MM-yyyy" /></td>
+													<td><c:choose>
 															<c:when test="${vendor.status }">
 																<span>Hoạt động</span>
 															</c:when>
 															<c:otherwise>
 																<span>Không hoạt động</span>
 															</c:otherwise>
-														</c:choose>
+														</c:choose></td>
+													<td><a
+														href="${classpath }/admin/vendor-update/${vendor.id }"
+														role="button" class="btn btn-success"
+														title="Cập nhật nhà cung cấp"><i
+															class="fa-solid fa-pen-to-square"></i></a> <a
+														href="${classpath }/admin/vendor-delete/${vendor.id }"
+														role="button" class="btn btn-danger"
+														title="Xóa nhà cung cấp"><i class="fa-solid fa-trash"></i></a>
 													</td>
-													<td>
-														 <a href="${classpath }/admin/vendor-update/${vendor.id }"
-														role="button" class="btn btn-success" title="Cập nhật nhà cung cấp"><i class="fa-solid fa-pen-to-square"></i></a>
-														 <a href="${classpath }/admin/vendor-delete/${vendor.id }"
-														role="button" class="btn btn-danger" title="Xóa nhà cung cấp"><i class="fa-solid fa-trash"></i></a>
-														</td>
-											
+
 												</tr>
 											</c:forEach>
-	
+
 										</tbody>
 									</table>
-								</form>
+									<div class="row">
+										<div class="col-md-6">
+											<div class="form-group mb-4"></div>
+										</div>
+
+										<div class="col-md-6">
+											<div class="pagination float-right">
+												<div id="paging"></div>
+											</div>
+										</div>
+									</div>
+								</div>
 							</div>
 						</div>
-					</div>
+					</form>
 				</div>
 			</div>
-
 		</div>
 	</div>
 
 	<!-- JS -->
 	<jsp:include page="/WEB-INF/views/backend/layout/js.jsp"></jsp:include>
-
-</body>
-
+	<!-- pagination -->
+	<script type="text/javascript">
+		$( document ).ready(function() {
+			//Dat gia tri cua status ung voi dieu kien search truoc do
+			$("#status").val(${vendorSearch.status});
+			$("#keyword").val("${vendorSearch.keyword}");
+			
+			$("#paging").pagination({
+				currentPage: ${vendorSearch.currentPage}, //Trang hien tai
+				items: ${vendorSearch.totalItems}, //Tong so san pham (total products)
+				itemsOnPage: ${vendorSearch.sizeOfPage},
+				cssStyle: 'light-theme',
+				onPageClick: function(pageNumber, event) {
+					$('#page').val(pageNumber);
+					$('#btnSearch').trigger('click');
+				},
+			});
+		});
+	</script>
+	</body>
 </html>

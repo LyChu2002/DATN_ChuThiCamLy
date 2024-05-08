@@ -1,6 +1,7 @@
 package vn.babycare.controller.backend;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
@@ -61,6 +62,15 @@ public class AdminProductController {
 			@RequestParam("imageFiles") MultipartFile[] imageFiles) throws IOException{
 		String message = "", alert = "";
 		product.setCreateDate(new Date());
+		if(product.getVoucher() != null) {
+			BigDecimal discount = product.getSellPrice().multiply(BigDecimal.valueOf(product.getVoucher())).divide(BigDecimal.valueOf(100));
+			BigDecimal saleOffPrice = product.getSellPrice().subtract(discount);
+			product.setSaleSellPrice(saleOffPrice);
+		}
+		else {
+			product.setVoucher(0);
+			product.setSaleSellPrice(product.getSellPrice());
+		}
 		Product productByCode = productService.findByCode(request.getParameter("code"));
 		if(productByCode == null) {
 			message = "Thêm thành công";
@@ -100,6 +110,15 @@ public class AdminProductController {
 			@RequestParam("imageFiles") MultipartFile[] imageFiles
 			) throws IOException{
 		String message = "", alert = "";
+		if(product.getVoucher() != null) {
+			BigDecimal discount = product.getSellPrice().multiply(BigDecimal.valueOf(product.getVoucher())).divide(BigDecimal.valueOf(100));
+			BigDecimal saleOffPrice = product.getSellPrice().subtract(discount);
+			product.setSaleSellPrice(saleOffPrice);
+		}
+		else {
+			product.setVoucher(0);
+			product.setSaleSellPrice(product.getSellPrice());
+		}
 		Product productByCode = productService.findByCode(request.getParameter("code"));
 		if(productByCode == null || productByCode.getId() == product.getId()) {
 			message = "Cập nhật thành công";

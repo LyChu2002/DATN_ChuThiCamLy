@@ -8,9 +8,11 @@ import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import vn.babycare.constant.FilePath;
+import vn.babycare.dto.VendorSearch;
 import vn.babycare.model.Vendor;
 import vn.babycare.utils.FileUploadUtils;
 
@@ -69,5 +71,19 @@ public class VendorService extends BaseService<Vendor>{
 			vendor.setImage(dbVendor.getImage());
 		}
 		return super.saveOrUpdate(vendor);
+	}
+	
+	//Search vendor
+	public List<Vendor> searchVendor(VendorSearch vendorSearch){
+		String sql = "SELECT * FROM vendor v WHERE 1=1 ";
+		if(vendorSearch.getStatus() != 2) {
+			sql += " AND v.status = " + vendorSearch.getStatus();
+		}
+		
+		if(!StringUtils.isEmpty(vendorSearch.getKeyword())) {
+			String keyword = vendorSearch.getKeyword().toLowerCase();
+			sql += " AND (LOWER(v.name) like '%" + keyword + "%')";
+		}
+		return super.executeNativeSql(sql);
 	}
 }

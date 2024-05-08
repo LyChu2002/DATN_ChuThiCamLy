@@ -108,7 +108,7 @@
                                         <div class="col-md-4">
                                             <div class="form-group mb-4">
                                                 <label for="voucher">Voucher</label>
-                                                <sf:input id="voucher" path="voucher" type="text" class="form-control" placeholder=""></sf:input>
+                                                <sf:input name="voucher" id="voucher" path="voucher" type="text" class="form-control" placeholder=""></sf:input>
                                               
                                             </div>
                                         </div>

@@ -31,6 +31,11 @@ public class BannerService extends BaseService<Banner>{
 		return super.executeNativeSql(sql);
 	}
 	
+	public List<Banner> findAllActive(){
+		String sql = "SELECT * FROM banner WHERE status = 1";
+		return super.executeNativeSql(sql);
+	}
+	
 	public Banner findByCode(String code) {
 		String sql = "SELECT * FROM banner WHERE code = '" + code + "'";
 		return super.getEntityByNativeSQL(sql);

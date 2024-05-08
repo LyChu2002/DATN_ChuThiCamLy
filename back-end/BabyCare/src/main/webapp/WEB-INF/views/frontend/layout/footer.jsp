@@ -11,7 +11,7 @@
                     <div class="footer-wrap-item-content">
                         <div class="footer-wrap-item-content-logo">
                             <a href="">
-                                <img src="../assets/images/logo/logo.png" alt="">
+                                <img src="${classpath }/frontend/assets/images/logo/logo.png" alt="">
                             </a>
                         </div>
                         <div class="footer-wrap-item-content-info">

@@ -80,7 +80,7 @@ input[type = "checkbox"]{
     padding-left: 25px;
 }
 
-label::before{
+.cFilter-block label::before{
     position: absolute;
     content: "";
     width: 15px;
@@ -92,7 +92,7 @@ label::before{
     top: 3px;
 }
 
-input[type = "checkbox"]:checked + label::after{
+.cFilter-block input[type = "checkbox"]:checked + label::after{
     content: "";
     position: absolute;
     width: 10px;
@@ -106,7 +106,7 @@ input[type = "checkbox"]:checked + label::after{
     border-right-style: none;
 }
 
-input[type = "checkbox"]:checked + label::before{
+.cFilter-block input[type = "checkbox"]:checked + label::before{
     border: 2px solid #dcaf79;
 }
 

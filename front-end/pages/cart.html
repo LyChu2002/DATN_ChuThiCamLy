@@ -605,6 +605,55 @@
                         </div>
                     </div>
                 </div>
+                <div class="place-order-infor">
+                    <h3>THÔNG TIN KHÁCH HÀNG</h3>
+                    <form action="${classpath }/cart-view" method="get">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="form-body">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group mb-4">
+                                                        <label>Họ tên <span>*</span></label></br> 
+                                                        <input type="text" name="txtName" id="txtName" placeholder="VD: Cẩm Ly" value="${user.username }"/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group mb-4">
+                                                        <label>Số điện thoại <span>*</span></label></br> 
+                                                        <input type="text" name="txtMobile" id="txtMobile" placeholder="VD: 098765432" value="${user.mobile }"/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group mb-4">
+                                                        <label>Email</label></br> 
+                                                        <input type="text" name="txtEmail" id="txtEmail" placeholder="VD: camly@gmail.com" value="${user.email }"/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group mb-4">
+                                                        <label>Địa chỉ <span>*</span></label></br> 
+                                                        <input class="form-control" type="text" name="txtAddress" id="txtAddress" placeholder="VD: Hà Nội" value="${user.address }"/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </form>
+                </div>
             </div>
         </div>
         

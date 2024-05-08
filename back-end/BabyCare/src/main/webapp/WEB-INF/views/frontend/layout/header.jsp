@@ -35,13 +35,13 @@
                     <div class="headerLikeList headerTool">
                         <a href="">
                             <i class="fa-regular fa-heart"></i>
-                            <span class="span-count">1</span>
+                            <span class="span-count">0</span>
                         </a>
                     </div>
                     <div class="headerCart headerTool">
-                        <a href="">
+                        <a href="${classpath }/cart-view">
                             <i class="fa-solid fa-cart-shopping"></i>
-                            <span class="span-count">1</span>
+                            <span id="totalCartProductsId" class="span-count">${totalCartProducts }</span>
                         </a>
                     </div>
                 </div>
@@ -56,11 +56,11 @@
                     Danh mục sản phẩm
                     <nav class="mainNav">
                         <ul class="menuCategory">
-                        	<c:forEach var="category" items="${categories }" varStatus="loop">
+                        	<c:forEach var="category" items="${menuCategories }" varStatus="loop">
                         		<li>
                                 <a href="">
                                     <span>
-                                        <img src="${classpath }/frontend/assets/images/logo/logo_category/baby (1).png">
+                                        <img src="${classpath }/FileUpload/${category.avatar}">
                                         <span>${category.name }</span>
                                     </span>
                                     <i class="fa-solid fa-chevron-right"></i>
@@ -86,7 +86,7 @@
                 </div>
                 <div class="headerMenuRight">
                     <div class="headerMenuRightNav">
-                        <a href="">
+                        <a href="${classpath }/index">
                             <span>
                                 <i class="fa-solid fa-house"></i>
                             </span>

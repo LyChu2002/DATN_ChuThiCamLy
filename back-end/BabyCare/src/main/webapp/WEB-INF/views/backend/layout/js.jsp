@@ -11,3 +11,4 @@
 <script src="${classpath }/backend/js/custom.js"></script>
 <script src="${classpath }/backend/plugins/nprogress/nprogress.js"></script>
 <script src="${classpath }/backend/js/common.js"></script>
+<script src="${classpath }/backend/js/jquery.simplePagination.js"></script>

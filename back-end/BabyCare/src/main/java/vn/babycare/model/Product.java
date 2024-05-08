@@ -13,7 +13,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-
 @Entity
 @Table(name = "product")
 public class Product extends BaseModel{
@@ -29,6 +28,17 @@ public class Product extends BaseModel{
 	@Column(name = "sell_price", nullable = true)
 	private BigDecimal sellPrice;
 	
+	@Column(name = "sale_sell_price", nullable = true)
+	private BigDecimal saleSellPrice;
+	
+	public BigDecimal getSaleSellPrice() {
+		return saleSellPrice;
+	}
+
+	public void setSaleSellPrice(BigDecimal saleSellPrice) {
+		this.saleSellPrice = saleSellPrice;
+	}
+
 	@Column(name = "import_price", nullable = true)
 	private BigDecimal importPrice;
 	
@@ -70,6 +80,18 @@ public class Product extends BaseModel{
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "product")
 	private Set<ProductImage> productImages = new HashSet<ProductImage>();
 	
+//----Mapping one-to-many: product to order_detail----------------
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "product")
+	private Set<OrderDetail> orderDetails = new HashSet<OrderDetail>();
+
+	public Set<OrderDetail> getOrderDetails() {
+		return orderDetails;
+	}
+
+	public void setOrderDetails(Set<OrderDetail> orderDetails) {
+		this.orderDetails = orderDetails;
+	}
+
 	public void addRelationalProductImage(ProductImage productImage) {
 		productImages.add(productImage);
 		productImage.setProduct(this);
