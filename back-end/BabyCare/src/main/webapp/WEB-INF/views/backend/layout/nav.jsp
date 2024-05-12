@@ -104,6 +104,26 @@
 							</a></li>
 						</div>
 					</ul></li>
+					<li class="has-sub"><a class="sidenav-item-link"
+					href="javascript:void(0)" data-toggle="collapse"
+					data-target="#blog" aria-expanded="false" aria-controls="blog">
+						<i class="mdi mdi-format-list-bulleted-type"></i> <span
+						class="nav-text">Bài viết</span> <b class="caret"></b>
+				</a>
+					<ul class="collapse" id="blog" data-parent="#sidebar-menu">
+						<div class="sub-menu">
+							<li><a class="sidenav-item-link"
+								href="${classpath }/admin/blog-list"> <span
+									class="nav-text">Danh sách bài viết</span>
+
+							</a></li>
+							<li><a class="sidenav-item-link"
+								href="${classpath }/admin/blog-add"> <span
+									class="nav-text">Thêm bài viết</span>
+
+							</a></li>
+						</div>
+					</ul></li>
 				<li class="has-sub"><a class="sidenav-item-link"
 					href="javascript:void(0)" data-toggle="collapse"
 					data-target="#banner" aria-expanded="false" aria-controls="banner">

@@ -1,0 +1,78 @@
+#blog .blogMainContent .blogBody{
+    text-align: center;
+    width: 100%;
+    position: relative;
+    border-radius: 10px;
+    background: #fff;
+    padding: 20px;
+    border: 1px solid #43c1c5;
+}
+
+#blog .blogMainContent .blogBody .blogListArticle{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#blog .blogMainContent .blogBody .blogListArticle .article-item{
+    width: calc(100% / 3);
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-bottom: 50px;
+}
+
+.article-item .article-item-top{
+    display: flex;
+}
+
+.article-item .article-item-top>a{
+    display: block;
+    overflow: hidden;
+    width: calc(100%);
+}
+
+.article-item .article-item-bottom{
+    width: calc(100%);
+    margin-left: auto;
+    text-align: left;
+}
+
+.article-item .article-item-bottom .article-item-bottom-name{
+    margin: 10px 0px;
+}
+
+.article-item .article-item-bottom .article-item-bottom-name a{
+    font-size: 16px;
+    color: #333;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.article-item .article-item-bottom .article-item-bottom-author{
+    display: inline-block;
+    border-bottom: 1px solid #43c1c5;
+}
+
+.article-item .article-item-bottom .article-item-bottom-desc{
+    color: #333;
+    margin-bottom: 10px;
+    width: 100%; 
+    overflow: hidden;
+    text-overflow: ellipsis; 
+    display: -webkit-box;
+    font-size: 15px;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.article-item .article-item-bottom .article-item-bottom-more{
+    display: inline-block;
+    background: #43c1c5;
+    border: 1px solid #43c1c5;
+    border-radius: 6px;
+    transition: all .2s;
+    padding: 10px 15px;
+    color: #fff;
+}
+

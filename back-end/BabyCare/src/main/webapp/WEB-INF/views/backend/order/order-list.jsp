@@ -31,112 +31,174 @@
 
 			<div class="content-wrapper">
 				<div class="content">
-					<form action="">
+					<form method="post" action="${classpath }/staff/order-list">
 						<div class="card card-default">
 							<div class="card-header">
 								<h2>Danh sách đơn đặt hàng</h2>
-
+								<div class="row1">
+									<input type="submit" value="Xóa" name="deleteOrder"
+										class="btn btn-danger" 
+										title="Xóa những mục đã chọn"
+										onclick="return confirm ('Bạn có chắc chắn xóa?')" /> <input
+										type="submit" name="updateStatus" value="Cập nhật"
+										class="btn btn-success"
+										onclick="return confirm ('Cập nhật trạng thái đơn hàng?')" />
+								</div>
 							</div>
 							<div class="card-body">
+								<div class="row">
+									<div class="col-md-4">
+										<input type="hidden" id="page" name="page"
+											class="form-control" value="${orderSearch.currentPage }" />
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-3">
+										<div class="form-group mb-4">
+											<label for="status">Trạng thái</label> <select
+												class="form-control" id="status" name="status">
+												<option value="2">Tất cả</option>
+												<option value="1">Hoạt động</option>
+												<option value="0">Không hoạt động</option>
+											</select>
+										</div>
+									</div>
+									<div class="col-md-3">
+										<div class="form-group mb-4">
+											<label for="orderStatus">Theo dõi đơn hàng</label> <select
+												class="form-control" id="orderStatus" name="orderStatus">
+												<option value="5">Tất cả</option>
+												<option value="0">Chờ xác nhận</option>
+												<option value="1">Đã xác nhận</option>
+												<option value="2">Đang giao hàng</option>
+												<option value="3">Đã giao hàng</option>
+												<option value="4">Hủy đơn hàng</option>
+											</select>
+										</div>
+									</div>
+									<div class="col-md-3">
+										<label for="mobile">Nhập số điện thoại</label> <input
+											class="form-control" type="text" id="mobile" name="mobile"
+											placeholder="Tìm kiếm" />
+									</div>
+								</div>
+
+								<div class="row" style="margin-bottom: 20px">
+									<div class="col-md-3">
+										<label for="beginDate">Từ ngày</label> <input
+											class="form-control" type="date" id="beginDate"
+											name="beginDate" />
+									</div>
+									<div class="col-md-3">
+										<label for="endDate">Đến ngày</label> <input
+											class="form-control" type="date" id="endDate"
+											name="endDate" />
+									</div>
+									<div class="col-md-3">
+										<label></label>
+										<button type="submit" id="btnSearch" name="btnSearch"
+											class="btn-searching">Tìm kiếm</button>
+									</div>
+
+								</div>
 								<div class="table-responsive">
-									<form method="get" action="${classpath }/staff/order-list">
-										<input type="submit" value="Xóa" name="deleteOrder" class="btn btn-danger"
-											style="margin-bottom: 10px" title="Xóa những mục đã chọn"
-											onclick="return confirm ('Bạn có chắc chắn xóa?')" />
-											<input type="submit" name="updateStatus" value="Cập nhật" onclick="return confirm ('Cập nhật trạng thái đơn hàng?')"/>
-										<table
-											class="table table-hover table-striped table-bordered no-wrap ">
-											<thead>
+									<table
+										class="table table-hover table-striped table-bordered no-wrap ">
+										<thead>
+											<tr>
+												<th><input type="checkbox" id="checkBoxAll"></th>
+												<th scope="col">No</th>
+												<th scope="col">Code</th>
+												<th scope="col">Tên</th>
+												<th scope="col">Số điện thoại</th>
+												<th scope="col">Địa chỉ</th>
+												<th scope="col">Ngày đặt</th>
+												<th scope="col">Ngày cập nhật</th>
+												<th scope="col">Theo dõi đơn hàng</th>
+												<th scope="col">Trạng thái</th>
+												<th scope="col">Tác vụ</th>
+											</tr>
+										</thead>
+										<tbody>
+											<c:forEach var="order" items="${orders }" varStatus="loop">
 												<tr>
-													<th><input type="checkbox" id="checkBoxAll"></th>
-													<th scope="col">No</th>
-													<th scope="col">Code</th>
-													<th scope="col">Tên</th>
-													<th scope="col">Số điện thoại</th>
-													<th scope="col">Địa chỉ</th>
-													<th scope="col">Ngày đặt</th>
-													<th scope="col">Ngày cập nhật</th>
-													<th scope="col">Theo dõi đơn hàng</th>
-													<th scope="col">Trạng thái</th>
-													<th scope="col">Tác vụ</th>
-												</tr>
-											</thead>
-											<tbody>
-												<c:forEach var="order" items="${orders }" varStatus="loop">
-													<tr>
-														<td><input type="checkbox" class="checkBoxItem"
-															name="orderId" value="${order.id }" /></td>
-														<td>${loop.index + 1 }</td>
-														<td>${order.id }</td>
-														<td>${order.customerName }</td>
-														<td>${order.customerMobile }</td>
-														<td>${order.customerAddress }</td>
-														<td><fmt:formatDate value="${order.createDate }"
-																pattern="dd-MM-yyyy" /></td>
-														<td><fmt:formatDate value="${order.updateDate }"
-																pattern="dd-MM-yyyy" /></td>
-														<td>
+													<td><input type="checkbox" class="checkBoxItem"
+														name="orderId" value="${order.id }" /></td>
+													<td>${loop.index + 1 }</td>
+													<td>${order.id }</td>
+													<td>${order.customerName }</td>
+													<td>${order.customerMobile }</td>
+													<td>${order.customerAddress }</td>
+													<td><fmt:formatDate value="${order.createDate }"
+															pattern="dd-MM-yyyy" /></td>
+													<td><fmt:formatDate value="${order.updateDate }"
+															pattern="dd-MM-yyyy" /></td>
+													<td>
+														<div class="form-group mb-4">
 															<div class="form-group mb-4">
-																<div class="form-group mb-4">
 
-																	<select class="form-order" id="orderStatus"
-																		name="orderStatus_${order.id }">
-																		<c:choose>
-																			<c:when test="${order.orderStatus == 0 }">
-																				<option value="0">Chờ xác nhận</option>
-																			</c:when>
-																			<c:when test="${order.orderStatus == 1 }">
-																				<option value="1">Đã xác nhận</option>
-																			</c:when>
-																			<c:when test="${order.orderStatus == 2 }">
-																				<option value="2">Đang giao hàng</option>
-																			</c:when>
-																			<c:when test="${order.orderStatus == 3 }">
-																				<option value="3">Đã giao hàng</option>
-																			</c:when>
-																			<c:otherwise>
-																				<option value="4">Hủy đơn hàng</option>
-																			</c:otherwise>
-																		</c:choose>
-																		<option value="0">Chờ xác nhận</option>
-																		<option value="1">Đã xác nhận</option>
-																		<option value="2">Đang giao hàng</option>
-																		<option value="3">Đã giao hàng</option>
-																		<option value="4">Hủy đơn hàng</option>
-																	</select>
-																</div>
-
+																<select class="form-order" id="orderStatus"
+																	name="orderStatus_${order.id }">
+																	<c:choose>
+																		<c:when test="${order.orderStatus == 0 }">
+																			<option value="0">Chờ xác nhận</option>
+																		</c:when>
+																		<c:when test="${order.orderStatus == 1 }">
+																			<option value="1">Đã xác nhận</option>
+																		</c:when>
+																		<c:when test="${order.orderStatus == 2 }">
+																			<option value="2">Đang giao hàng</option>
+																		</c:when>
+																		<c:when test="${order.orderStatus == 3 }">
+																			<option value="3">Đã giao hàng</option>
+																		</c:when>
+																		<c:otherwise>
+																			<option value="4">Hủy đơn hàng</option>
+																		</c:otherwise>
+																	</c:choose>
+																	<option value="0">Chờ xác nhận</option>
+																	<option value="1">Đã xác nhận</option>
+																	<option value="2">Đang giao hàng</option>
+																	<option value="3">Đã giao hàng</option>
+																	<option value="4">Hủy đơn hàng</option>
+																</select>
 															</div>
-														</td>
-														<td><c:choose>
-																<c:when test="${order.status }">
-																	<span>Hoạt động</span>
-																</c:when>
-																<c:otherwise>
-																	<span>Không hoạt động</span>
-																</c:otherwise>
-															</c:choose></td>
-														<td style="min-width: 150px"><a
-															href="${classpath }/staff/order-detail/${order.id }"
-															role="button" class="btn btn-info"
-															title="Chi tiết sản phẩm"><i
-																class="fa-solid fa-circle-info"></i></a> 
-																
-																<button name="updateOrderStatus_${order.id }">
-																	<i
-																		class="fa-solid fa-pen-to-square"></i>
-																</button>
-																 <a
-															href="${classpath }/staff/order-delete/${order.id }"
-															role="button" class="btn btn-danger" title="Xóa sản phẩm"><i
-																class="fa-solid fa-trash"></i></a></td>
 
-													</tr>
-												</c:forEach>
+														</div>
+													</td>
+													<td><c:choose>
+															<c:when test="${order.status }">
+																<span>Hoạt động</span>
+															</c:when>
+															<c:otherwise>
+																<span>Không hoạt động</span>
+															</c:otherwise>
+														</c:choose></td>
+													<td style="min-width: 150px"><a
+														href="${classpath }/staff/order-detail/${order.id }"
+														role="button" class="btn btn-info"
+														title="Chi tiết sản phẩm"><i
+															class="fa-solid fa-circle-info"></i></a> <a
+														href="${classpath }/staff/order-delete/${order.id }"
+														role="button" class="btn btn-danger" title="Xóa sản phẩm"><i
+															class="fa-solid fa-trash"></i></a></td>
 
-											</tbody>
-										</table>
-									</form>
+												</tr>
+											</c:forEach>
+
+										</tbody>
+									</table>
+									<div class="row">
+										<div class="col-md-6">
+											<div class="form-group mb-4"></div>
+										</div>
+
+										<div class="col-md-6">
+											<div class="pagination float-right">
+												<div id="paging"></div>
+											</div>
+										</div>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -149,6 +211,27 @@
 
 	<!-- JS -->
 	<jsp:include page="/WEB-INF/views/backend/layout/js.jsp"></jsp:include>
+	<!-- pagination -->
+	<script type="text/javascript">
+		$( document ).ready(function() {
+			$("#status").val(${orderSearch.status});
+			$("#orderStatus").val(${orderSearch.orderStatus});
+			$("#mobile").val("${orderSearch.mobile}");
+			$("#beginDate").val("${orderSearch.beginDate}");
+			$("#endDate").val("${orderSearch.endDate}");
+			
+			$("#paging").pagination({
+				currentPage: ${orderSearch.currentPage}, 
+				items: ${orderSearch.totalItems}, 
+				itemsOnPage: ${orderSearch.sizeOfPage},
+				cssStyle: 'light-theme',
+				onPageClick: function(pageNumber, event) {
+					$('#page').val(pageNumber);
+					$('#btnSearch').trigger('click');
+				},
+			});
+		});
+	</script>
 
 </body>
 </html>

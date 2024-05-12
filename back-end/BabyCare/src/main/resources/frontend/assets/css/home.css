@@ -350,3 +350,27 @@ overflow: hidden;
     border-radius: 30px;
     letter-spacing: 1;
 }
+
+.nav-tabs-product{
+    /* flex-grow: 1; */
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    /* padding-right: 90px; */
+     margin-bottom: 12px;
+}
+
+.nav-tabs-product li{
+    text-align: center;
+    position: relative;
+    margin: 3px 0px;
+    padding: 0px 10px;
+    display: block;
+}
+
+.nav-tabs-product li a.active{
+    background-color: #43c1c5;
+    border-radius: 10px;
+     color: white;
+     padding: 4px 10px;
+}

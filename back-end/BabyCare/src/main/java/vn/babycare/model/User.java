@@ -41,14 +41,26 @@ public class User extends BaseModel implements UserDetails{
 	
 //--------------Mapping one-to-many: tbl_user-to-tbl_sale_order
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
-	private Set<Order> order = new HashSet<Order>();
+	private Set<Order> orders = new HashSet<Order>();
+	
+//----------Mapping one-to-many: User to Blog
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
+	private Set<Blog> blogs = new HashSet<Blog>();
 
-	public Set<Order> getOrder() {
-		return order;
+	public Set<Order> getOrders() {
+		return orders;
 	}
 
-	public void setOrder(Set<Order> order) {
-		this.order = order;
+	public void setOrders(Set<Order> orders) {
+		this.orders = orders;
+	}
+
+	public Set<Blog> getBlogs() {
+		return blogs;
+	}
+
+	public void setBlogs(Set<Blog> blogs) {
+		this.blogs = blogs;
 	}
 
 	public void addRelationalUserRole(Role role) {

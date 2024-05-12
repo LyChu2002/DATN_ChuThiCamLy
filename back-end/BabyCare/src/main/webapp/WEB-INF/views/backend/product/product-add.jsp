@@ -73,7 +73,7 @@
                                     <div class="row">
                                         <div class="col-md-4">
                                             <div class="form-group mb-4">
-                                                <label for="code">Nhà sản xuất</label>
+                                                <label for="vendor">Nhà sản xuất</label>
                                                 <sf:select path="vendor.id" class="form-control" id="vendor">
                                                 	<sf:options itemValue="id" items="${vendors }" itemLabel="name" class="form-control"></sf:options>
                                                 </sf:select>
@@ -82,7 +82,7 @@
                                         </div>
                                         <div class="col-md-4">
                                              <div class="form-group mb-4">
-                                                <label for="code">Loại sản phẩm</label>
+                                                <label for="typeProduct">Loại sản phẩm</label>
                                                 <sf:select path="typeProduct.id" class="form-control" id="typeProduct">
                                                 	<sf:options itemValue="id" items="${typeProducts }" itemLabel="name" class="form-control"></sf:options>
                                                 </sf:select>

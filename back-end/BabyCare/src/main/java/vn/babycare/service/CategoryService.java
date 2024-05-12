@@ -41,19 +41,25 @@ public class CategoryService extends BaseService<Category>{
 	}
 	
 	@Transactional
-	public Category saveNewCategory(Category category, MultipartFile avatarFile) throws IOException{
+	public Category saveNewCategory(Category category, MultipartFile avatarFile, MultipartFile bannerFile) throws IOException{
 		if(fileUtils.isUploadFile(avatarFile)) {
 			String path = FilePath.Url.FOLDER_UPLOAD + "Category/Avatar/" + avatarFile.getOriginalFilename();
 			File file = new File(path);
 			avatarFile.transferTo(file);
 			category.setAvatar("Category/Avatar/" + avatarFile.getOriginalFilename());
 		}
+		if(fileUtils.isUploadFile(bannerFile)) {
+			String path = FilePath.Url.FOLDER_UPLOAD + "Category/Image/" + bannerFile.getOriginalFilename();
+			File file = new File(path);
+			bannerFile.transferTo(file);
+			category.setImage("Category/Image/" + bannerFile.getOriginalFilename());
+		}
 		
 		return super.saveOrUpdate(category);
 	}
 	
 	@Transactional
-	public Category saveUpdateCategory(Category category, MultipartFile avatarFile) throws IOException{
+	public Category saveUpdateCategory(Category category, MultipartFile avatarFile, MultipartFile bannerFile) throws IOException{
 		Category dbCategory = super.getById(category.getId());
 		if(fileUtils.isUploadFile(avatarFile)) {
 			String path = FilePath.Url.FOLDER_UPLOAD + dbCategory.getAvatar();
@@ -67,6 +73,19 @@ public class CategoryService extends BaseService<Category>{
 		}
 		else {
 			category.setAvatar(dbCategory.getAvatar());
+		}
+		if(fileUtils.isUploadFile(bannerFile)) {
+			String path = FilePath.Url.FOLDER_UPLOAD + dbCategory.getImage();
+			File file = new File(path);
+			file.delete();
+			
+			path = FilePath.Url.FOLDER_UPLOAD + "Category/Image/" + bannerFile.getOriginalFilename();
+			file = new File(path);
+			bannerFile.transferTo(file);
+			category.setImage("Category/Image/" + bannerFile.getOriginalFilename());
+		}
+		else {
+			category.setImage(dbCategory.getImage());
 		}
 		return super.saveOrUpdate(category);
 	}

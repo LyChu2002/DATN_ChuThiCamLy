@@ -106,6 +106,11 @@ public class UserCartController extends BaseController{
 			errorMessage = "Chưa có sản phẩm trong giỏ hàng";
 		}
 		model.addAttribute("errorMessage", errorMessage);
+		if(isLogined()) {
+			model.addAttribute("user", getLoginedUser());
+		}else {
+			model.addAttribute("user", new User());
+		}
 		return "frontend/cart-view";
 	}
 	

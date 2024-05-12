@@ -22,6 +22,17 @@ public class Category extends BaseModel{
 	@Column(name = "avatar", length = 500, nullable = true)
 	private String avatar;
 	
+	@Column(name = "image", length = 500, nullable = true)
+	private String image;
+	
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
+	}
+
 	//--------Mapping one-to-many: category to type_product---------------
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "category")
 	private Set<TypeProduct> typeProducts = new HashSet<TypeProduct>();

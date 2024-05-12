@@ -24,7 +24,7 @@
 			<div class="breadcrum-shop">
 				<div class="breadcrum-container container container-xl">
 					<ol class="breadcrum">
-						<li class="breadcrum-item"><a href="">Trang chủ</a></li>
+						<li class="breadcrum-item"><a href="${classpath }/index">Trang chủ</a></li>
 						<li class="breadcrum-item active"><a href="">Giỏ hàng</a></li>
 					</ol>
 				</div>
@@ -93,7 +93,8 @@
 										<h1>Thông tin đơn hàng</h1>
 										<div class="cart-page-subtotal">
 											<span>Tạm tính (${totalCartProducts } sản phẩm)</span> <span>
-												<span class="item-price-unit">đ</span>
+												<span class="item-price-unit"><fmt:formatNumber value="${totalCartPrice }"
+														minFractionDigits="0"></fmt:formatNumber>đ</span>
 											</span>
 										</div>
 										<div class="cart-page-total">

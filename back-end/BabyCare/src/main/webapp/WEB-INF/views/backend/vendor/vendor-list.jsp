@@ -58,6 +58,7 @@
 								<div class="row">
 									<div class="col-md-2">
 										<div class="form-group mb-4">
+											<label for="status">Trạng thái</label>
 											<select class="form-control" id="status" name="status">
 												<option value="2">Tất cả</option>
 												<option value="1">Hoạt động</option>
@@ -66,10 +67,12 @@
 										</div>
 									</div>
 									<div class="col-md-3">
+										<label for="status">Nhập tên</label>
 										<input class="form-control" type="text" id="keyword"
 											name="keyword" placeholder="Tìm kiếm" />
 									</div>
 									<div class="col-md-2">
+										<label></label>
 										<button type="submit" id="btnSearch" name="btnSearch"
 											class="btn-searching">Tìm kiếm</button>
 									</div>
@@ -154,13 +157,12 @@
 	<!-- pagination -->
 	<script type="text/javascript">
 		$( document ).ready(function() {
-			//Dat gia tri cua status ung voi dieu kien search truoc do
 			$("#status").val(${vendorSearch.status});
 			$("#keyword").val("${vendorSearch.keyword}");
 			
 			$("#paging").pagination({
-				currentPage: ${vendorSearch.currentPage}, //Trang hien tai
-				items: ${vendorSearch.totalItems}, //Tong so san pham (total products)
+				currentPage: ${vendorSearch.currentPage}, 
+				items: ${vendorSearch.totalItems}, 
 				itemsOnPage: ${vendorSearch.sizeOfPage},
 				cssStyle: 'light-theme',
 				onPageClick: function(pageNumber, event) {

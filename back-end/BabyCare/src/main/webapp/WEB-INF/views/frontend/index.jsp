@@ -68,7 +68,7 @@
 											src="${classpath }/FileUpload/${product.avatar}" alt="">
 										</a>
 										<div class="productAction">
-											<a href=""> <i class="fa-solid fa-cart-shopping"></i>
+											<a onclick="addToCart(${product.id}, 1, '${product.name }')"> <i class="fa-solid fa-cart-shopping"></i>
 											</a> <a href=""> <i class="fa-solid fa-heart"></i>
 											</a>
 										</div>
@@ -82,7 +82,7 @@
 											<fmt:formatNumber value="${product.saleSellPrice }"
 												minFractionDigits="0"></fmt:formatNumber>
 											đ
-											<c:if test="${product.voucher } > 0">
+											<c:if test="${product.voucher > 0}">
 												<del class="productPriceDelete">
 													<fmt:formatNumber value="${product.sellPrice }"
 														minFractionDigits="0"></fmt:formatNumber>
@@ -99,89 +99,108 @@
 				</div>
 			</div>
 		</section>
-		<c:forEach var="typeProduct" items="${typeProducts }">
+
+		<c:forEach var="category" items="${categories }">
 			<section class="group-product">
 				<div class="container">
 					<div
 						class="group-product-top d-flex align-items-center justify-content-between">
 						<div class="col-lg-6 group-product-heading">
-							<h2>${typeProduct.name }</h2>
+							<h2>${category.name }</h2>
 						</div>
-						<div class="view-more col-lg-6 d-flex justify-content-end pr-0">
-							<a href="${classpath }/type-product/${typeProduct.id}">Xem
-								thêm</a>
+
+						<ul class="nav-product nav-tabs-product col-lg-3" id="myTab1"
+							role="tabList">
+							<c:forEach var="typeProduct" items="${category.typeProducts}">
+								<c:if test="${typeProduct.status }">
+									<li class="nav-item"><a
+										class="nav-type-link cate-${category.id }"
+										href="#product-type-group-${typeProduct.id }">${typeProduct.name }</a></li>
+								</c:if>
+
+							</c:forEach>
+						</ul>
+						<div class="view-more col-lg-3 d-flex justify-content-end pr-0">
+							<a href="">Xem thêm</a>
 						</div>
 					</div>
 					<div class="product-group-content">
 						<div class="row row-15">
 							<div class="banner-group col-md-3 col-12 d-none d-md-block">
 								<div class="group-product-banner">
-									<a href=""> <img
-										src="../assets/images/banner/banner-category/banner-category-1.png"
-										alt="">
+									<a href=" "> <img
+										src="${classpath }/FileUpload/${category.image}" alt="">
 									</a>
 								</div>
 							</div>
 							<div class="col-md-9 col-12">
-								<div class="group-product-main">
-									<div class="row">
-										<c:forEach var="product" items="${typeProduct.products }">
-											<c:if test="${product.status }">
-												<div class="proLoop col-lg-3 col-md-3 col-sm-6">
-													<div class="proWrap">
-														<div class="product-img">
-															<c:if test="${product.isHot }">
-																<div class="product-tag-new">
-																	<img
-																		src="${classpath }/frontend/assets/images/tag/tag_hot.webp"
-																		alt="Tag hot">
+								<c:forEach var="typeProduct" items="${category.typeProducts }">
+									<c:if test="${typeProduct.status }">
+										<div id="product-type-group-${typeProduct.id }"
+											class="group-product-main-${category.id }">
+											<div class="row">
+												<c:forEach var="product" items="${typeProduct.products}">
+													<c:if test="${product.status }">
+														<div class="proLoop col-lg-3 col-md-3 col-sm-6">
+															<div class="proWrap">
+																<div class="product-img">
+																	<c:if test="${product.isHot }">
+																		<div class="product-tag-new">
+																			<img
+																				src="${classpath }/frontend/assets/images/tag/tag_hot.webp"
+																				alt="Tag hot">
+																		</div>
+																	</c:if>
+																	<c:if test="${product.isNew }">
+																		<div class="product-tag-new">
+																			<img
+																				src="${classpath }/frontend/assets/images/tag/tag_new.webp"
+																				alt="Tag new">
+																		</div>
+																	</c:if>
+																	<c:if test="${product.voucher > 0 }">
+																		<span class="productSale"> -${product.voucher}%
+																		</span>
+																	</c:if>
+																	<a href="${classpath }/product-detail/${product.id}"
+																		class="product-img-link"> <img
+																		src="${classpath }/FileUpload/${product.avatar}"
+																		alt="">
+																	</a>
+																	<div class="productAction">
+																		<a onclick="addToCart(${product.id}, 1, '${product.name }')"> <i class="fa-solid fa-cart-shopping"></i>
+																		</a> <a href=""> <i class="fa-solid fa-heart"></i>
+																		</a>
+																	</div>
 																</div>
-															</c:if>
-															<c:if test="${product.isNew }">
-																<div class="product-tag-new">
-																	<img
-																		src="${classpath }/frontend/assets/images/tag/tag_new.webp"
-																		alt="Tag new">
+																<div class="product-info">
+																	<h3 class="product-name">
+																		<a href="${classpath }/product-detail/${product.id}">${product.name }</a>
+																	</h3>
+																	<p class="product-price">
+																		<fmt:formatNumber value="${product.saleSellPrice }"
+																			minFractionDigits="0"></fmt:formatNumber>
+																		đ
+																		<c:if test="${product.voucher > 0}">
+																			<del class="productPriceDelete">
+																				<fmt:formatNumber value="${product.sellPrice }"
+																					minFractionDigits="0"></fmt:formatNumber>
+																				đ
+																			</del>
+																		</c:if>
+																	</p>
 																</div>
-															</c:if>
-															<c:if test="${product.voucher > 0 }">
-																<span class="productSale"> -${product.voucher}% </span>
-															</c:if>
-
-															<a href="${classpath }/product-detail/${product.id}" class="product-img-link"> <img
-																src="${classpath }/FileUpload/${product.avatar}" alt="">
-															</a>
-															<div class="productAction">
-																<a onclick="addToCart(${product.id}, 1, '${product.name }')"> <i class="fa-solid fa-cart-shopping"></i>
-																</a> 
-																<a href=""> <i class="fa-solid fa-heart"></i>
-																</a>
 															</div>
 														</div>
-														<div class="product-info">
-															<h3 class="product-name">
-																<a href="${classpath }/product-detail/${product.id}"> ${product.name } </a>
-															</h3>
-															<p class="product-price">
-																<fmt:formatNumber value="${product.saleSellPrice }"
-																	minFractionDigits="0"></fmt:formatNumber>
-																đ
-																<c:if test="${product.voucher > 0}">
-																	<del class="productPriceDelete">
-																	<fmt:formatNumber value="${product.sellPrice }"
-																		minFractionDigits="0"></fmt:formatNumber>
-																	đ
-																</del>
-																</c:if>
-																
-															</p>
-														</div>
-													</div>
-												</div>
-											</c:if>
-										</c:forEach>
-									</div>
-								</div>
+													</c:if>
+
+												</c:forEach>
+											</div>
+										</div>
+									</c:if>
+
+								</c:forEach>
+
 							</div>
 						</div>
 					</div>
@@ -209,31 +228,59 @@
 	});
 </script>
 <script type="text/javascript">
-	addToCart = function(_productId, _quantity, _productName) {		
+	addToCart = function(_productId, _quantity, _productName) {
 		let data = {
-			productId: _productId, 
-			quantity: _quantity,
-			
+			productId : _productId,
+			quantity : _quantity,
+
 		};
-			
+
 		//$ === jQuery
 		jQuery.ajax({
 			url : "/add-to-cart",
 			type : "POST",
-			contentType: "application/json",
+			contentType : "application/json",
 			data : JSON.stringify(data),
 			dataType : "json", //Kieu du lieu tra ve tu controller la json
-			
+
 			success : function(jsonResult) {
 				alert(jsonResult.code + ": " + jsonResult.message);
 				let totalProducts = jsonResult.totalCartProducts;
 				$("#totalCartProductsId").html(totalProducts);
 			},
-			
+
 			error : function(jqXhr, textStatus, errorMessage) {
 				alert(jsonResult.code + ': Đã có lỗi xay ra...!')
 			},
 		});
 	}
+</script>
+<script>
+	$(document).ready(function() {
+		<c:forEach var="category" items="${categories}">
+		$('.group-product-main-${category.id}').hide();
+		</c:forEach>
+
+		<c:forEach var="category" items="${categories}">
+		$('.group-product-main-${category.id}:first-child').fadeIn();
+		</c:forEach>
+
+		$('.nav-tabs-product li a').click(function() {
+			$('.nav-tabs-product li a').removeClass('active');
+			$(this).addClass('active');
+
+			var id_tab_content = $(this).attr('href');
+			var class_name = $(this).attr('class');
+			console.log(class_name);
+			<c:forEach var="category" items="${categories}">
+			if (class_name == 'nav-type-link cate-${category.id} active') {
+				$('.group-product-main-${category.id}').hide();
+				$(id_tab_content).fadeIn();
+			}
+			</c:forEach>
+
+			return false;
+		})
+	})
 </script>
 </html>

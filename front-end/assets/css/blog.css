@@ -53,12 +53,17 @@
 }
 
 .article-item .article-item-bottom .article-item-bottom-desc{
-    color: #333;
-    margin-bottom: 10px;
-    width: 100%; 
+    display: -webkit-box;
+    height: 16px* 1.3* 3;
+    font-size: 15px;
+    /* line-height: 1.3; */
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
     overflow: hidden;
-    text-overflow: ellipsis; 
+    text-overflow: ellipsis;
 }
+
+
 
 .article-item .article-item-bottom .article-item-bottom-more{
     display: inline-block;

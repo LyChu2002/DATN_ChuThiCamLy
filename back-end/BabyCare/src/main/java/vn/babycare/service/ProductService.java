@@ -13,9 +13,12 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import vn.babycare.constant.FilePath;
+import vn.babycare.dto.search.ProductSearch;
+import vn.babycare.dto.search.VendorSearch;
 import vn.babycare.dto.search.WarehouseSearch;
 import vn.babycare.model.Product;
 import vn.babycare.model.ProductImage;
+import vn.babycare.model.Vendor;
 import vn.babycare.utils.FileUploadUtils;
 
 @Service
@@ -140,6 +143,34 @@ public class ProductService extends BaseService<Product>{
 			else {
 				sql += "ORDER BY p.warehouse_quantity desc ";
 			}
+		}
+		return super.executeNativeSql(sql);
+	}
+	
+	//search product
+	public List<Product> searchProduct(ProductSearch productSearch){
+		String sql = "SELECT * FROM product p WHERE 1=1 ";
+		if(productSearch.getStatus() != 2) {
+			sql += " AND p.status = " + productSearch.getStatus();
+		}
+		
+		if(!StringUtils.isEmpty(productSearch.getCode())) {
+			sql += " AND p.code = '" + productSearch.getCode() + "'";
+		}
+		
+		if(!StringUtils.isEmpty(productSearch.getName())) {
+			String name = productSearch.getName().toLowerCase();
+			sql += " AND (LOWER(p.name) like '%" + name + "%')";
+		}
+		return super.executeNativeSql(sql);
+	}
+	
+	//search by name
+	public List<Product> searchProductByName(ProductSearch productSearch){
+		String sql = "SELECT * FROM product p WHERE p.status = 1";
+		if(!StringUtils.isEmpty(productSearch.getName())) {
+			String name = productSearch.getName().toLowerCase();
+			sql += " AND (LOWER(p.name) LIKE '%" + name + "%')";
 		}
 		return super.executeNativeSql(sql);
 	}

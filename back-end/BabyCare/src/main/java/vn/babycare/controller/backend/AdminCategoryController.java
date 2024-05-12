@@ -45,6 +45,7 @@ public class AdminCategoryController {
 	public String categoryAddSave(final Model model,
 			@Valid @ModelAttribute("category") Category category, 
 			@RequestParam("avatarFile") MultipartFile avatarFile,
+			@RequestParam("bannerFile") MultipartFile bannerFile,
 			final HttpServletRequest request) throws IOException{
 		String message = "", alert = "";
 		category.setCreateDate(new Date());
@@ -52,7 +53,7 @@ public class AdminCategoryController {
 		if(cate == null) {
 			message = "Thêm thành công";
 			alert = "success";
-			categoryService.saveNewCategory(category, avatarFile);		
+			categoryService.saveNewCategory(category, avatarFile, bannerFile);		
 		}
 		else {
 			message = "Mã danh mục đã tồn tại";
@@ -76,13 +77,14 @@ public class AdminCategoryController {
 	public String categoryUpdateSave(final Model model,
 			final HttpServletRequest request,
 			@Valid @ModelAttribute("category") Category category,
-			@RequestParam("avatarFile") MultipartFile avatarFile) throws IOException {
+			@RequestParam("avatarFile") MultipartFile avatarFile,
+			@RequestParam("bannerFile") MultipartFile bannerFile) throws IOException {
 		String message = "", alert = "";
 		Category cateByCode = categoryService.findByCode(request.getParameter("code"));
 		if(cateByCode == null || cateByCode.getId() == category.getId()) {
 			message = "Cập nhật thành công";
 			alert = "success";
-			categoryService.saveUpdateCategory(category, avatarFile);
+			categoryService.saveUpdateCategory(category, avatarFile, bannerFile);
 		}
 		else {
 			message = "Mã danh mục đã tồn tại";
