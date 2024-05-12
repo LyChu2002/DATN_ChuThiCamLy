@@ -62,6 +62,7 @@ public class AdminProductController {
 			@RequestParam("imageFiles") MultipartFile[] imageFiles) throws IOException{
 		String message = "", alert = "";
 		product.setCreateDate(new Date());
+		product.setSoldQuantity(0);
 		if(product.getVoucher() != null) {
 			BigDecimal discount = product.getSellPrice().multiply(BigDecimal.valueOf(product.getVoucher())).divide(BigDecimal.valueOf(100));
 			BigDecimal saleOffPrice = product.getSellPrice().subtract(discount);

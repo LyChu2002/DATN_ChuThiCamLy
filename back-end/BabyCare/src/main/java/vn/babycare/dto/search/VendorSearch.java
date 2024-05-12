@@ -1,4 +1,4 @@
-package vn.babycare.dto;
+package vn.babycare.dto.search;
 
 public class VendorSearch {
 	private int status;

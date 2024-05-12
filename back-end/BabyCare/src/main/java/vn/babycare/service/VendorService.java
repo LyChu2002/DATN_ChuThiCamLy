@@ -12,7 +12,7 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import vn.babycare.constant.FilePath;
-import vn.babycare.dto.VendorSearch;
+import vn.babycare.dto.search.VendorSearch;
 import vn.babycare.model.Vendor;
 import vn.babycare.utils.FileUploadUtils;
 

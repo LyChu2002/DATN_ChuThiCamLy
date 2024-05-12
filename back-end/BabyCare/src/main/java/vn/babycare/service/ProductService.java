@@ -9,9 +9,11 @@ import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import vn.babycare.constant.FilePath;
+import vn.babycare.dto.search.WarehouseSearch;
 import vn.babycare.model.Product;
 import vn.babycare.model.ProductImage;
 import vn.babycare.utils.FileUploadUtils;
@@ -113,4 +115,32 @@ public class ProductService extends BaseService<Product>{
 		return super.saveOrUpdate(product);
 	}
 	
+	//search warehouse product
+	public List<Product> searchWarehouseProduct(WarehouseSearch warehouseSearch){
+		String sql = "SELECT * FROM product p WHERE p.status = 1 ";
+		if(!StringUtils.isEmpty(warehouseSearch.getCode())) {
+			sql += " AND p.code = '" + warehouseSearch.getCode() + "' ";
+		}
+		if(!StringUtils.isEmpty(warehouseSearch.getName())) {
+			String name = warehouseSearch.getName().toLowerCase();
+			sql += "AND (LOWER(p.name) LIKE '%" + name + "%') ";
+		}
+		if(warehouseSearch.getWarehouseStatus() != 2) {
+			if(warehouseSearch.getWarehouseStatus() == 1) {
+				sql += "AND p.warehouse_quantity > 0 ";
+			}
+			else {
+				sql += "AND p.warehouse_quantity <= 0 ";
+			}
+		}
+		if(warehouseSearch.getSortQuantity() != 2) {
+			if(warehouseSearch.getSortQuantity() == 1) {
+				sql += "ORDER BY p.warehouse_quantity asc ";
+			}
+			else {
+				sql += "ORDER BY p.warehouse_quantity desc ";
+			}
+		}
+		return super.executeNativeSql(sql);
+	}
 }

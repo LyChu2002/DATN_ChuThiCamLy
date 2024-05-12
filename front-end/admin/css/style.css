@@ -17390,6 +17390,16 @@ div.copied {
     margin-right: auto;
   }
 }
+
+.btn-searching{
+  background-color: #217afa;
+    padding: 10px 20px;
+    display: block;
+    border-radius: 0.25rem;
+    color: white;
+    text-transform: uppercase;
+    font-size: 14px;
+}
 .form-subscript .btn-search {
   position: absolute;
   top: 50%;

@@ -216,6 +216,7 @@ public class UserCartController extends BaseController{
 					order.setStatus(true);
 					order.setTotal(cart.totalCartPrice());
 					order.setCreateDate(new Date());
+					order.setOrderStatus(0);
 					if(isLogined()) {
 						order.setUser(getLoginedUser());
 					}
@@ -229,6 +230,10 @@ public class UserCartController extends BaseController{
 						OrderDetail orderDetail = new OrderDetail();
 						orderDetail.setQuantity(cartProduct.getQuantity());
 						Product product = productService.getById(cartProduct.getProductId());
+						int cartProductQuantity = cartProduct.getQuantity();
+						product.setWarehouseQuantity(product.getWarehouseQuantity() - cartProductQuantity);
+						product.setSoldQuantity(product.getSoldQuantity() + cartProductQuantity);
+						productService.saveOrUpdate(product);
 						orderDetail.setProduct(product);
 						order.addRelationalOrderDetails(orderDetail);
 					}

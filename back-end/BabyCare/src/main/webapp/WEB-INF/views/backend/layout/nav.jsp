@@ -166,6 +166,15 @@
 					</ul></li>
 
 				<li class="section-title">Báo cáo và thống kê</li>
+				<li><a class="sidenav-item-link" href="${classpath }/staff/order-list"> <i
+						class="mdi mdi-briefcase-account-outline"></i> <span
+						class="nav-text">Đơn đặt hàng</span>
+				</a></li>
+				<li><a class="sidenav-item-link" href="${classpath }/staff/warehouse"> <i
+						class="mdi mdi-briefcase-account-outline"></i> <span
+						class="nav-text">Thống kê kho</span>
+				</a></li>
+				
 			</ul>
 		</div>
 </aside>

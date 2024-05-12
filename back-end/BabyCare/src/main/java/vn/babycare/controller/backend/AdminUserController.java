@@ -107,6 +107,7 @@ public class AdminUserController {
 				roleById.getUsers().add(user);
 			}
 		}
+		user.setPassword(new BCryptPasswordEncoder(4).encode(user.getPassword()));
 		userService.saveOrUpdate(user);
 		return "backend/user/user-update";
 	}

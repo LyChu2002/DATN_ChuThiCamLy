@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import vn.babycare.dto.SearchConstant;
-import vn.babycare.dto.VendorSearch;
+import vn.babycare.dto.search.VendorSearch;
 import vn.babycare.model.Vendor;
 import vn.babycare.service.VendorService;
 

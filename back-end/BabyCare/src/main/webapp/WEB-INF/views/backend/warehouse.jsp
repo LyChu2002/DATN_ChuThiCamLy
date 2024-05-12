@@ -32,46 +32,66 @@
 
 			<div class="content-wrapper">
 				<div class="content">
-					<form action="${classpath }/admin/vendor-list" method="get">
+					<form action="${classpath }/staff/warehouse" method="post">
 						<div class="card card-default">
 							<div class="card-header">
 								<div class="row1">
-									<h2>Danh sách nhà cung cấp</h2>
+									<h2>Thống kê kho</h2>
 								</div>
 								<div class="row1">
-									<input type="submit" value="Xóa" name="deleteVendor"
-										class="btn btn-danger"
-										onclick="return confirm ('Bạn có chắc chắn xóa?')" /> <a
-										href="${classpath }/admin/vendor-add" role="button"
-										class="btn btn-primary"> <i class="mdi mdi-database-plus"></i>
-										Thêm
-									</a>
+									<input type="submit" value="Cập nhật" name="updateQuantity"
+										class="btn btn-success"
+										onclick="return confirm ('Bạn có chắc chắn cập nhật?')" />
 								</div>
 							</div>
 							<div class="card-body">
 								<div class="row">
 									<div class="col-md-4">
 										<input type="hidden" id="page" name="page"
-											class="form-control" value="${vendorSearch.currentPage }" />
+											class="form-control" value="${warehouseSearch.currentPage }" />
 									</div>
 								</div>
 								<div class="row">
 									<div class="col-md-2">
+										<label for="code">Code</label> 
+										<input class="form-control" type="text"
+											id="code" name="code" placeholder="Nhập code" />
+									</div>
+									<div class="col-md-3">
+										<label for="name">Tên sản phẩm</label> 
+										<input class="form-control"
+											type="text" id="name" name="name"
+											placeholder="Nhập tên sản phẩm" />
+									</div>
+									<div class="col-md-2">
 										<div class="form-group mb-4">
-											<select class="form-control" id="status" name="status">
+											<label for="warehouseStatus">Trạng thái</label>
+											 <select
+												class="form-control" id="warehouseStatus"
+												name="warehouseStatus">
 												<option value="2">Tất cả</option>
-												<option value="1">Hoạt động</option>
-												<option value="0">Không hoạt động</option>
+												<option value="1">Còn hàng</option>
+												<option value="0">Hết hàng</option>
 											</select>
 										</div>
 									</div>
-									<div class="col-md-3">
-										<input class="form-control" type="text" id="keyword"
-											name="keyword" placeholder="Tìm kiếm" />
-									</div>
 									<div class="col-md-2">
+										<div class="form-group mb-4">
+											<label for="sortQuantity">Số lượng kho</label> <select
+												class="form-control" id="sortQuantity"
+												name="sortQuantity">
+												<option value="2">Mặc định</option>
+												<option value="1">Tăng dần</option>
+												<option value="0">Giảm dần</option>
+											</select>
+										</div>
+									</div>
+
+									<div class="col-md-2">
+										<label></label>
 										<button type="submit" id="btnSearch" name="btnSearch"
-											class="btn-searching">Tìm kiếm</button>
+											class="btn-searching" style="margin-top: 8px">Tìm
+											kiếm</button>
 									</div>
 								</div>
 
@@ -80,50 +100,23 @@
 										class="table table-hover table-striped table-bordered no-wrap ">
 										<thead>
 											<tr>
-												<th><input type="checkbox" id="checkBoxAll"></th>
 												<th scope="col">No.</th>
 												<th scope="col">Code</th>
-												<th scope="col">Hình ảnh</th>
-												<th scope="col">Tên</th>
-												<th scope="col">Ngày tạo</th>
-												<th scope="col">Ngày cập nhật</th>
-												<th scope="col">Trạng thái</th>
-												<th scope="col">Tác vụ</th>
-
+												<th scope="col">Tên sản phẩm</th>
+												<th scope="col">Số lượng kho</th>
+												<th scope="col">Số lượng nhập</th>
 											</tr>
 										</thead>
 										<tbody>
-											<c:forEach var="vendor" items="${vendors }" varStatus="loop">
+											<c:forEach var="product" items="${products }"
+												varStatus="loop">
 												<tr>
-													<td><input type="checkbox" class="checkBoxItem"
-														name="vendorId" value="${vendor.id }" /></td>
+													
 													<td>${loop.index + 1 }</td>
-													<td>${vendor.code }</td>
-													<td><img width="60px" height="60px" class="light-logo"
-														src="${classpath }/FileUpload/${vendor.image }">
-													<td>${vendor.name }</td>
-													<td><fmt:formatDate value="${vendor.createDate }"
-															pattern="dd-MM-yyyy" /></td>
-													<td><fmt:formatDate value="${vendor.updateDate }"
-															pattern="dd-MM-yyyy" /></td>
-													<td><c:choose>
-															<c:when test="${vendor.status }">
-																<span>Hoạt động</span>
-															</c:when>
-															<c:otherwise>
-																<span>Không hoạt động</span>
-															</c:otherwise>
-														</c:choose></td>
-													<td><a
-														href="${classpath }/admin/vendor-update/${vendor.id }"
-														role="button" class="btn btn-success"
-														title="Cập nhật nhà cung cấp"><i
-															class="fa-solid fa-pen-to-square"></i></a> <a
-														href="${classpath }/admin/vendor-delete/${vendor.id }"
-														role="button" class="btn btn-danger"
-														title="Xóa nhà cung cấp"><i class="fa-solid fa-trash"></i></a>
-													</td>
-
+													<td>${product.code }</td>
+													<td>${product.name }</td>
+													<td>${product.warehouseQuantity }</td>
+													<td><input type="number" name="updateQuantity_${product.id }"/></td>
 												</tr>
 											</c:forEach>
 
@@ -154,14 +147,15 @@
 	<!-- pagination -->
 	<script type="text/javascript">
 		$( document ).ready(function() {
-			//Dat gia tri cua status ung voi dieu kien search truoc do
-			$("#status").val(${vendorSearch.status});
-			$("#keyword").val("${vendorSearch.keyword}");
+			$("#sortQuantity").val(${warehouseSearch.sortQuantity});
+			$("#warehouseStatus").val(${warehouseSearch.warehouseStatus});
+			$("#code").val("${warehouseSearch.code}");
+			$("#name").val("${warehouseSearch.name}");
 			
 			$("#paging").pagination({
-				currentPage: ${vendorSearch.currentPage}, //Trang hien tai
-				items: ${vendorSearch.totalItems}, //Tong so san pham (total products)
-				itemsOnPage: ${vendorSearch.sizeOfPage},
+				currentPage: ${warehouseSearch.currentPage}, 
+				items: ${warehouseSearch.totalItems},
+				itemsOnPage: ${warehouseSearch.sizeOfPage},
 				cssStyle: 'light-theme',
 				onPageClick: function(pageNumber, event) {
 					$('#page').val(pageNumber);
@@ -170,5 +164,5 @@
 			});
 		});
 	</script>
-	</body>
+</body>
 </html>

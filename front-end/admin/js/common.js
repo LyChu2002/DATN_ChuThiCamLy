@@ -1,4 +1,4 @@
-<script type="text/javascript">
+
 	$(document).ready(function(){
 		$('#checkBoxAll').click(function(){
 			if($(this).is(":checked")){
@@ -9,4 +9,3 @@
 			}
 		})
 	})
-</script>

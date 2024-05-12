@@ -16,8 +16,9 @@
    	<!-- Variables -->
 	<jsp:include page="/WEB-INF/views/common/variable.jsp"></jsp:include>
 	<!-- CSS -->
-	<jsp:include page="/WEB-INF/views/backend/layout/css.jsp"></jsp:include>
+	<jsp:include page="/WEB-INF/views/backend/layout/css.jsp"></jsp:include>	
    	<script src="${classpath }/libraries/ckeditor/ckeditor.js"></script>
+   	 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
 </head>
 
 <body class="navbar-fixed sidebar-fixed" id="body">
@@ -141,6 +142,7 @@
 
 											</div>
 										</div>
+										
 									</div>
 
                                     <div class="row">
@@ -271,14 +273,20 @@
 
   	<!-- JS -->
    	<jsp:include page="/WEB-INF/views/backend/layout/js.jsp"></jsp:include>
-
+   	
+	<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
 </body>
 <script type="text/javascript">
 	var editorDetail = "", editorSpec = "";
 	$(document).ready(function(){
-		editorDetail = CKEDITOR.replace('detailDescription');
+		//editorDetail = CKEDITOR.replace('detailDescription');
 		editorSpec = CKEDITOR.replace('spec')
 	})
 </script>
+<script>
+    $(document).ready(function() {
+        $('#detailDescription').summernote();
+    });
+  </script>
 
 </html>

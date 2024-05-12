@@ -32,7 +32,7 @@
 									</a></li>
 
 									<li class="dropdown-footer"><a class="dropdown-link-item"
-										href="sign-in.html"> <i class="mdi mdi-logout"></i> Log
+										href="${classpath }/logout"> <i class="mdi mdi-logout"></i> Log
 											Out
 									</a></li>
 								</ul>

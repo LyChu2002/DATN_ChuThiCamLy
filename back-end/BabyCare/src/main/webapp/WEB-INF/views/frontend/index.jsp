@@ -152,8 +152,9 @@
 																src="${classpath }/FileUpload/${product.avatar}" alt="">
 															</a>
 															<div class="productAction">
-																<a href=""> <i class="fa-solid fa-cart-shopping"></i>
-																</a> <a href=""> <i class="fa-solid fa-heart"></i>
+																<a onclick="addToCart(${product.id}, 1, '${product.name }')"> <i class="fa-solid fa-cart-shopping"></i>
+																</a> 
+																<a href=""> <i class="fa-solid fa-heart"></i>
 																</a>
 															</div>
 														</div>
@@ -206,5 +207,33 @@
 			sticky.removeClass('unActiveNav');
 
 	});
+</script>
+<script type="text/javascript">
+	addToCart = function(_productId, _quantity, _productName) {		
+		let data = {
+			productId: _productId, 
+			quantity: _quantity,
+			
+		};
+			
+		//$ === jQuery
+		jQuery.ajax({
+			url : "/add-to-cart",
+			type : "POST",
+			contentType: "application/json",
+			data : JSON.stringify(data),
+			dataType : "json", //Kieu du lieu tra ve tu controller la json
+			
+			success : function(jsonResult) {
+				alert(jsonResult.code + ": " + jsonResult.message);
+				let totalProducts = jsonResult.totalCartProducts;
+				$("#totalCartProductsId").html(totalProducts);
+			},
+			
+			error : function(jqXhr, textStatus, errorMessage) {
+				alert(jsonResult.code + ': Đã có lỗi xay ra...!')
+			},
+		});
+	}
 </script>
 </html>
