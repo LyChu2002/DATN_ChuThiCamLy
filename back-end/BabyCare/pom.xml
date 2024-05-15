@@ -72,6 +72,14 @@
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-taglibs</artifactId>			
 		</dependency>
+		
+		<dependency>
+    		<groupId>com.github.librepdf</groupId>
+    		<artifactId>openpdf</artifactId>
+    		<version>1.3.8</version>
+		</dependency>
+		
+		
 	</dependencies>
 	<build>
 		<finalName>BabyCare</finalName>

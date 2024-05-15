@@ -10,3 +10,4 @@
 <link rel="stylesheet" href="${classpath }/frontend/assets/css/cart.css">
 <link rel="stylesheet" href="${classpath }/frontend/assets/css/product-detail.css">
 <link rel="stylesheet" href="${classpath }/frontend/assets/css/category.css">
+<link rel="stylesheet" href="${classpath }/libraries/jquery-ui-1.12.1/jquery-ui.css">

@@ -69,4 +69,10 @@ $(document).ready(function () {
 })
 
 
+$(function() {
+	$("#Product_Name").autocomplete({
+		source: "productNamesAutocomplete", 
+		minLength: 1,
+		});
 
+	});

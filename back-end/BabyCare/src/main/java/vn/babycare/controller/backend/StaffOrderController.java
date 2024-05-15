@@ -1,15 +1,20 @@
 package vn.babycare.controller.backend;
 
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -21,6 +26,7 @@ import vn.babycare.model.Order;
 import vn.babycare.model.OrderDetail;
 import vn.babycare.model.Product;
 import vn.babycare.model.Vendor;
+import vn.babycare.pdfexport.OrderDeatilPDFExporter;
 import vn.babycare.service.OrderDetailService;
 import vn.babycare.service.OrderService;
 import vn.babycare.service.ProductService;
@@ -190,6 +196,30 @@ public class StaffOrderController extends BaseController implements SearchConsta
 		
 		List<OrderDetail> listProducts = orderDetailService.findByOrderId(orderId);
 		model.addAttribute("listProducts", listProducts);
+		
+		int totalProducts = 0;
+		for(OrderDetail orderDeatil : listProducts) {
+			totalProducts += orderDeatil.getQuantity();
+		}
+		model.addAttribute("totalProducts", totalProducts);
 		return "backend/order/order-detail";
+	}
+	
+	@RequestMapping(value = "/order-detail/export/pdf/{orderId}", method = RequestMethod.GET)
+	public void exportToPDF(HttpServletResponse response, @PathVariable("orderId") int orderId) throws IOException{
+		Order order = orderService.getById(orderId);
+		List<OrderDetail> listOrderDetails = orderDetailService.findByOrderId(orderId);
+		
+		DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");
+        String currentDateTime = dateFormatter.format(new Date());
+		response.setContentType("application/pdf");
+		String headerKey = "Content-Disposition";
+		String headerValue = "attachment; filename=orders_" + currentDateTime + ".pdf";
+		response.setHeader(headerKey, headerValue);
+		
+		//List<Product> listP = productService.findAll();
+		OrderDeatilPDFExporter exporter = new OrderDeatilPDFExporter(listOrderDetails, order);
+		exporter.export(response);
+		
 	}
 }

@@ -163,8 +163,9 @@
 													<div class="row">
 														<div class="col-md-12">
 															<div class="form-group mb-4">
-																<label>Ghi chú </label></br> <input class="form-control"
-																	type="text" name="note" id="note" />
+																<label>Ghi chú </label></br> 
+			
+																	<textarea rows="3" cols="" name="note" id="note" class="form-control"></textarea>
 															</div>
 														</div>
 													</div>

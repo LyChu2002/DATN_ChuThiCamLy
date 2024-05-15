@@ -19,7 +19,7 @@
 					<div class="headerSearch">
 						<form action="/search" method="get">
 							<div class="headerSearchMain">
-								<input required="" name="name" id="name" maxlength="40" autocomplete="off"
+								<input required="" name="name" id="Product_Name" maxlength="40" autocomplete="off"
 									class="headerSearchInput searchinput input-search search-input"
 									type="text" size="20" placeholder="Ba mẹ muốn tìm gì cho bé?"
 									aria-label="Search">

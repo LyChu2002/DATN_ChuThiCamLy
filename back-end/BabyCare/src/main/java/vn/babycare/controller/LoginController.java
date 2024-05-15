@@ -1,6 +1,7 @@
 package vn.babycare.controller;
 
 import java.io.IOException;
+import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -44,6 +45,7 @@ public class LoginController extends BaseController{
 		user.setUsername(request.getParameter("username"));
 		user.setPassword(new BCryptPasswordEncoder(4).encode(request.getParameter("password")));
 		user.setMobile(request.getParameter("mobile"));
+		user.setCreateDate(new Date());
 		if(!StringUtils.isEmpty(request.getParameter("email"))) {
 			User userByEmail = userService.findByEmail(request.getParameter("email"));
 			if(userByEmail != null) {

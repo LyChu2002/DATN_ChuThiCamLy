@@ -55,7 +55,7 @@
 
 												<p class="article-item-bottom-desc">${blog.summary }</p>
 
-												<a class="article-item-bottom-more" href=""> Đọc thêm <i
+												<a class="article-item-bottom-more" href="${classpath }/blog-detail/${blog.id}"> Đọc thêm <i
 													class="fa-solid fa-chevron-right"></i>
 												</a>
 											</div>

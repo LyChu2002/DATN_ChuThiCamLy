@@ -1,6 +1,7 @@
 package vn.babycare.controller.frontend;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -12,6 +13,8 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import vn.babycare.dto.search.ProductSearch;
 import vn.babycare.model.Banner;
@@ -83,5 +86,20 @@ public class UserHomeController extends BaseController{
 		model.addAttribute("totalSearchProducts", searchProducts.size());
 		model.addAttribute("searchName", searchName);
 		return "frontend/search-result";
+	}
+	
+	@RequestMapping(value = "/productNamesAutocomplete")
+	@ResponseBody
+	public List<String> productNamesAutocomplete(@RequestParam (value="term", required = false, defaultValue = "") String term){
+		List<String> suggestions = new ArrayList<String>();
+		ProductSearch productSearch = new ProductSearch();
+		productSearch.setName(term);
+		List<Product> products = productService.searchProductByName(productSearch);
+		for(Product product : products) {
+			suggestions.add(product.getName());
+		}
+		
+		
+		return suggestions;
 	}
 }

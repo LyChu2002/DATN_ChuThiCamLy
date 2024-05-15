@@ -238,6 +238,7 @@ public class UserCartController extends BaseController{
 						int cartProductQuantity = cartProduct.getQuantity();
 						product.setWarehouseQuantity(product.getWarehouseQuantity() - cartProductQuantity);
 						product.setSoldQuantity(product.getSoldQuantity() + cartProductQuantity);
+						orderDetail.setPrice(product.getSaleSellPrice());
 						productService.saveOrUpdate(product);
 						orderDetail.setProduct(product);
 						order.addRelationalOrderDetails(orderDetail);

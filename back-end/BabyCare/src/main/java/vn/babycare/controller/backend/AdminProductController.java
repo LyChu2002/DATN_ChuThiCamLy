@@ -111,6 +111,7 @@ public class AdminProductController implements SearchConstant{
 		String message = "", alert = "";
 		product.setCreateDate(new Date());
 		product.setSoldQuantity(0);
+		product.setWarehouseQuantity(0);
 		if (product.getVoucher() != null) {
 			BigDecimal discount = product.getSellPrice().multiply(BigDecimal.valueOf(product.getVoucher()))
 					.divide(BigDecimal.valueOf(100));

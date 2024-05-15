@@ -1,0 +1,28 @@
+.order-detail-desc .order-detail-header{
+    text-align: center;
+}
+
+.order-detail-desc .order-detail-header h3{
+    font-weight: 600;
+}
+
+.order-detail-desc p{
+    color: black;
+    font-size: 18px;
+    margin: 4px 0;
+}
+
+.order-detail-desc .order-detail-table{
+    padding: 12px 40px;
+}
+
+.order-detail-desc .order-detail-table table{
+    width: 100%;
+    color: black;
+    font-size: 18px;
+}
+
+.order-detail-desc .order-detail-table table tr td,
+.order-detail-desc .order-detail-table table tr th{
+    padding: 6px;
+}

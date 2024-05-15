@@ -105,11 +105,11 @@
 				<div class="container">
 					<div
 						class="group-product-top d-flex align-items-center justify-content-between">
-						<div class="col-lg-6 group-product-heading">
+						<div class="col-lg-3 group-product-heading">
 							<h2>${category.name }</h2>
 						</div>
 
-						<ul class="nav-product nav-tabs-product col-lg-3" id="myTab1"
+						<ul class="nav-product nav-tabs-product col-lg-6" id="myTab1"
 							role="tabList">
 							<c:forEach var="typeProduct" items="${category.typeProducts}">
 								<c:if test="${typeProduct.status }">

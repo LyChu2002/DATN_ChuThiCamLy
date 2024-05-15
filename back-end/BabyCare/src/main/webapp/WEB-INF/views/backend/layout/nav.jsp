@@ -194,6 +194,25 @@
 						class="mdi mdi-briefcase-account-outline"></i> <span
 						class="nav-text">Thống kê kho</span>
 				</a></li>
+				<li class="has-sub"><a class="sidenav-item-link"
+					href="javascript:void(0)" data-toggle="collapse"
+					data-target="#statistic" aria-expanded="false"
+					aria-controls="statistic"> <i
+						class="mdi mdi-format-list-bulleted-type"></i> <span
+						class="nav-text">Thống kê</span> <b class="caret"></b>
+				</a>
+					<ul class="collapse" id="statistic" data-parent="#sidebar-menu">
+						<div class="sub-menu">
+							<li><a class="sidenav-item-link" href="${classpath }/staff/product-statistic">
+									<span class="nav-text">Thống kê sản phẩm</span>
+
+							</a></li>
+							<li><a class="sidenav-item-link" href="${classpath }/staff/user-statistic">
+									<span class="nav-text">Thống kê khách hàng</span>
+
+							</a></li>
+						</div>
+					</ul></li>
 				
 			</ul>
 		</div>
