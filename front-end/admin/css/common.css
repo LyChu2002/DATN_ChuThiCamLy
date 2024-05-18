@@ -2,3 +2,14 @@
     width: 14px;
     height: 14px;
 }
+.statistic-number{
+    margin: 10px 16px;
+    font-style: italic;
+    padding: 16px;
+    border-radius: 3px;
+}
+
+.statistic-number .statictis-header{
+    text-transform: uppercase;
+    margin-bottom: 5px;
+}

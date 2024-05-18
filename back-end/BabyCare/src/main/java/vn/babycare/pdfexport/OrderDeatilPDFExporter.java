@@ -101,7 +101,7 @@ public class OrderDeatilPDFExporter {
 			cell.setPhrase(new Phrase(formatPrice(product.getSaleSellPrice()), f));
 			table.addCell(cell);
 			
-			BigDecimal total = product.getSaleSellPrice().multiply(new BigDecimal(orderDetail.getQuantity().toString()));	    
+			BigDecimal total = orderDetail.getPrice().multiply(new BigDecimal(orderDetail.getQuantity().toString()));	    
 			cell.setPhrase(new Phrase(formatPrice(total), f));
 			table.addCell(cell);		
 			

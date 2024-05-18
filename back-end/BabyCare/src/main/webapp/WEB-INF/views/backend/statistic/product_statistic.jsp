@@ -35,63 +35,81 @@
 					<form method="post" action="${classpath }/staff/order-list">
 						<div class="card card-default">
 							<div class="card-header">
-								<h2>Danh sách đơn đặt hàng</h2>
-								<div class="row1">
-									<input type="submit" value="Xóa" name="deleteOrder"
-										class="btn btn-danger" title="Xóa những mục đã chọn"
-										onclick="return confirm ('Bạn có chắc chắn xóa?')" /> <input
-										type="submit" name="updateStatus" value="Cập nhật"
-										class="btn btn-success"
-										onclick="return confirm ('Cập nhật trạng thái đơn hàng?')" />
-								</div>
+								<h2>Thống kê sản phẩm</h2>
+
 							</div>
 							<div class="card-body">
+								<div class="row" style="margin-bottom: 15px;">
+									<div
+										class="col-md-2 statistic-number bg-primary justify-content-between text-white align-items">
+										<p class="statictis-header">Số lượng đã nhập</p>
+										<p style="font-weight: 700;">${totalImportQuantity } sản
+											phẩm</p>
+									</div>
+									<div
+										class="col-md-2 statistic-number bg-success justify-content-between text-white align-items">
+										<p class="statictis-header">Số lượng đã bán</p>
+										<p style="font-weight: 700;">${totalSoldQuantity } sản phẩm</p>
+									</div>
+
+									<div style="background-color: #ffc107;"
+										class="col-md-3 statistic-number justify-content-between text-white align-items">
+										<p class="statictis-header">Tổng doanh thu</p>
+										<p style="font-weight: 700;">
+											<fmt:formatNumber value="${totalRevenue }"
+												minFractionDigits="0"></fmt:formatNumber>
+											VND
+										</p>
+									</div>
+									<div
+										class="col-md-3 statistic-number bg-danger justify-content-between text-white align-items">
+										<p class="statictis-header">Tổng Lợi nhuận</p>
+										<p style="font-weight: 700;">
+											<fmt:formatNumber value="${totalProfit }"
+												minFractionDigits="0"></fmt:formatNumber>
+											VND
+										</p>
+									</div>
+								</div>
 								<div class="row">
 									<div class="col-md-4">
 										<input type="hidden" id="page" name="page"
 											class="form-control" value="${orderSearch.currentPage }" />
 									</div>
 								</div>
-								<div class="row">
-									<div class="col-md-3">
-										<div class="form-group mb-4">
-											<label for="status">Trạng thái</label> <select
-												class="form-control" id="status" name="status">
-												<option value="2">Tất cả</option>
-												<option value="1">Hoạt động</option>
-												<option value="0">Không hoạt động</option>
-											</select>
-										</div>
-									</div>
-									<div class="col-md-3">
-										<div class="form-group mb-4">
-											<label for="orderStatus">Theo dõi đơn hàng</label> <select
-												class="form-control" id="orderStatus" name="orderStatus">
-												<option value="5">Tất cả</option>
-												<option value="0">Chờ xác nhận</option>
-												<option value="1">Đã xác nhận</option>
-												<option value="2">Đang giao hàng</option>
-												<option value="3">Đã giao hàng</option>
-												<option value="4">Hủy đơn hàng</option>
-											</select>
-										</div>
-									</div>
-									<div class="col-md-3">
-										<label for="mobile">Nhập số điện thoại</label> <input
-											class="form-control" type="text" id="mobile" name="mobile"
-											placeholder="Tìm kiếm" />
-									</div>
-								</div>
-
 								<div class="row" style="margin-bottom: 20px">
 									<div class="col-md-3">
-										<label for="beginDate">Từ ngày</label> <input
-											class="form-control" type="date" id="beginDate"
-											name="beginDate" />
+										<label for="code">Code</label> <input class="form-control"
+											type="text" id="code" name="code" />
+									</div>
+									<div class="col-md-6">
+										<label for="name">Tên sản phẩm</label> <input
+											class="form-control" type="name" id="name" name="name" />
+									</div>
+
+								</div>
+								<div class="row" style="margin-bottom: 20px">
+									<div class="col-md-3">
+										<div class="form-group mb-4">
+											<label for="criteria_sort">Tiêu chí sắp xếp</label> <select
+												class="form-control" id="criteria_sort" name="criteria_sort">
+												<option value="4">Không sắp xếp</option>
+												<option value="3">Số lượng đã bán</option>
+												<option value="2">Số lượng nhập</option>
+												<option value="1">Doanh thu</option>
+												<option value="0">Tổng giá nhập</option>
+											</select>
+										</div>
 									</div>
 									<div class="col-md-3">
-										<label for="endDate">Đến ngày</label> <input
-											class="form-control" type="date" id="endDate" name="endDate" />
+										<div class="form-group mb-4">
+											<label for="sortBy">Sắp xếp theo</label> <select
+												class="form-control" id="sortBy" name="sortBy">
+												<option value="2">Mặc định</option>
+												<option value="1">Tăng dần</option>
+												<option value="0">Giảm dần</option>
+											</select>
+										</div>
 									</div>
 									<div class="col-md-3">
 										<label></label>
@@ -100,6 +118,7 @@
 									</div>
 
 								</div>
+
 								<div class="table-responsive">
 									<table
 										class="table table-hover table-striped table-bordered no-wrap ">
@@ -112,7 +131,7 @@
 												<th scope="col">Số lượng đã bán</th>
 												<th scope="col">Tổng giá nhập</th>
 												<th scope="col">Doanh thu</th>
-
+												<th scope="col">Lợi nhuận</th>
 
 											</tr>
 										</thead>
@@ -128,15 +147,11 @@
 													<td><fmt:formatNumber
 															value="${(product.soldQuantity + product.warehouseQuantity) * product.importPrice }"
 															minFractionDigits="0"></fmt:formatNumber></td>
-													<td>
-														<c:forEach var="entry" items="${data }">
-															<c:if test="${entry.key == product.id }">
-																<fmt:formatNumber value="${entry.value }"
-																	minFractionDigits="0"></fmt:formatNumber>
-															</c:if>
-														</c:forEach>
-													</td>
-													
+													<td><fmt:formatNumber value="${revenue[product.id]}"
+																	minFractionDigits="0"></fmt:formatNumber></td>		
+													<td><fmt:formatNumber value="${profit[product.id]}"
+																	minFractionDigits="0"></fmt:formatNumber></td>
+
 												</tr>
 											</c:forEach>
 

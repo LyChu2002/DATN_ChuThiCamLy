@@ -23,30 +23,42 @@ public class StaffStatisticController {
 	private ProductService productService;
 	
 	@Autowired
-	private OrderDetailService orderDeatailService;
+	private OrderDetailService orderDetailService;
 	
 	@RequestMapping(value = "/staff/product-statistic", method = RequestMethod.GET)
 	public String statisticProduct(final Model model) throws IOException{
 		List<Product> product_statistics = productService.findAllActive();
 		model.addAttribute("product_statistics", product_statistics);
-		
-		
-		
-		Map<Integer, BigDecimal> data = new HashMap<Integer, BigDecimal>();
-//		for(Product product : product_statistics) {
-//			Map<Integer, BigDecimal> revenue = orderDeatailService.countTotalByProduct(product.getId());
-//			data.put(product.getId(), revenue.get(product.getId()));
-//		}
+
+		Map<Integer, BigDecimal> revenue = new HashMap<Integer, BigDecimal>();
+		Map<Integer, BigDecimal> profit = new HashMap<Integer, BigDecimal>();
+		int totalImportQuantity = 0;
+		int totalSoldQuantity = 0;
+		BigDecimal totalRevenue = BigDecimal.valueOf(0);
+		BigDecimal totalProfit = BigDecimal.valueOf(0);
+
 		for(Product product : product_statistics) {
-			List<OrderDetail> orderDetails = orderDeatailService.findByProductId(product.getId());
+			totalImportQuantity += product.getSoldQuantity() + product.getWarehouseQuantity();
+			totalSoldQuantity += product.getSoldQuantity();
+			List<OrderDetail> orderDetails = orderDetailService.findByProductId(product.getId());
 			BigDecimal totalPrice = BigDecimal.valueOf(0);
 			for(OrderDetail orderDetail : orderDetails) {
 				BigDecimal total = orderDetail.getPrice().multiply(new BigDecimal(orderDetail.getQuantity().toString()));
 				totalPrice = totalPrice.add(total);
 			}
-			data.put(product.getId(), totalPrice);
+			
+			totalRevenue = totalRevenue.add(totalPrice);
+			revenue.put(product.getId(), totalPrice);
+			BigDecimal importPrice = product.getImportPrice().multiply(new BigDecimal(product.getSoldQuantity().toString()));
+			profit.put(product.getId(), totalPrice.subtract(importPrice));
+			totalProfit = totalProfit.add(totalPrice.subtract(importPrice));
 		}
-		model.addAttribute("data", data);
+		model.addAttribute("revenue", revenue);
+		model.addAttribute("profit", profit);
+		model.addAttribute("totalImportQuantity", totalImportQuantity);
+		model.addAttribute("totalSoldQuantity", totalSoldQuantity);
+		model.addAttribute("totalRevenue", totalRevenue);
+		model.addAttribute("totalProfit", totalProfit);
 		
 		return "backend/statistic/product_statistic";
 	}
