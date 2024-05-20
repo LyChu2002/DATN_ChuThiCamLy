@@ -2,6 +2,7 @@ package vn.babycare.controller.frontend;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -21,11 +22,13 @@ import vn.babycare.model.Banner;
 import vn.babycare.model.Category;
 import vn.babycare.model.Product;
 import vn.babycare.model.ProductImage;
+import vn.babycare.model.Review;
 import vn.babycare.model.Vendor;
 import vn.babycare.service.BannerService;
 import vn.babycare.service.CategoryService;
 import vn.babycare.service.ProductImageService;
 import vn.babycare.service.ProductService;
+import vn.babycare.service.ReviewService;
 import vn.babycare.service.VendorService;
 
 @Controller
@@ -44,6 +47,9 @@ public class UserHomeController extends BaseController{
 	
 	@Autowired
 	private CategoryService categoryService;
+	
+	@Autowired
+	private ReviewService reviewService;
 	
 	@RequestMapping(value = "/index", method = RequestMethod.GET)
 	public String index(final Model model) throws IOException{
@@ -69,6 +75,9 @@ public class UserHomeController extends BaseController{
 		
 		List<Product> relativeProducts = productService.findAllByType(product.getTypeProduct().getId());
 		model.addAttribute("relativeProducts", relativeProducts);
+		
+		List<Review> reviews = reviewService.findAllByProductId(id);
+		model.addAttribute("reviews", reviews);
 		return "frontend/product-detail";
 	}
 	
@@ -101,5 +110,20 @@ public class UserHomeController extends BaseController{
 		
 		
 		return suggestions;
+	}
+	
+	@RequestMapping(value = "/review-post/{productId}", method = RequestMethod.POST)
+	public String postReview(@PathVariable("productId") int productId,
+			final HttpServletRequest request) throws IOException{
+		if(!StringUtils.isEmpty(request.getParameter("review"))) {
+			Review review = new Review();
+			review.setContent(request.getParameter("review"));
+			review.setStatus(true);
+			review.setCreateDate(new Date());
+			review.setUser(getLoginedUser());
+			review.setProduct(productService.getById(productId));
+			reviewService.saveOrUpdate(review);
+		}
+		return "redirect:/product-detail/{productId}";
 	}
 }

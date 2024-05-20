@@ -32,7 +32,7 @@
 
 			<div class="content-wrapper">
 				<div class="content">
-					<form method="post" action="${classpath }/staff/order-list">
+					<form method="get" action="${classpath }/staff/product-statistic">
 						<div class="card card-default">
 							<div class="card-header">
 								<h2>Thống kê sản phẩm</h2>
@@ -51,9 +51,18 @@
 										<p class="statictis-header">Số lượng đã bán</p>
 										<p style="font-weight: 700;">${totalSoldQuantity } sản phẩm</p>
 									</div>
+									<div style="background-color: #6493fa;"
+										class="col-md-2 statistic-number justify-content-between text-white align-items">
+										<p class="statictis-header">Tổng tiền nhập</p>
+										<p style="font-weight: 700;">
+											<fmt:formatNumber value="${totalImportPrice }"
+												minFractionDigits="0"></fmt:formatNumber>
+											VND
+										</p>
+									</div>
 
 									<div style="background-color: #ffc107;"
-										class="col-md-3 statistic-number justify-content-between text-white align-items">
+										class="col-md-2 statistic-number justify-content-between text-white align-items">
 										<p class="statictis-header">Tổng doanh thu</p>
 										<p style="font-weight: 700;">
 											<fmt:formatNumber value="${totalRevenue }"
@@ -62,7 +71,7 @@
 										</p>
 									</div>
 									<div
-										class="col-md-3 statistic-number bg-danger justify-content-between text-white align-items">
+										class="col-md-2 statistic-number bg-danger justify-content-between text-white align-items">
 										<p class="statictis-header">Tổng Lợi nhuận</p>
 										<p style="font-weight: 700;">
 											<fmt:formatNumber value="${totalProfit }"
@@ -74,7 +83,7 @@
 								<div class="row">
 									<div class="col-md-4">
 										<input type="hidden" id="page" name="page"
-											class="form-control" value="${orderSearch.currentPage }" />
+											class="form-control" value="${productSearch.currentPage }" />
 									</div>
 								</div>
 								<div class="row" style="margin-bottom: 20px">
@@ -91,13 +100,13 @@
 								<div class="row" style="margin-bottom: 20px">
 									<div class="col-md-3">
 										<div class="form-group mb-4">
-											<label for="criteria_sort">Tiêu chí sắp xếp</label> <select
-												class="form-control" id="criteria_sort" name="criteria_sort">
+											<label for="criteriaSort">Tiêu chí sắp xếp</label> <select
+												class="form-control" id="criteriaSort" name="criteriaSort">
 												<option value="4">Không sắp xếp</option>
 												<option value="3">Số lượng đã bán</option>
 												<option value="2">Số lượng nhập</option>
-												<option value="1">Doanh thu</option>
-												<option value="0">Tổng giá nhập</option>
+												<option value="1">Tổng giá nhập</option>
+												<option value="0">Doanh thu</option>
 											</select>
 										</div>
 									</div>
@@ -183,16 +192,15 @@
 	<!-- pagination -->
 	<script type="text/javascript">
 		$( document ).ready(function() {
-			$("#status").val(${orderSearch.status});
-			$("#orderStatus").val(${orderSearch.orderStatus});
-			$("#mobile").val("${orderSearch.mobile}");
-			$("#beginDate").val("${orderSearch.beginDate}");
-			$("#endDate").val("${orderSearch.endDate}");
+			$("#criteriaSort").val(${productSearch.criteriaSort});
+			$("#sortBy").val(${productSearch.sortBy});
+			$("#code").val("${productSearch.code}");
+			$("#name").val("${productSearch.name}");
 			
 			$("#paging").pagination({
-				currentPage: ${orderSearch.currentPage}, 
-				items: ${orderSearch.totalItems}, 
-				itemsOnPage: ${orderSearch.sizeOfPage},
+				currentPage: ${productSearch.currentPage}, 
+				items: ${productSearch.totalItems}, 
+				itemsOnPage: ${productSearch.sizeOfPage},
 				cssStyle: 'light-theme',
 				onPageClick: function(pageNumber, event) {
 					$('#page').val(pageNumber);

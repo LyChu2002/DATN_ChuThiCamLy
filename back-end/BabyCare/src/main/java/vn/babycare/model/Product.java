@@ -83,6 +83,18 @@ public class Product extends BaseModel{
 //----Mapping one-to-many: product to order_detail----------------
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "product")
 	private Set<OrderDetail> orderDetails = new HashSet<OrderDetail>();
+	
+//----Mapping one-to-many: Product to Review
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "product")
+	private Set<Review> reviews = new HashSet<Review>();
+
+	public Set<Review> getReviews() {
+		return reviews;
+	}
+
+	public void setReviews(Set<Review> reviews) {
+		this.reviews = reviews;
+	}
 
 	public Set<OrderDetail> getOrderDetails() {
 		return orderDetails;

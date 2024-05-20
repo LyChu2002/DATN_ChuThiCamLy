@@ -46,7 +46,7 @@
 												<div class="cart-page-list-item-detail">
 													
 													<h3 class="item-name">
-														<a href="">${item.productName }</a>
+														<a href="${classpath }/product-detail/${item.productId}">${item.productName }</a>
 													</h3>
 													<span class="item-desc">SKU: ${item.productCode }</span>
 												</div>

@@ -148,18 +148,20 @@ public class StaffOrderController extends BaseController implements SearchConsta
 				if(request.getParameter("orderStatus_" + order_id) != null) {
 					Order dbOrder = orderService.getById(order_id);
 					int newOrderStatus = Integer.parseInt(request.getParameter("orderStatus_" + order_id));
-					dbOrder.setOrderStatus(newOrderStatus);
-					orderService.saveOrUpdate(dbOrder);
-					//Huy don hang
-					if(dbOrder.getOrderStatus() == 4) {
-						List<OrderDetail> orderDetails = orderDetailService.findByOrderId(order_id);
-						for(OrderDetail orderDetail : orderDetails) {
-							int product_id = orderDetail.getProduct().getId();
-							int cancelQuantity = orderDetailService.findByOrderProductId(order_id, product_id).getQuantity();
-							Product orderProduct = orderDetail.getProduct();
-							orderProduct.setWarehouseQuantity(orderProduct.getWarehouseQuantity() + cancelQuantity);
-							orderProduct.setSoldQuantity(orderProduct.getSoldQuantity() - cancelQuantity);
-							productService.saveOrUpdate(orderProduct);
+					if(newOrderStatus != dbOrder.getOrderStatus()) {
+						dbOrder.setOrderStatus(newOrderStatus);
+						orderService.saveOrUpdate(dbOrder);
+						//Huy don hang
+						if(dbOrder.getOrderStatus() == 4) {
+							List<OrderDetail> orderDetails = orderDetailService.findByOrderId(order_id);
+							for(OrderDetail orderDetail : orderDetails) {
+								int product_id = orderDetail.getProduct().getId();
+								int cancelQuantity = orderDetailService.findByOrderProductId(order_id, product_id).getQuantity();
+								Product orderProduct = orderDetail.getProduct();
+								orderProduct.setWarehouseQuantity(orderProduct.getWarehouseQuantity() + cancelQuantity);
+								orderProduct.setSoldQuantity(orderProduct.getSoldQuantity() - cancelQuantity);
+								productService.saveOrUpdate(orderProduct);
+							}
 						}
 					}
 				}

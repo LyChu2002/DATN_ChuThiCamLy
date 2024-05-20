@@ -24,15 +24,18 @@
 			<div class="breadcrum-shop">
 				<div class="breadcrum-container container container-xl">
 					<ol class="breadcrum">
-						<li class="breadcrum-item"><a href="${classpath }/index">Trang chủ</a></li>
-						<li class="breadcrum-item active"><a href="${classpath }/type-product/${typeProduct.id}">${product.typeProduct.name }</a>
+						<li class="breadcrum-item"><a href="${classpath }/index">Trang
+								chủ</a></li>
+						<li class="breadcrum-item active"><a
+							href="${classpath }/type-product/${typeProduct.id}">${product.typeProduct.name }</a>
 						<li class="breadcrum-item"><a href="">${product.name }</a></li>
 					</ol>
 				</div>
 			</div>
 			<div class="container">
-				<form action="${classpath }/product-detail" method="get">
-					<div class="productWrap">
+
+				<div class="productWrap">
+					<form action="${classpath }/product-detail" method="get">
 						<div class="productWrapAll">
 							<div class="productWrapLeft">
 								<div class="thumbImage">
@@ -219,38 +222,76 @@
 								</div>
 							</div>
 						</div>
-						<div class="productRelate">
-							<div class="section-title-all">
-								<h2>Sản phẩm liên quan</h2>
+					</form>
+					<div class="product-review">
+						<h4 class="title">ĐÁNH GIÁ SẢN PHẨM</h4>
+						<c:forEach var="review" items="${reviews }">
+							<div class="product-review-item">
+								<img
+									src="${classpath }/frontend/assets/images/logo/logo_user/user.png"
+									style="width: 30px;" alt=""> <span
+									class="product-review-account">${review.user.username }</span>
+
+
+								<p class="content">${review.content }</p>
+								<span class="review-date">Ngày đăng: <fmt:formatDate
+										value="${review.createDate }" pattern="dd-MM-yyyy" /></span> 
+								<c:if test="${review.user.id == loginedUser.id }">
+									<input type="button" value="Xóa" class="delete-review">
+								</c:if>
+								
 							</div>
-							<div class="product-relate-main">
-								<c:forEach items="${relativeProducts }" var="product">
-									<div class="proLoop">
-										<div class="proWrap">
-											<div class="product-img">
-												<a href="" class="product-img-link"> <img
-													src="${classpath }/FileUpload/${product.avatar}" alt="">
+
+						</c:forEach>
+
+						<c:if test="${isLogined }">
+							<img
+								src="${classpath }/frontend/assets/images/logo/logo_user/user.png"
+								style="width: 30px;" alt="">
+							<span class="product-review-account">${loginedUser.username }</span>
+
+							<form class="review-post" method="post"
+								action="${classpath }/review-post/${product.id}">
+								<textarea rows="4" cols="90" placeholder="Viết bình luận..."
+									style="margin: 10px 0 0 43px; width: 90%;" name="review"></textarea>
+								<button class="btn btn-submit">Đăng bình luận</button>
+							</form>
+						</c:if>
+
+
+					</div>
+					<div class="productRelate">
+						<div class="section-title-all">
+							<h2>Sản phẩm liên quan</h2>
+						</div>
+						<div class="product-relate-main">
+							<c:forEach items="${relativeProducts }" var="product">
+								<div class="proLoop">
+									<div class="proWrap">
+										<div class="product-img">
+											<a href="" class="product-img-link"> <img
+												src="${classpath }/FileUpload/${product.avatar}" alt="">
+											</a>
+											<div class="productAction">
+												<a href=""> <i class="fa-solid fa-cart-shopping"></i>
+												</a> <a href=""> <i class="fa-solid fa-heart"></i>
 												</a>
-												<div class="productAction">
-													<a href=""> <i class="fa-solid fa-cart-shopping"></i>
-													</a> <a href=""> <i class="fa-solid fa-heart"></i>
-													</a>
-												</div>
-											</div>
-											<div class="product-info">
-												<h3 class="product-name">
-													<a href="${classpath }/product-detail/${product.id}">
-														${product.name } </a>
-												</h3>
-												<p class="product-price">525,000đ</p>
 											</div>
 										</div>
+										<div class="product-info">
+											<h3 class="product-name">
+												<a href="${classpath }/product-detail/${product.id}">
+													${product.name } </a>
+											</h3>
+											<p class="product-price">525,000đ</p>
+										</div>
 									</div>
-								</c:forEach>
-							</div>
+								</div>
+							</c:forEach>
 						</div>
 					</div>
-				</form>
+				</div>
+
 			</div>
 		</div>
 	</div>

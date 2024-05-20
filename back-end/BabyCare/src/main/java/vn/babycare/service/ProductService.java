@@ -14,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import vn.babycare.constant.FilePath;
 import vn.babycare.dto.search.ProductSearch;
+import vn.babycare.dto.search.StatisticProductSearch;
 import vn.babycare.dto.search.VendorSearch;
 import vn.babycare.dto.search.WarehouseSearch;
 import vn.babycare.model.Product;
@@ -175,5 +176,46 @@ public class ProductService extends BaseService<Product>{
 		return super.executeNativeSql(sql);
 	}
 	
-	
+	//search product statistic
+	public List<Product> searchStatisticsProduct(StatisticProductSearch sProductSearch){
+		String sql = "SELECT p.* FROM product p"
+				+ " LEFT JOIN order_detail o"
+				+ " ON p.id = o.product_id "
+				+ " LEFT JOIN sale_order s"
+				+ " ON s.id = o.sale_order_id"
+				+ " WHERE p.status = 1";
+		if(!StringUtils.isEmpty(sProductSearch.getName())) {
+			String name = sProductSearch.getName().toLowerCase();
+			sql += " AND (LOWER(p.name) LIKE '%" + name + "%')";
+		}
+		if(!StringUtils.isEmpty(sProductSearch.getCode())){
+			sql += " AND p.code = '" + sProductSearch.getCode() + "'";
+		}
+		sql += " GROUP BY p.id";
+		if(sProductSearch.getCriteriaSort() != 4) {
+			sql += " ORDER BY";
+			if(sProductSearch.getCriteriaSort() == 3) {
+				sql += " p.sold_quantity";
+			}
+			else if(sProductSearch.getCriteriaSort() == 2) {
+				sql += " (p.sold_quantity + p.warehouse_quantity)";
+			}
+			else if(sProductSearch.getCriteriaSort() == 1) {
+				sql += " (p.import_price * (p.sold_quantity + p.warehouse_quantity))";
+			}
+			else if(sProductSearch.getCriteriaSort() == 0){
+				sql += " SUM(o.price * o.quantity)";
+			}
+		}
+		if(sProductSearch.getSortBy() != 2) {
+			if(sProductSearch.getSortBy() == 1) {
+				sql += " ASC";
+			}
+			else {
+				sql += " DESC";
+			}
+		}
+
+		return super.executeNativeSql(sql);
+	}
 }

@@ -46,6 +46,18 @@ public class User extends BaseModel implements UserDetails{
 //----------Mapping one-to-many: User to Blog
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
 	private Set<Blog> blogs = new HashSet<Blog>();
+	
+//----------Mapping one-to-many: User to Review
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
+	private Set<Review> reviews = new HashSet<Review>();
+
+	public Set<Review> getReviews() {
+		return reviews;
+	}
+
+	public void setReviews(Set<Review> reviews) {
+		this.reviews = reviews;
+	}
 
 	public Set<Order> getOrders() {
 		return orders;

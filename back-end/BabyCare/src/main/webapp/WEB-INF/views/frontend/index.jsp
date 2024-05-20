@@ -37,11 +37,37 @@
 		<div class="home-brand">
 			<div class="container">
 				<div class="home-brand-slider">
-					<c:forEach items="${vendors }" var="vendor">
-						<div class="home-brand-item">
-							<img src="${classpath }/FileUpload/${vendor.image}" alt="">
-						</div>
-					</c:forEach>
+					<div class="home-brand-item">
+						<img src="${classpath }/frontend/assets/images/logo/logo_brand/AnyConv.com__home_brand_image_1.png" alt="">
+					</div>
+					<div class="home-brand-item">
+						<img src="${classpath }/frontend/assets/images/logo/logo_brand/AnyConv.com__home_brand_image_11.png" alt="">
+					</div>
+					<div class="home-brand-item">
+						<img src="${classpath }/frontend/assets/images/logo/logo_brand/AnyConv.com__home_brand_image_12.png" alt="">
+					</div>
+					<div class="home-brand-item">
+						<img src="${classpath }/frontend/assets/images/logo/logo_brand/AnyConv.com__home_brand_image_13.png" alt="">
+					</div>
+					<div class="home-brand-item">
+						<img src="${classpath }/frontend/assets/images/logo/logo_brand/AnyConv.com__home_brand_image_14.png" alt="">
+					</div>
+					<div class="home-brand-item">
+						<img src="${classpath }/frontend/assets/images/logo/logo_brand/AnyConv.com__home_brand_image_2.png" alt="">
+					</div>
+					<div class="home-brand-item">
+						<img src="${classpath }/frontend/assets/images/logo/logo_brand/AnyConv.com__home_brand_image_3.png" alt="">
+					</div>
+					<div class="home-brand-item">
+						<img src="${classpath }/frontend/assets/images/logo/logo_brand/AnyConv.com__home_brand_image_5.png" alt="">
+					</div>
+					<div class="home-brand-item">
+						<img src="${classpath }/frontend/assets/images/logo/logo_brand/AnyConv.com__home_brand_image_8.png" alt="">
+					</div>
+					<div class="home-brand-item">
+						<img src="${classpath }/frontend/assets/images/logo/logo_brand/AnyConv.com__home_brand_image_9.png" alt="">
+					</div>
+					
 				</div>
 			</div>
 		</div>

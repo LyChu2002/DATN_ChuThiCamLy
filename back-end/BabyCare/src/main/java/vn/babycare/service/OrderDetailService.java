@@ -30,6 +30,13 @@ public class OrderDetailService extends BaseService<OrderDetail>{
 		return super.executeNativeSql(sql);
 	}
 	
+	public List<OrderDetail> findByProductIdActive(int productId){
+		String sql = "SELECT o.* FROM order_detail o"
+				+ " LEFT JOIN sale_order s ON o.sale_order_id = s.id"
+				+ " WHERE s.order_status != 4 AND o.product_id = " + productId;
+		return super.executeNativeSql(sql);
+	}
+	
 	public OrderDetail findByOrderProductId(int orderId, int productId){
 		String sql = "SELECT * FROM order_detail WHERE sale_order_id = " + orderId + " AND product_id = " + productId;
 		return super.getEntityByNativeSQL(sql);
